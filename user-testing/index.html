@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>How to do user testing</title>
+	
+	<meta name="description" content="How to do user testing">
+	<meta name="author" content="Kevin Burke">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
+	<link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+	
+	<script src="/slides/static/modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+	<h1>How to do user testing</h1>
+</section>
+
+<section class="slide" id="how-to-overview">
+	<h2>Why Bother?</h2>
+	<ul>
+		<li>
+			<h3>Better Usability = More Users</h3>
+      <!-- If our users can't figure out how to use our product, we lose money
+      - either from people not figuring out how to spend it on our platform, 
+      switching to a competitor, or just not integrating voice/SMS
+      -->
+		</li>
+		<li>
+			<h3>User testing will expose flaws in your design</h3>
+      <!-- No battle plan survives first contact with the enemy. Since your
+      users are the ones that are actually working with your design every day, 
+      they are the ones you should be watching to figure out whether your 
+      design is working as anticipated.
+      -->
+		</li>
+		<li>
+			<h3>You are not your user</h3>
+      <!-- We spend WAY more time on Twilio's website than any of our users.
+      The typical user has 20 tabs open and ten things to do, and ONE of them 
+      is ours. Things that make sense to us are confusing to new users.
+
+      Examples:
+      - Helper Libraries
+      - Difference between REST, Twiml
+
+      Converse: Don't need to user test for internal tools.
+
+      Note: User testing is good for measuring outcomes, not for measuring how 
+      people feel about a design
+      -->
+		</li>
+    <li>
+      <h3>Good Code != Good User Experience</h3>
+    </li>
+	</ul>
+</section>
+
+<section class="slide" id="how-to-overview">
+	<h1>Step 1: Find People</h1>
+  <!-- This is the hardest part by far. As a result I am always on the lookout
+  for people to test. 
+
+  How important is it to find representative users? This is a good question.
+  It's not ideal, and may leave you with concerns about the product that aren't 
+  necessarily problems, but it's better than nothing.
+
+  Another thing you can do is find a task to suit the person at hand. For 
+  example, you could ask someone with non-technical skills to browse our 
+  marketing pages and then "write up 5 bullet points for their boss explaining 
+  the pros and cons of the product". Or ask them to try and find someone to 
+  build their Twilio app and see where they look (oDesk, similar)
+  -->
+</section>
+
+<section class="slide">
+	<h2>Where to Find People</h2>
+	<ul>
+		<li>
+			<h3>User Groups</h3>
+		</li>
+		<li>
+			<h3>College Fairs</h3>
+		</li>
+		<li>
+			<h3>Conferences</h3>
+		</li>
+		<li>
+			<h3>New Employees/Interns</h3>
+		</li>
+		<li>
+			<h3>GoToMeeting, Usertesting.com</h3>
+		</li>
+		<li>
+			<h3>In the office?</h3>
+		</li>
+	</ul>
+</section>
+
+<section class="slide" id="step2">
+  <h1>Step 2: Assign Representative Tasks</h1>
+</section>
+
+<section class="slide">
+<h2>Ideally:</h2>
+	<ul>
+		<li>
+			<h3>&lt;30 mins, unless you are paying them</h3>
+      <!-- Beware! Something you think is easy may be hard. -->
+		</li>
+		<li>
+			<h3>Don't use product lingo</h3>
+      <!-- eg, Twilio Connect -->
+		</li>
+		<li>
+			<h3>Test should have a clear outcome</h3>
+		</li>
+	</ul>
+</section>
+
+<section class="slide">
+<h2>Examples</h2>
+	<ul>
+		<li>
+			<h3>Send an SMS to your phone</h3>
+		</li>
+		<li>
+			<h3>Buy a phone number in your area code</h3>
+		</li>
+    <li>
+      <h3>Boxconfig - Find a recent 500 server error</h3>
+    </li>
+		<li>
+    <h3>Your boss at a small business wants an application he can use to
+    send text messages to customers. Research possible solutions and make a
+    recommendation to your boss.</h3>
+		</li>
+		<li>
+			<h3>Make a call from your browser to your phone</h3>
+		</li>
+		<li>
+			<h3>Set up your Twilio number to forward to your cellphone</h3>
+		</li>
+	</ul>
+</section>
+
+<section class="slide" id="starting-the-test">
+  <h2>Starting the test</h2>
+  <ul>
+    <li><h3>If you are recording their voice or face, ask permission</h3>
+    <!-- In general it's good for you to record the test. A notepad is fine at
+    the minimum, video recording can be good for persuading other members of
+    your team. Try not to record their face if possible. -->
+    <li><h3>Tell the user to bring their own equipment</h3>
+    <!-- You are going to get more out of the test by watching them closer to
+    the way they've actually worked. -->
+    <li><h3>Ask about the user's background</h3></li>
+    <!-- What languages are they familiar with? Have they worked with API's
+    before? Have they heard of Twilio's API before, or used it? -->
+    <li><h3>Explain that the user is the expert</h3>
+    <!-- Many people will apologize for not doing well during the test, they
+    think it's their fault. The opposite is true; the interface is always the 
+    problem. Explain that we are testing the interface, not your ability. -->
+    <li><h3>Ask them to think aloud during the test</h3>
+    <!-- This one will probably require prompting, it's not natural for people
+    and they will want to appear smart. -->
+    <li><h3>Give them the task</h3>
+  </ul>
+</section>
+
+<section class="slide" id="number-one-rule">
+  <h1>The number one rule</h1>
+</section>
+
+<section class="slide" id="keep-quiet">
+  <h2>The number one rule</h2>
+  <img src="https://img.skitch.com/20120530-cjqtmsn3eq5d3gi6addt691ef9.png" />
+  <!-- especially if they are stuck -->
+</section>
+
+<section class="slide" id="asking-questions">
+  <h2>Asking questions during a test</h2>
+  <p>In general, DON'T. But if you have to, be very careful not to bias the user. Here are some good unbiased questions.</p>
+  <ul>
+    <li><h3>"What are you thinking about?"</h3>
+    <!-- Ask them to do whatever they would do in their office. -->
+    <li><h3>"What were you expecting to see when you clicked that button?"</h3></li>
+    <li><h3>"What are you trying to do now?"</li>
+  </ul>
+</section>
+
+<section class="slide" id="common-problems">
+  <h2>Other common problems/questions</h2>
+  <ul>
+    <li><h3>"Is this the right place to click?"</h3>
+    <!-- Ask them to do whatever they would do in their office. -->
+    <li><h3>"I don't know what to do."</h3></li>
+    <li><h3>"I'm stuck."</h3></li>
+    <li><h3>&lt;silence&gt;</h3>
+    <li><h3>"Well it looks like this is the documentation over here, and this is where I'd click to sign up for an account, and oh this looks neat, ..."</h3></li>
+  </ul>
+</section>
+
+<section class="slide" id="recapping-the-test">
+  <h2>Recapping the test</h2>
+  <ol>
+    <li><h3>Thank the participant for their time</h3>
+    <li><h3>Ask if they have any overall observations</h3></li>
+    <li><h3>Recap with your team as soon as possible</h3></li>
+  </ol>
+</section>
+
+<section class="slide" id="how-many-users">
+  <h2>How many users to test?</h2>
+  <img src="https://img.skitch.com/20120530-t6sm98jrsnt4c3td6nx95p3sxd.png" />
+  <!-- Notes: Zero users = zero insights. 
+  On average, any one user will uncover 31% of problems with a given design. -->
+</section>
+
+<section class="slide" id="questions">
+  <h1>Questions?</h1>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="http://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="http://kev.inburke.com/user-testing">kev.inburke.com/user-testing</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+<!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+<script src="/slides/static/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+</body>
+</html>
