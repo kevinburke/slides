@@ -42,43 +42,55 @@
 	<h2>Why Bother?</h2>
 	<ul>
 		<li>
-			<h3>Better Usability = More Users</h3>
-      <!-- If our users can't figure out how to use our product, we lose money
-      - either from people not figuring out how to spend it on our platform, 
-      switching to a competitor, or just not integrating voice/SMS
-      -->
+			<h3>You are not your user</h3>
+			<!-- We spend WAY more time on Twilio's website than any of our users.
+			The typical user has 20 tabs open and ten things to do, and ONE of them 
+			is ours. Things that make sense to us are confusing to new users.
+
+			Examples:
+			- Helper Libraries
+			- Difference between REST, Twiml
+
+			Converse: Don't need to user test for internal tools.
+
+			Note: User testing is good for measuring outcomes, not for measuring how 
+			people feel about a design
+			-->
 		</li>
 		<li>
 			<h3>User testing will expose flaws in your design</h3>
-      <!-- No battle plan survives first contact with the enemy. Since your
-      users are the ones that are actually working with your design every day, 
-      they are the ones you should be watching to figure out whether your 
-      design is working as anticipated.
-      -->
+			<!-- No battle plan survives first contact with the enemy. Since your
+			users are the ones that are actually working with your design every day, 
+			they are the ones you should be watching to figure out whether your 
+			design is working as anticipated.
+			-->
 		</li>
 		<li>
-			<h3>You are not your user</h3>
-      <!-- We spend WAY more time on Twilio's website than any of our users.
-      The typical user has 20 tabs open and ten things to do, and ONE of them 
-      is ours. Things that make sense to us are confusing to new users.
-
-      Examples:
-      - Helper Libraries
-      - Difference between REST, Twiml
-
-      Converse: Don't need to user test for internal tools.
-
-      Note: User testing is good for measuring outcomes, not for measuring how 
-      people feel about a design
-      -->
+			<h3>Better Usability = More Users</h3>
+			<!-- If our users can't figure out how to use our product, we lose money
+			- either from people not figuring out how to spend it on our platform, 
+			switching to a competitor, or just not integrating voice/SMS
+			-->
 		</li>
-    <li>
-      <h3>Good Code != Good User Experience</h3>
-    </li>
+		<li>
+			<h3>Good Code != Good User Experience</h3>
+		</li>
+		<li>
+			<h3>People fail in dumb ways</h3>
+			<!-- Ways I've seen people fail:
+
+			- Can't find their Auth Token
+			- Can't find our helper libraries
+			- Got stuck on the Voicemail Howto
+			- Don't know how to use Pip
+			- Thought they validated a phone number, but it failed
+			- Kept clicking on "How it Works" to find examples of how to send an SMS
+			-->
+		</li>
 	</ul>
 </section>
 
-<section class="slide" id="how-to-overview">
+<section class="slide" id="find-people">
 	<h1>Step 1: Find People</h1>
   <!-- This is the hardest part by far. As a result I am always on the lookout
   for people to test. 
@@ -95,7 +107,7 @@
   -->
 </section>
 
-<section class="slide">
+<section class="slide" id="where-to-find-people">
 	<h2>Where to Find People</h2>
 	<ul>
 		<li>
@@ -119,28 +131,28 @@
 	</ul>
 </section>
 
-<section class="slide" id="step2">
+<section class="slide" id="assign-representative-tasks">
   <h1>Step 2: Assign Representative Tasks</h1>
 </section>
 
-<section class="slide">
-<h2>Ideally:</h2>
+<section class="slide" id="good-task-properties">
+<h2>A good task:</h2>
 	<ul>
 		<li>
-			<h3>&lt;30 mins, unless you are paying them</h3>
+			<h3>Should take &lt;30 mins, unless you are paying the user</h3>
       <!-- Beware! Something you think is easy may be hard. -->
 		</li>
 		<li>
-			<h3>Don't use product lingo</h3>
+			<h3>Shouldn't use vocabulary specific to your product</h3>
       <!-- eg, Twilio Connect -->
 		</li>
 		<li>
-			<h3>Test should have a clear outcome</h3>
+			<h3>Should have a clear outcome</h3>
 		</li>
 	</ul>
 </section>
 
-<section class="slide">
+<section class="slide" id="example-tasks">
 <h2>Examples</h2>
 	<ul>
 		<li>
@@ -166,8 +178,8 @@
 	</ul>
 </section>
 
-<section class="slide" id="starting-the-test">
-  <h2>Starting the test</h2>
+<section class="slide" id="before-the-test">
+  <h2>Before the test</h2>
   <ul>
     <li><h3>If you are recording their voice or face, ask permission</h3>
     <!-- In general it's good for you to record the test. A notepad is fine at
@@ -179,7 +191,7 @@
     <li><h3>Ask about the user's background</h3></li>
     <!-- What languages are they familiar with? Have they worked with API's
     before? Have they heard of Twilio's API before, or used it? -->
-    <li><h3>Explain that the user is the expert</h3>
+    <li><h3>Tell the user we are testing the product, not them</h3>
     <!-- Many people will apologize for not doing well during the test, they
     think it's their fault. The opposite is true; the interface is always the 
     problem. Explain that we are testing the interface, not your ability. -->
@@ -189,6 +201,8 @@
     <li><h3>Give them the task</h3>
   </ul>
 </section>
+
+<!-- Okay, so during the test: -->
 
 <section class="slide" id="number-one-rule">
   <h1>The number one rule</h1>
@@ -201,13 +215,26 @@
 </section>
 
 <section class="slide" id="asking-questions">
-  <h2>Asking questions during a test</h2>
-  <p>In general, DON'T. But if you have to, be very careful not to bias the user. Here are some good unbiased questions.</p>
+  <h2>During the test</h2>
+  <p>In general, DON'T ask questions or interrupt the user. But if you have to, 
+  be very careful not to bias the user. Here are some good unbiased questions.</p>
   <ul>
     <li><h3>"What are you thinking about?"</h3>
     <!-- Ask them to do whatever they would do in their office. -->
     <li><h3>"What were you expecting to see when you clicked that button?"</h3></li>
     <li><h3>"What are you trying to do now?"</li>
+    <li><h3>"I see you clicked on (button X)..."</li>
+  </ul>
+</section>
+
+<section class="slide" id="bad-questions">
+  <h2>Bad questions</h2>
+  <ul>
+    <li><h3>"Why didn't you click on the red button?"</h3>
+    <li><h3>"Did you see (the menu option/the blue box)?"</h3></li>
+    <!-- In general users will give untrustworthy answers to these questions. 
+    "I didn't see it because it was small" ok maybe, all we know is you didn't 
+    see it. -->
   </ul>
 </section>
 
@@ -237,6 +264,7 @@
   <img src="https://img.skitch.com/20120530-t6sm98jrsnt4c3td6nx95p3sxd.png" />
   <!-- Notes: Zero users = zero insights. 
   On average, any one user will uncover 31% of problems with a given design. -->
+  <a href="http://www.useit.com/alertbox/20000319.html">source</a>
 </section>
 
 <section class="slide" id="questions">
@@ -250,7 +278,7 @@
   <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
   <h4><a href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
   <p>These slides are available at:</p>
-  <h4><a href="http://kev.inburke.com/user-testing">kev.inburke.com/user-testing</a></h4>
+  <h4><a href="http://kev.inburke.com/slides/user-testing">kev.inburke.com/slides/user-testing</a></h4>
 </section>
 
 <!-- deck.navigation snippet -->
