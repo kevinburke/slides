@@ -21,6 +21,10 @@
 	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
 	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
 	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
+
+  <!-- codemirror -->
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/themes/lesser-dark.css">
 	
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
 	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
@@ -56,17 +60,23 @@
 
 <section class="slide" id="caveat-emptor">
 	<h2>The problem</h2>
-  <img src="pic of old-docs-snippet.jpg" />
+  <img src="https://www.evernote.com/shard/s265/sh/0ef1b285-4950-44ba-a6ca-a4a1d6364474/539327fcfeb8de9e589e94619b8accb5/res/e00323fd-f027-4006-bf2b-4c2dff159b50/skitch.png" alt="pic of old docs" />
 </section>
 
 <section class="slide" id="caveat-emptor">
 	<h2>The problem</h2>
-  <img src="pic-of-docs-snippet.jpg" />
+  <img src="https://www.evernote.com/shard/s265/sh/51432760-7a1d-4413-aa40-d41a9104977b/8186de79ed863462a25f787477580a80/res/78450648-7569-423d-af6c-ead664267641/skitch.png" alt="pic of new docs" />
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="lots-of-resources">
 	<h2>The problem</h2>
-  <ul>
+  <style>
+    .floated-list li {
+      float: left;
+      width: 450px;
+    }
+  </style>
+  <ul class="floated-list">
     <li>Accounts
     <li>Applications
     <li>AuthorizedConnectApps
@@ -94,182 +104,297 @@
   </ul>
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="lots-of-examples">
 	<h2>The problem</h2>
   <h5>Multiply that by multiple examples per page, 6 snippets per example</h5>
+  <img src="http://gifs.gifbin.com/032010/1267612678_circle_domino_loop.gif" style="width: 550px; padding-top: 30px;" />
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="shitload">
 	<h2>The problem</h2>
   <h5>That's a shitload of code snippets</h5>
-  <img src="funny-pic.jpg" />
+  <img src="http://i.imgur.com/QgwINVg.gif" style="width: 500px; padding-top: 30px;" />
   <!-- Got tired after like the sixth one -->
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="solution-1">
 	<h1>Finding a solution</h1>
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="solution-2">
 	<h2>Finding a solution</h2>
-  <img src="all-the-docs.jpg" />
+  <img src="https://www.evernote.com/shard/s265/sh/21cc9a3a-26d5-4fa9-a507-66c9697a3976/3a54f538108b51c074b4150b6c3626cc/res/f8d1e77b-69b8-4a97-bef6-931f11cb0110/skitch.png" alt="first attempt" />
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="solution-3">
 	<h2>Finding a solution</h2>
   <h5>Okay, that won't work</h5>
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="solution-4">
 	<h2>Finding a solution</h2>
-  <pre>
-  <code>
-  GET /2010-04-01/Accounts/AC123/SMS/Messages
-  From=%2B14105551234
-  </code>
-  </pre>
+  <div name="code" class="code" mode="default" theme="lesser-dark" style="display: none;">GET /2010-04-01/Accounts/AC123/SMS/Messages 
+From=%2B14105551234</div>
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="solution-5">
 	<h2>Finding a solution</h2>
-  <pre>
-  <code>
-  def process_instance_resource(self, resource, sid, method="GET", params=None):
-      """ Generate code snippets for an instance resource """
-      get_line = '{} = {}.get("{}")'.format(self.instance_name, self.base, sid)
+  <div name="code" class="code" mode="python" theme="lesser-dark" style="display: none;">def process_instance_resource(self, resource, sid, method="GET", params=None):
+  """ Generate code snippets for an instance resource """
+  get_line = '{} = {}.get("{}")'.format(instance_name, base, sid)
 
-      if method == "GET":
-          interesting_line = 'print {}.{}'.format(
-              self.instance_name,
-              self.kw_rep(self.get_interesting_property(resource)))
-          return "\n".join([get_line, interesting_line])
+  if method == "GET":
+      interesting_line = 'print {}.{}'.format(instance_name, 
+        get_interesting_property(resource))
+      return "\n".join([get_line, interesting_line])
 
-      ...
-  </code>
-  </pre>
+  ...
+  </div>
 </section>
 
-<section class="slide" id="caveat-emptor">
+<section class="slide" id="instance_var_names">
 	<h2>Finding a solution</h2>
-  <pre>
-  <code>
-    instance_var_names = {
-        '/Accounts': 'account',
-        '/Applications': 'app',
-        '/AuthorizedConnectApps': 'authorized_app',
-        '/AvailablePhoneNumbers': 'available_number',
-        '/Calls': 'call',
-        ...
+  <div name="code" class="code" mode="python" theme="lesser-dark" style="display: none;">instance_var_names = {
+  '/Accounts': 'account',
+  '/Applications': 'app',
+  '/AuthorizedConnectApps': 'authorized_app',
+  '/AvailablePhoneNumbers': 'available_number',
+  '/Calls': 'call',
+  ...
+  }
+</div>
+</section>
+
+<section class="slide" id="interesting-properties">
+	<h2>Finding a solution</h2>
+  <div name="code" class="code" mode="python" theme="lesser-dark" style="display: none;">interesting_properties = {
+  '/Accounts': ['friendly_name', 'status', 'date_created'],
+  '/Applications': ['voice_url', 'sms_url'],
+  '/AuthorizedConnectApps': ['connect_app_friendly_name',
+                             'connect_app_homepage_url'],
+  '/AvailablePhoneNumbers': ['friendly_name', 'phone_number'],
+  '/Calls': ['start_time', 'direction', 'to'],
+  '/Conferences': ['status'],
+  '/Conferences/Participants': ['start_conference_on_enter', 'muted'],
+  '/ConnectApps': ['homepage_url', 'friendly_name'],
+  ...
+}
+</div>
+</section>
+
+<section class="slide" id="phone-number-resource">
+  <h1>Just when you thought you were done</h1>
+</section>
+
+<section class="slide" id="non-std-urls">
+  <h2>Non-standard URL structure</h2>
+  <div class="code" mode="default" theme="lesser-dark">GET /2010-04-01/Accounts/AC123/AvailablePhoneNumbers/US/Local
+InRegion=CA&amp;NearLatLong=37.840699,-122.461853&amp;Contains=555
+  </div>
+</section>
+
+<section class="slide" id="date-filtering">
+  <h2>Date filtering</h2>
+<textarea class="code" mode="default" theme="lesser-dark">Python:
+client.calls.list(started_after=beginning, started_before=end)
+
+Ruby:
+@client.account.calls.list({:"start_time&gt;" =&gt; "2009-07-04", 
+  :"start_time&lt;" =&gt; "2009-07-06"})
+
+C#:
+Not even possible
+</textarea>
+</section>
+
+<section class="slide" id="phone-number-resource">
+  <h2>Inconsistent library naming</h2>
+
+ <textarea class="code" mode="python" theme="lesser-dark">def get_list_method_name(self, resource):
+  """accounting for inconsistencies in c# member naming."""
+  if resource == "/Accounts":
+      return "ListSubAccounts"
+  elif resource == "/Conferences/Participants":
+      return "ListConferenceParticipants"
+  elif resource == '/SMS/Messages':
+      return "ListSmsMessages"
+  elif '/Usage/Records' in resource:
+      return "ListUsage"
+  else:
+      return "List" + self.class_name + 's'
+  </textarea>
+</section>
+
+<section class="slide" id="testing">
+  <h1>Testing</h1>
+</section>
+
+<section class="slide" id="testing-1">
+  <h2>Testing</h2>
+  <ol>
+    <li>Generate a code sample from a HTTP snippet
+    <li>Write the sample to a file
+    <li>Run the sample and intercept the HTTP request it makes
+    <li>Compare that to the original
+  </ol>
+</section>
+
+<section class="slide" id="harness-example">
+  <h2>Harness Example</h2>
+<textarea class="code" mode="php" theme="lesser-dark">
+<?php
+class Http extends Services_Twilio_TinyHttp {
+    public function get($path) {
+        $url = parse_url($path);
+        echo "GET {$url['path']}\n{$url['query']}";
+        die;
     }
-  </code>
-  </pre>
+    public function post($path, $headers, $params) {
+        echo "POST $path\n" . $params;
+        die;
+    }
+}
+$_http = new Http();
+$client = new Services_Twilio($sid, $token, null, $_http);
+
+{{ content }} </textarea>
 </section>
 
-<section class="slide" id="caveat-emptor">
-	<h2>Finding a solution</h2>
-  <pre>
-  <code>
-    interesting_properties = {
-        '/Accounts': ['friendly_name', 'status', 'date_created'],
-        '/Applications': ['voice_url', 'sms_url'],
-        '/AuthorizedConnectApps': ['connect_app_friendly_name',
-                                   'connect_app_homepage_url'],
-        '/AvailablePhoneNumbers': ['friendly_name', 'phone_number'],
-        '/Calls': ['start_time', 'direction', 'to'],
-        '/Conferences': ['status'],
-        '/Conferences/Participants': ['start_conference_on_enter', 'muted'],
-        '/ConnectApps': ['homepage_url', 'friendly_name'],
-        ...
+<section class="slide" id="benefits">
+  <h2>Benefits</h2>
+  <ul>
+    <li>Once you write the harness, the tests write themselves
+    <li>Actually testing the HTTP request
+    <li>Tests for behavior that might not be implemented by the library
+    <li><b>Really</b> good at catching bugs!
+  </ul>
+</section>
+
+<section class="slide" id="bugs">
+  <h2>Bugs found in one library</h2>
+<textarea class="code" mode="default" theme="lesser-dark">
+- You can retrieve a participant from a Conference object by referencing
+  a Call Sid.
+- You can retrieve a member from a Queue object by referencing its sid.
+- The Account object can retrieve UsageTriggers. 
+- You can create subaccounts via the Java library. 
+- Requests for Short Code resources will not 404. 
+- You can create new Queues via the Java library.
+- You can delete Caller ID's via the Java library.
+- Retrieve a list of your Connect Apps 
+- AuthorizedConnectApps no longer references nonexistent properties 
+- You can retrieve the Type of an Account ("Full", "Trial" etc) 
+- You can filter Accounts by a FriendlyName or Type 
+</textarea>
+</section>
+
+<section class="slide" id="bugs-2">
+  <h2>Bugs found before library release</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/b949d39f-cc34-479b-bf1b-b5705da0e606/f6308ad95837f77827996eb74fbde628/res/97834435-7ebe-434c-bf95-96b3c37e1d6d/skitch.png" alt="twilio-node bugs" />
+</section>
+
+<section class="slide" id="lessons">
+  <h1>Lessons Learned</h1>
+</section>
+
+<section class="slide" id="lessons-1">
+  <h2>Lessons Learned</h2>
+  <h4>Automate everything</h4>
+</section>
+
+<section class="slide" id="lessons-1">
+  <h2>Lessons Learned</h2>
+  <h4>I'd like to thank the following bash commands:</h4>
+<textarea class="code" mode="default" theme="lesser-dark">
+find $docs_dir -name "*.xml.curl" -exec rm -f '{}' +
+ack -o "{(.*)example(.*)}" $f | \   
+    sed -e 's/-/_/g' | \             
+    gawk 'match($0, /{#(.*)}/, ary) {print ary[1]}' | \  
+    sed -e 's/$/.txt/g' | \                             
+    xargs -I % touch "/usr/local/twilio/src/php/www/site/resources/code/api/rest/$doc_name/%"
+</textarea>
+</section>
+
+<section class="slide" id="lessons-2">
+  <h2>Lessons Learned</h2>
+  <h4>The importance of consistent naming</h4>
+  <p>
+  Examples: Hanging up a call and changing an account's 
+  <code>FriendlyName</code>
+  </p>
+</section>
+
+<section class="slide" id="lessons-3">
+  <h2>The importance of consistent naming</h2>
+  <h5>Updating an instance resource.</h5>
+<textarea class="code" mode="php" theme="lesser-dark">
+<?php
+$account->update('FriendlyName', 'blah');
+$call->update('Status', 'completed');
+</textarea>
+</section>
+
+<section class="slide" id="lessons-4">
+  <h2>The importance of consistent naming</h2>
+  <h4>Aliases are great</h4>
+<textarea class="code" mode="php" theme="lesser-dark">
+<?php
+$account->changeName('blah');
+$call->hangup();
+</textarea>
+</section>
+
+<section class="slide" id="lessons-5">
+  <h2>The importance of consistent naming</h2>
+  <h4>Should reference the underlying method</h4>
+<textarea class="code" mode="php" theme="lesser-dark">
+<?php
+class Call {
+    function hangup() {
+        return $this->update('Status', 'completed');
     }
-  </code>
-  </pre>
+}
+</textarea>
+</section>
+
+<section class="slide" id="lessons-6">
+  <h2>Lessons Learned</h2>
+  <h4>People don't use very many resources</h4>
+</section>
+
+<section class="slide" id="lessons-7">
+  <h2>Lessons Learned</h2>
+  <ul>
+    <li>polling conferences - tons of requests for a single conference, between 641 and 746 for each of 50 conferences
+    <li>tons of requests for most recent queues
+    <li>purely outbound sms
+    <li>querying calls list and filtering by various criteria (ParentCallSid, Client)
+    <li>getting sms message logs (and using AfterSid!). not actually sending many messages. 51 messages sent, 3500 log requests
+    <li>outbound sms
+    <li>outbound sms
+    <li>fetching recordings attached to a call
+    <li>retrieving queues
+    <li>filtering recordings by call sid
+    <li>filtering recordings by call sid (and listening to them)
+    <li>fetching first 50 or 100 completed calls to a given phone number
+    <li>mostly sms, sometimes updating a call via api.
+  </ul>
+</section>
+
+<section class="slide" id="designing-docs">
+  <h2>Design around jobs to be done</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/bbbf4c6a-fb40-4d07-a0b9-bb4585cf2bf8/ff130d3fa63e81c937352c1f5b8bedc2/res/71a272c8-bbec-41de-b99e-bfff3460555c/skitch.png" alt="twilio docs homepage" />
 </section>
 
 <section class="slide" id="how-many-can-we-find">
-  <h2>How many can we expect to find?</h2>
-  <h4>If you do it <i>well</i>: 70%</h4>
-  <h4>If you do it <i>poorly</i>: 20%</h4>
+  <h2>This is a lot of work</h2>
+  <h4>Should we write the damn things?</h4>
 </section>
 
 <section class="slide" id="how-many-can-we-find">
-  <h2>How many can we expect to find?</h2>
+  <h2>Principle of easier interface design</h2>
   <h4>If you do it <i>well</i>: 70%</h4>
   <h4>If you do it <i>poorly</i>: 20%</h4>
-</section>
-
-<section class="slide" id="different-types-of-review">
-  <h2>Effectiveness of different bug-finding tools</h2>
-  <div id="bug_chart" style="width: 100%; height: 80%; min-height: 600px;"></div>
-  <!-- especially if they are stuck -->
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/flot/0.7/jquery.flot.min.js"></script>
-
-  <script src="http://kev.inburke.com/code/graph.js" type="text/javascript"></script>
-</section>
-
-<section class="slide" id="error-distribution">
-	<h2>How are errors distributed?</h2>
-	<h5>In general, 80% of the errors come from 20% of the code.</h5>
-	<h5>Also, 50% of errors from 5% of the code</h5>
-	<p>Case study at IBM: 31 of 425 classes found to be error-prone. 
-	After repair/refactoring, defects reported by customers were reduced by 1000%</p>
-</section>
-
-<section class="slide" id="pull-request-length">
-  <h2>Pull request length</h2>
-  <img src="https://img.skitch.com/20120531-g79ty5j6gqhmtue42rsc3um2hm.png" />
-  <!-- especially if they are stuck -->
-</section>
-
-<section class="slide">
-	<h2>Example</h2>
-	<img src="https://img.skitch.com/20120531-1yg67hxtd6p2ujkx51ima3tbh6.png" />
-</section>
-
-<section class="slide" id="pull-request-habits">
-	<h1>Longer pull requests take longer to get reviewed/merged (why?)</h1>
-</section>
-
-<section class="slide" id="code-review-speed">
-	<h2>How quickly can you do code review?</h2>
-	<h5>Estimates: 500 lines/hour for "application" code</h5>
-	<h5>125 lines/hour for "system" code</h5>
-	<h5>Attention span/effectiveness drops after 2 hours of review</h5>
-	<h5>Start at 200 lines/hour</h5>
-</section>
-
-<section class="slide" id="pull-request-advice">
-	<h2>Advice</h2>
-	<ul>
-		<li><h4>Limit the number of context switches your reviewers need to make</h4>
-		<li><h4>Try to keep review time under 2 hours</h4>
-		<li><h4>Note areas that have previously generated many bugs, and focus extra attention on them during review</h4>
-		<li><h4>Take extra care with small changes (1-10 lines)</h4>
-		<li><h4>Let machines help you (linting, static analysis, spell checking)</h4>
-</section>
-
-<section class="slide" id="kevin-track">
-	<h2>Kevin Track</h2>
-	<img src="https://img.skitch.com/20120531-phu6jwm11m5auhyugnc3y58jbu.png" alt="Spreadsheet with errors" />
-</section>
-
-<section class="slide" id="automated-linter">
-	<h2>Git pre-commit hooks</h2>
-	<pre><code>
-              ,
-          ,   |\ ,__
-          |\   \/   `.
-          \ `-.:.     `\
-           `-.__ `\=====|
-              /=`'/   ^_\
-            .'   /\   .=)
-         .-'  .'|  '-(/_|
-       .'  __(  \  .'`
-      /_.'`  `.  |`
-               \ |
-                |/
-								</pre></code>
-	<a href="http://twiliocode.com/kevin/trojan-man">source</a>
 </section>
 
 <section class="slide" id="thanks">
@@ -314,6 +439,17 @@
 <script src="/slides/static/extensions/status/deck.status.js"></script>
 <script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
 <script src="/slides/static/extensions/scale/deck.scale.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/clike/clike.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/css/css.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/php/php.js"></script>
+
 
 <!-- Initialize the deck -->
 <script>
