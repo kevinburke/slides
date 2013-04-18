@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+	
+	<title>Learning HTML and CSS</title>
+	
+	<meta name="description" content="Learning HTML and CSS">
+	<meta name="author" content="Kevin Burke">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
+	<link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
+
+  <!-- codemirror -->
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/themes/lesser-dark.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+	
+	<script src="/slides/static/modernizr.custom.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+	<h1>Learning HTML and CSS</h1>
+	<p style="position: absolute; bottom: 20px; right: 80px;"><a href="http://kev.inburke.com">Kevin Burke</a></p>
+</section>
+
+<section class="slide" id="blog-post">
+	<h2>Slides</h2>
+  <a href="http://bit.ly/kevin-html-css">bit.ly/kevin-html-css</a>
+</section>
+
+<section class="slide" id="this-talk">
+	<h2>Anatomy of a Website</h2>
+  <h4>HTML</h4>
+  <p>All of the content on a site</p>
+  <h4>CSS</h4>
+  <p>All of the styles</p>
+  <h4>Javascript</h4>
+  <p>Everything that moves</p>
+</section>
+
+<section class="slide" id="problem-1">
+	<h2>This is hard</h2>
+  <img src="http://imgs.xkcd.com/comics/computer_problems.png" />
+</section>
+
+<section class="slide" id="problem-1">
+	<h2>Tools that help</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/38008002-f293-4d05-8226-a6f1a2faaccd/16ae5e9fcdb7da4675fa1f942c97e63a/res/66b76bee-9bf4-4da7-ae02-16edf6c6d0b0/skitch.png" />
+</section>
+
+<section class="slide" id="problem-2">
+	<h2>Tools that help</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/800f2955-160a-422d-902e-75c1e8d8c7de/017aa52dc1fade9d93319933724eea76/res/b60f7be9-3231-45fa-b0c2-cf4deff2f668/skitch.png"/>
+  <a href="http://validator.w3.org/#validate_by_input">HTML Validator</a>
+</section>
+
+<section class="slide" id="problem-3">
+	<h1>Let's get started</h1>
+</section>
+
+<section class="slide" id="element-types">
+	<h2>Two types of elements</h2>
+  <h4>Ones with data nested inside</h4>
+  <h4>Ones with their own data</h4>
+  <div name="code-1" class="code" mode="default" theme="lesser-dark" style="display: none;"><a href="blah" alt="foo">Link to a thing</a></div>
+
+  <div name="code" class="code" mode="default" theme="lesser-dark" style="display: none;"><img src="blah.gif" /></div>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Basic Page Layout</h2>
+  <pre><code>
+&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+   &lt;meta charset="utf-8">
+   &lt;title>Title of your page goes here&lt;/title>
+   &lt;meta name="description" content="Description of page content">
+  &lt;/head>
+  &lt;body>
+   Bulk of your content here.
+  &lt;/body>
+&lt;/html>
+</code></pre>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Headers</h2>
+  <div name="code-1" class="code" mode="default" theme="lesser-dark" style="display: none;">
+<h1>Hello World</h1>
+<h6>Subheader</h6>
+</div>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Bold/Italics</h2>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Lists</h2>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Embedding Videos/Other Content</h2>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Links</h2>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Images</h2>
+  <img src="http://i.imgur.com/QgwINVg.gif" />
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Forms</h2>
+</section>
+
+<section class="slide" id="element-types-2">
+	<h2>Resources for learning more</h2>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="http://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="http://kev.inburke.com/slides/html/">kev.inburke.com/slides/html</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+<script src="/slides/static/extensions/scale/deck.scale.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/clike/clike.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/css/css.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/php/php.js"></script>
+
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
