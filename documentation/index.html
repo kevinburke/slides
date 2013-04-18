@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>How to write documentation for users that don't read</title>
+	
+	<meta name="description" content="How to write documentation for users that don't read">
+	<meta name="author" content="Kevin Burke">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
+	<link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
+
+  <!-- codemirror -->
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+  <link rel="stylesheet" href="/slides/static/extensions/codemirror/themes/lesser-dark.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+	
+	<script src="/slides/static/modernizr.custom.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+	<h1>How to write documentation for users that don't read</h1>
+	<p style="position: absolute; bottom: 20px; right: 80px;"><a href="http://kev.inburke.com">Kevin Burke</a></p>
+</section>
+
+<section class="slide" id="this-talk">
+	<h2>This talk</h2>
+  <ul>
+    <li>Why your users are frustrated</li>
+    <li>Why people don't read your documentation</li>
+    <li>What you can do about it</li>
+    <li>What you'll learn</li>
+  </ul>
+</section>
+
+<section class="slide" id="this-talk">
+	<h2>Not in this talk</h2>
+  <ul>
+    <li>Motivating you to write documentation</li>
+    <li>Designing a better interface</li>
+  </ul>
+</section>
+
+<section class="slide" id="once-upon">
+	<h1>Once upon a time</h1>
+</section>
+
+<section class="slide" id="problem-2">
+	<h2>This is why users get frustrated as hell</h2>
+  <div style="margin: 0 auto;">
+    <blockquote class="twitter-tweet"><p>Upgraded capybara and it fails internally (NoMethodError on nil). This happens EVERY time with capybara, capybara-webkit, and cucumber.</p>&mdash; Gary Bernhardt (@garybernhardt) <a href="https://twitter.com/garybernhardt/status/319929617760784384">April 4, 2013</a></blockquote>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</section>
+
+<section class="slide" id="problem-3">
+	<h1>Dive in to user frustration</h1>
+</section>
+
+<section class="slide" id="problem-4">
+	<h2>Imagine the documentation writer</h2>
+  <img src="/slides/static/writing.jpg" alt="old man writing" />
+</section>
+
+<section class="slide" id="problem-5">
+	<h2>Now imagine how people read on the internet</h2>
+  <img src="/slides/static/drugs.jpg" />
+</section>
+
+<section class="slide" id="problem-5">
+  <img src="https://www.evernote.com/shard/s265/sh/fa82386a-01c8-4eae-9c1e-2a4a20b73e78/bcc993bba21b90b0bd3abd6a1b0c16e0/res/006d7941-6f14-4a31-a8d8-093ed52b3513/skitch.png" />
+</section>
+
+<section class="slide" id="problem-5">
+<h1>Users don't read on the Internet</h1>
+</section>
+
+<section class="slide" id="problem-5">
+  <img src="/slides/static/fpattern.jpg" />
+</section>
+
+<section class="slide" id="problem-5">
+  <h2>Usability varies</h2>
+  <img style="width: 50%; float: left;" src="https://www.evernote.com/shard/s265/sh/2be5080c-d652-49f3-b556-aae7910b8213/f40afbfa9ede952dbc8c6f9664f74cbd/res/1e268795-584a-48d2-875f-fd05446ef770/skitch.png" />
+  <img style="width: 50%; float: left;" src="https://www.evernote.com/shard/s265/sh/5ce22838-a18e-43fe-8a51-7cf0b4bffda3/3d4aaf9ae6105a80699e6210c6053c6f/res/e0982393-840c-4059-8f1e-8dab78ed3456/skitch.png" />
+</section>
+
+<section class="slide" id="context">
+<h2>Users won't read any of the context</h2>
+<pre class="brush: ruby">
+<code>
+@client = Twilio::REST::Client.new
+@client.account.sms.messags.create(
+  :from => '+14159341234',
+  :to => '+16105557069',
+  :body => 'Hey there!'
+)
+</code>
+</pre>
+</section>
+
+<section class="slide" id="problem-5">
+  <h1>Why do people scan your docs?</h1>
+</section>
+
+<section class="slide" id="nation-shudders">
+  <img alt="nation-shudders" src="https://www.evernote.com/shard/s265/sh/f8339709-4b4c-4243-b9ae-09ef052d38c4/5c6b5db8c1a8d979d3e4da6e46a22359/res/8e1d8e51-57c6-4792-bec5-2efa3c1d7584/skitch.png" />
+</section>
+
+<section class="slide" id="problem-5">
+  <h1>Rule: People spend most of their time on *other* sites</h1>
+</section>
+
+<section class="slide" id="problem-5">
+  <h1>Learn more about your users</h1>
+</section>
+
+<section class="slide" id="problem-5">
+  <h1>Jobs to be done</h1>
+</section>
+
+<section class="slide" id="your-users">
+  <h2>Learn more about your users</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/1b26b4cc-0334-487e-a0cc-064b1ce1bc9d/b225f7dbd42fe1717b2853b19e2ff145/res/f4445354-c98c-4bc2-b6de-bb82ad1fb069/skitch.png" />
+</section>
+
+<section class="slide" id="nation-shudders">
+  <h2>A user runs into a problem</h2>
+  <pre><code>
+  OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
+  </code></pre>
+</section>
+
+<section class="slide" id="google">
+  <h1>Where do they go for help?</h1>
+</section>
+
+<section class="slide" id="google">
+  <img src="https://www.evernote.com/shard/s265/sh/76b56450-638f-458f-a3fb-6a6b2dff1bfd/ddb039c69f66c892cb8249f6e70a3c4b/res/a9317072-b2e3-4ce7-808b-94d3a3c359a3/skitch.png" />
+</section>
+
+<section class="slide" id="google">
+  <h1>If users get an error message a lot, put that error message in your documentation</h1>
+</section>
+
+<section class="slide" id="google">
+  <h2>Some people on the Internet know this</h2>
+  <img src="https://www.evernote.com/shard/s265/sh/6c34ab9e-4ceb-410a-9e4a-944ae3b831a7/4e474c4a97915d1ac4069f740a961ebc/res/6a3d1ba1-708d-4a6c-8f1e-cb1ade7b2ee1/skitch.png" />
+</section>
+
+<section class="slide" id="google">
+  <h1>If you put the error in your docs, why not go further?</h1>
+</section>
+
+<section class="slide" id="ssl-cert">
+<img src="https://www.evernote.com/shard/s265/sh/c829dba8-c9e5-4aae-a7f7-1047a6d2d1ed/1fc77a2df876cbe389848b232f9e265b/res/ead42ec3-3b01-439b-9280-ac11354afc21/skitch.png" />
+</section>
+
+<section class="slide" id="google">
+  <h1>Going even further - user testing</h1>
+</section>
+
+<section class="slide" id="google">
+  <h2>Most failures are not related to your documentation</h2>
+  <ul>
+    <li>- Can't find their Auth Token</li>
+    <li>- Can't find our helper libraries</li>
+    <li>- Got stuck on the Voicemail Howto</li>
+    <li>- Don't know how to use Pip</li>
+    <li>- Thought they validated a phone number, but it failed</li>
+    <li>- Kept clicking on "How it Works" to find examples of how to send an SMS</li>
+  </ul>
+</section>
+
+<section class="slide" id="examples">
+  <h1>Examples</h1>
+</section>
+
+<section class="slide" id="docusign">
+  <img src="https://www.evernote.com/shard/s265/sh/a3cbd4a6-75b1-4e3b-9d96-88ea228e8b4c/f61915a927bcdd551f078ef314536a64/res/65581a6c-b602-4871-85e6-5b1d913bd717/skitch.png" />
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="http://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="http://kev.inburke.com/slides/documentation">kev.inburke.com/slides/documentation</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+<script src="/slides/static/extensions/scale/deck.scale.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/clike/clike.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/css/css.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/php/php.js"></script>
+
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
