@@ -6,12 +6,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
 	
 	<title>How to write documentation for users that don't read</title>
 	
 	<meta name="description" content="How to write documentation for users that don't read">
 	<meta name="author" content="Kevin Burke">
-	<meta name="viewport" content="width=1024, user-scalable=no">
 	
 	<!-- Core and extension CSS files -->
 	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
@@ -20,14 +20,12 @@
 	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
 	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
 	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
-	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
 
   <!-- codemirror -->
   <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
-  <link rel="stylesheet" href="/slides/static/extensions/codemirror/themes/lesser-dark.css">
 	
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
+	<link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
 	
 	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
 	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
@@ -110,16 +108,15 @@
 
 <section class="slide" id="context">
 <h2>Users won't read any of the context</h2>
-<pre class="brush: ruby">
-<code>
+<div>
+<textarea class="code" mode="ruby">
 @client = Twilio::REST::Client.new
 @client.account.sms.messags.create(
-  :from => '+14159341234',
-  :to => '+16105557069',
-  :body => 'Hey there!'
-)
-</code>
-</pre>
+  :from =&gt; '+14159341234',
+  :to =&gt; '+16105557069',
+  :body =&gt; 'Hey there!'
+)</textarea>
+</div>
 </section>
 
 <section class="slide" id="problem-5">
@@ -244,7 +241,6 @@
 <script src="/slides/static/extensions/goto/deck.goto.js"></script>
 <script src="/slides/static/extensions/status/deck.status.js"></script>
 <script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
-<script src="/slides/static/extensions/scale/deck.scale.js"></script>
 
 <script src="/slides/static/extensions/codemirror/codemirror.js"></script>
 <script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
@@ -253,6 +249,7 @@
 <script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
 <script src="/slides/static/extensions/codemirror/mode/clike/clike.js"></script>
 <script src="/slides/static/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/ruby/ruby.js"></script>
 <script src="/slides/static/extensions/codemirror/mode/css/css.js"></script>
 <script src="/slides/static/extensions/codemirror/mode/php/php.js"></script>
 
