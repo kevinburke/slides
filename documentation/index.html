@@ -3,44 +3,44 @@
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=1024, user-scalable=no">
-	
-	<title>How to write documentation for users that don't read</title>
-	
-	<meta name="description" content="How to write documentation for users that don't read">
-	<meta name="author" content="Kevin Burke">
-	
-	<!-- Core and extension CSS files -->
-	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
-	<link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
-	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
-	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
-	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
 
-  <!-- codemirror -->
-  <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
-	
-	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
-	
-	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
-	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
-	
-	<script src="/slides/static/modernizr.custom.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
-</head>
+    <title>How to write documentation for users that don't read</title>
+
+    <meta name="description" content="How to write documentation for users that don't read">
+    <meta name="author" content="Kevin Burke">
+
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" href="/slides/static/core/deck.core.css">
+    <link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+    <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+
+    <script src="/slides/static/modernizr.custom.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+  </head>
 
 <body class="deck-container">
 
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
 	<h1>How to write documentation for users that don't read</h1>
-	<p style="position: absolute; bottom: 20px; right: 80px;"><a href="http://kev.inburke.com">Kevin Burke</a></p>
+	<h6 style="position: absolute; bottom: 40px; right: 20px;"><a href="http://kev.inburke.com">Kevin Burke</a></h6>
 </section>
 
 <section class="slide" id="this-talk">
@@ -53,43 +53,29 @@
   </ul>
 </section>
 
-<section class="slide" id="this-talk">
-	<h2>Not in this talk</h2>
+<section class="slide" id="not-in-this-talk">
+  <h2>Not in this talk</h2>
   <ul>
     <li>Motivating you to write documentation</li>
     <li>Designing a better interface</li>
-    <!-- zoolander joke -->
   </ul>
+</section>
+
+<section class="slide" id="zoolander">
+  <h2>Also not in this talk</h2>
+  <img src="/slides/images/zoolander.gif" alt="Zoolander" />
 </section>
 
 <section class="slide" id="once-upon">
 	<h1>Once upon a time</h1>
 </section>
 
-<section class="slide" id="problem-2">
-	<h2>This is why users get frustrated as hell</h2>
-  <div style="margin: 0 auto;">
-    <blockquote class="twitter-tweet"><p>Upgraded capybara and it fails internally (NoMethodError on nil). This happens EVERY time with capybara, capybara-webkit, and cucumber.</p>&mdash; Gary Bernhardt (@garybernhardt) <a href="https://twitter.com/garybernhardt/status/319929617760784384">April 4, 2013</a></blockquote>
-    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
+<section class="slide" id="nation-shudders">
+  <img alt="nation-shudders" src="https://www.evernote.com/shard/s265/sh/f8339709-4b4c-4243-b9ae-09ef052d38c4/5c6b5db8c1a8d979d3e4da6e46a22359/res/8e1d8e51-57c6-4792-bec5-2efa3c1d7584/skitch.png" />
 </section>
 
-<section class="slide" id="problem-3">
-	<h1>Dive in to user frustration</h1>
-</section>
-
-<section class="slide" id="problem-4">
-	<h2>Imagine the documentation writer</h2>
-  <img src="/slides/static/writing.jpg" alt="old man writing" />
-</section>
-
-<section class="slide" id="problem-5">
-	<h2>Now imagine how people read on the internet</h2>
-  <img src="/slides/static/drugs.jpg" />
-</section>
-
-<section class="slide" id="problem-5">
-  <img src="https://www.evernote.com/shard/s265/sh/fa82386a-01c8-4eae-9c1e-2a4a20b73e78/bcc993bba21b90b0bd3abd6a1b0c16e0/res/006d7941-6f14-4a31-a8d8-093ed52b3513/skitch.png" />
+<section class="slide" id="how-users-read">
+  <h1>"How Users Read on the Web", Jakob Nielsen</h1>
 </section>
 
 <section class="slide" id="problem-5">
@@ -123,16 +109,22 @@
   <h1>Why do people scan your docs?</h1>
 </section>
 
-<section class="slide" id="nation-shudders">
-  <img alt="nation-shudders" src="https://www.evernote.com/shard/s265/sh/f8339709-4b4c-4243-b9ae-09ef052d38c4/5c6b5db8c1a8d979d3e4da6e46a22359/res/8e1d8e51-57c6-4792-bec5-2efa3c1d7584/skitch.png" />
+<section class="slide" id="problem-3">
+	<h1>Dive in to user frustration</h1>
+</section>
+
+<section class="slide" id="problem-4">
+	<h2>Imagine the documentation writer</h2>
+  <img src="/slides/static/writing.jpg" alt="old man writing" />
+</section>
+
+<section class="slide" id="problem-5">
+	<h2>Now imagine how people read on the internet</h2>
+  <img src="/slides/static/drugs.jpg" />
 </section>
 
 <section class="slide" id="problem-5">
   <h1>Rule: People spend most of their time on *other* sites</h1>
-</section>
-
-<section class="slide" id="problem-5">
-  <h1>Learn more about your users</h1>
 </section>
 
 <section class="slide" id="problem-5">
@@ -204,7 +196,7 @@
   <h2>Thanks!</h2>
   <h3>Kevin Burke</h3>
   <h4><a href="http://kev.inburke.com">kev.inburke.com</a></h4>
-  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
   <h4><a href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
   <p>These slides are available at:</p>
   <h4><a href="http://kev.inburke.com/slides/documentation">kev.inburke.com/slides/documentation</a></h4>
