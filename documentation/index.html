@@ -35,7 +35,7 @@
     <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
   </head>
 
-<body class="deck-container">
+<body class="deck-container" id="documentation">
 
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
@@ -154,6 +154,11 @@
   :body =&gt; 'Hey there!'
 )</textarea>
 </div>
+<ol>
+  <li class='slide' id="environment">Assumes you've set environment variables
+  <li class='slide' id="typo">Typo in <code>sms.messags</code>
+  <li class='slide' id="importerror">Will fail on <code>ImportError</code>
+</ol>
 </section>
 
 <section class="slide" id="example-2">
@@ -163,96 +168,238 @@
 <textarea class="code" mode="clike">
   $ gem install rails</textarea>
 </div>
-</section>
-
-<section class="slide" id="example-2">
-<!-- How this will manifest itself, pt 2 -->
-<h2>Example 3</h2>
-<div>
-<textarea class="code" mode="clike">
+  <div style="margin-top: 30px;" class="slide" id="command-not-found">
+    <textarea class="code" mode="clike">
   bash: command not found: $</textarea>
 </div>
 </section>
 
 <section class="slide" id="searching">
-  <h1>Why do people scan your docs?</h1>
+  <h1>Users are really bad at searching</h1>
+</section>
+
+<section class="slide" id="searching-source">
+  <h1>Jakob Nielsen, "Incompetent Research Skills Curb Users' Problem Solving"</h1>
+</section>
+
+<section class="slide" id="searching-source">
+  <h2>Searching, cont'd</h2>
+  <blockquote>There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
+  <p>Jeff Atwood, <a href="http://blog.stackoverflow.com/2010/11/dr-strangedupe-or-how-i-learned-to-stop-worrying-and-love-duplication/">"Dr. Strangedupe: Or, How I Learned to Stop Worrying and Love Duplication"</a></p>
 </section>
 
 <section class="slide" id="why-people-scan">
   <h1>Why do people scan your docs?</h1>
 </section>
 
-<section class="slide" id="dive-in">
-	<h1>Dive in to user frustration</h1>
+<section class="slide" id="clay">
+  <h2>Jobs to be done</h2>
+  <img src="/slides/images/clay_christensen.jpg" alt="Clay Christensen"/>
+  <h6>credit: <a href="http://www.flickr.com/photos/betsyweber/6276753696/">Betsy Weber</a></h6>
 </section>
 
-<section class="slide" id="problem-5">
-  <h1>Rule: People spend most of their time on *other* sites</h1>
+<section class="slide" id="jobs-documentation">
+  <h1>Apply the same technique to your documentation</h1>
 </section>
 
-<section class="slide" id="problem-5">
-  <h1>Jobs to be done</h1>
+<section class="slide" id="jobs-example">
+  <h2>Example</h2>
+  <p>Your documentation:</p>
+  <blockquote>How to send an SMS</blockquote>
+  <div class="slide" id="user">
+    <p>Your user:</p>
+    <blockquote>I want to send a notification, in Ruby</blockquote>
+  </div>
 </section>
 
 <section class="slide" id="your-users">
-  <h2>Learn more about your users</h2>
-  <img src="https://www.evernote.com/shard/s265/sh/1b26b4cc-0334-487e-a0cc-064b1ce1bc9d/b225f7dbd42fe1717b2853b19e2ff145/res/f4445354-c98c-4bc2-b6de-bb82ad1fb069/skitch.png" />
+  <h2>How can you find out what your users are trying to do?</h2>
+  <img src="/slides/images/analytics.png" />
 </section>
 
-<section class="slide" id="nation-shudders">
-  <h2>A user runs into a problem</h2>
+<section class="slide" id="inline-code">
+  <h2>Example</h2>
+  <img src="/slides/images/inline_code.png" />
+</section>
+
+<section class="slide" id="ssl-problem">
+  <h2>You run into a problem</h2>
   <pre><code>
   OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
   </code></pre>
 </section>
 
-<section class="slide" id="google">
-  <h1>Where do they go for help?</h1>
+<section class="slide" id="help">
+  <h1>Where do you go for help?</h1>
 </section>
 
 <section class="slide" id="google">
-  <img src="https://www.evernote.com/shard/s265/sh/76b56450-638f-458f-a3fb-6a6b2dff1bfd/ddb039c69f66c892cb8249f6e70a3c4b/res/a9317072-b2e3-4ce7-808b-94d3a3c359a3/skitch.png" />
+  <img src="/slides/images/google.png" />
 </section>
 
-<section class="slide" id="google">
+<section class="slide" id="google-teaching">
   <h1>If users get an error message a lot, put that error message in your documentation</h1>
 </section>
 
-<section class="slide" id="google">
+<section class="slide" id="ehow">
   <h2>Some people on the Internet know this</h2>
-  <img src="https://www.evernote.com/shard/s265/sh/6c34ab9e-4ceb-410a-9e4a-944ae3b831a7/4e474c4a97915d1ac4069f740a961ebc/res/6a3d1ba1-708d-4a6c-8f1e-cb1ade7b2ee1/skitch.png" />
+  <div style="float: left;">
+    <img src="https://www.evernote.com/shard/s265/sh/6c34ab9e-4ceb-410a-9e4a-944ae3b831a7/4e474c4a97915d1ac4069f740a961ebc/res/6a3d1ba1-708d-4a6c-8f1e-cb1ade7b2ee1/skitch.png" />
+  </div>
 </section>
 
-<section class="slide" id="google">
+<section class="slide" id="go-further">
   <h1>If you put the error in your docs, why not go further?</h1>
 </section>
 
 <section class="slide" id="ssl-cert">
+<h2>Fixing the problem before it happens</h2>
 <img src="https://www.evernote.com/shard/s265/sh/c829dba8-c9e5-4aae-a7f7-1047a6d2d1ed/1fc77a2df876cbe389848b232f9e265b/res/ead42ec3-3b01-439b-9280-ac11354afc21/skitch.png" />
 </section>
 
-<section class="slide" id="google">
+<section class="slide" id="curl-installation">
+<h2>Another example</h2>
+<textarea class="code" mode="clike">$ \curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled</textarea>
+</section>
+
+<section class="slide" id="url-validation">
+<h2>Validation in code</h2>
+<textarea class="code" mode="ruby">
+    def post
+        if !is_valid_url params[:url]
+            flash[:error] = "Url is invalid"
+            redirect_to :action => 'settings'
+        end
+
+        # Do something with the form..
+    end</textarea>
+  <li class='slide' id="invalid">Which url is invalid?
+  <li class='slide' id="why-invalid">Why is it invalid? Blacklisted?
+  <li class='slide' id="data">What data am I actually sending to the server?
+</section>
+
+<section class="slide" id="better-url-validation">
+<h2>Better Validation</h2>
+<textarea class="code" mode="ruby">
+    def post
+        if !params.has_key(:url) or params[:url].length == 0
+            flash[:error] = "Please include a Url"
+        end
+        if !is_valid_url params[:url]
+            flash[:error] = "Url #{params[:url]} is invalid"
+            redirect_to :action => 'settings'
+        end
+
+        # Do something with the form..
+    end</textarea>
+</section>
+
+<section class="slide" id="best-validation">
+<h2>Best</h2>
+<textarea class="code" mode="ruby">
+    if !is_valid_url params[:url]
+        flash[:error] = "Url #{params[:url]} is invalid"
+        if is_valid_url "http://#{params[:url]}"
+            flash[:error] += ". Did you mean http://#{params[:url]}?"
+        end
+        redirect_to :action => 'settings'
+    end</textarea>
+</section>
+
+<section class="slide" id="user-testing">
+  <h1>Is that worth it?</h1>
+</section>
+
+<section class="slide" id="user-testing">
   <h1>Going even further - user testing</h1>
 </section>
 
-<section class="slide" id="google">
-  <h2>Most failures are not related to your documentation</h2>
+<section class="slide" id="user-failures">
+  <h2>Lots of problems not solvable with better (traditional) documentation</h2>
   <ul>
-    <li>- Can't find their Auth Token</li>
-    <li>- Can't find our helper libraries</li>
-    <li>- Got stuck on the Voicemail Howto</li>
-    <li>- Don't know how to use Pip</li>
-    <li>- Thought they validated a phone number, but it failed</li>
-    <li>- Kept clicking on "How it Works" to find examples of how to send an SMS</li>
+    <li>Can't find their Auth Token</li>
+    <li>Can't find our helper libraries</li>
+    <li>Got stuck on the Voicemail Howto</li>
+    <li>Don't know how to use Pip</li>
+    <li>Thought they validated a phone number, but it failed</li>
+    <li>Kept clicking on "How it Works" to find examples of how to send an SMS</li>
   </ul>
 </section>
 
-<section class="slide" id="examples">
-  <h1>Examples</h1>
+<section class="slide" id="seo-takeaway">
+  <h1>Takeaways - SEO</h1>
+</section>
+
+<section class="slide" id="error-messages-seo">
+  <h2>Stick your error messages in your docs</h2>
+  <img src="/slides/images/closure_errors.png" />
+</section>
+
+<section class="slide" id="seo-tips">
+  <h2>The usual advice about SEO</h2>
+  <ul>
+    <li>Headings should describe the page</li>
+    <li>Meta description should describe the content</li>
+    <li>URL should describe the content</li>
+    <li>Etc etc... read the <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf">Google Guide</a></li>
+  </ul>
+</section>
+
+<section class="slide" id="pdf">
+  <h1>Don't make your documentation a PDF</h1>
+</section>
+
+<section class="slide" id="errors-takeaway">
+  <h1>Takeaways - Errors</h1>
+</section>
+
+<section class="slide" id="user-failure">
+  <h2>Cause of user failure</h2>
+  <h3>Rarely due to lack of documentation. More often:</h3>
+  <ul>
+    <li>Not sure how to fix an error</li>
+    <li>Not sure how to solve their own problem</li>
+    <li>Couldn't find the right docs</li>
+    <li>Model of the product does not match your model of the product</li>
+  </ul>
+</section>
+
+<section class="slide" id="user-failure">
+  <h2>Making it better</h2>
+  <ul>
+    <li>Figure out the common problems users have</li>
+    <li>Make better error messages, if you can</li>
+    <li>Or solve the problem for the user</li>
+  </ul>
+</section>
+
+<section class="slide" id="errors-readability">
+  <h1>Making your documentation readable</h1>
 </section>
 
 <section class="slide" id="docusign">
-  <img src="https://www.evernote.com/shard/s265/sh/a3cbd4a6-75b1-4e3b-9d96-88ea228e8b4c/f61915a927bcdd551f078ef314536a64/res/65581a6c-b602-4871-85e6-5b1d913bd717/skitch.png" />
+  <h2>Fixed width text</h2>
+  <img src="/slides/images/docusign.png" />
+</section>
+
+<section class="slide" id="banner-blindness">
+  <h2>Banner blindness</h2>
+  <img src="/slides/images/twilio_blindness.png" />
+</section>
+
+<section class="slide" id="jira">
+  <h2>Number of fixations per line</h2>
+  <img src="/slides/images/jira.png" />
+</section>
+
+<section class="slide" id="github">
+  <h2>Breaking up content</h2>
+  <img src="/slides/images/github.png" />
+</section>
+
+<section class="slide" id="heroku">
+  <h2>Table of Contents</h2>
+  <img src="/slides/images/heroku.png" />
 </section>
 
 <section class="slide" id="thanks">
