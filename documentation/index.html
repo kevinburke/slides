@@ -135,6 +135,21 @@
   <img src="/slides/images/heroku.png" />
 </section>
 
+
+<section class="slide" id="searching">
+  <h1>Users are really bad at searching</h1>
+</section>
+
+<section class="slide" id="searching-source">
+<h1>Jakob Nielsen, <a href="http://www.nngroup.com/articles/incompetent-search-skills/">"Incompetent Research Skills Curb Users' Problem Solving"</a></h1>
+</section>
+
+<section class="slide" id="searching-atwood">
+  <h2>Searching, cont'd</h2>
+  <blockquote>There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
+  <p>Jeff Atwood, <a href="http://blog.stackoverflow.com/2010/11/dr-strangedupe-or-how-i-learned-to-stop-worrying-and-love-duplication/">"Dr. Strangedupe: Or, How I Learned to Stop Worrying and Love Duplication"</a></p>
+</section>
+
 <section class="slide" id="frustrating">
   <h1>Frustrating for you (and expensive!)</h1>
 </section>
@@ -147,81 +162,10 @@
   <h1>Why?</h1>
 </section>
 
-<section class="slide" id="documentation-writer">
-  <h2>Imagine the documentation writer</h2>
-  <img src="/slides/images/man_writing.jpg" alt="old man writing" />
-  <h5>Aurelio Asiain, <a href="http://www.flickr.com/photos/ionushi/323766792/">"Donald Keene at home: Tokyo, 2002"</a></h5>
-</section>
-
-<section class="slide" id="documentation-reader">
-  <h1>Now imagine how people read on the internet</h1>
-  <h5 id="frenzy-link">Mike Baird, <a href="http://www.flickr.com/photos/mikebaird/293366644/">"Feeding Frenzy"</a></h5>
-</section>
-
-<section class="slide" id="reading-example-1">
-  <h2>How this will manifest itself, pt 1</h2>
-  <img src="https://www.evernote.com/shard/s265/sh/deba465a-5393-4c49-a63c-793fab5a43e7/94510e057bd36f407bcca44b409cd131/res/15eb813e-6bd3-4254-9bb2-b2a65c23599b/skitch.png" alt="Quickstart" />
-</section>
-
-<section class="slide" id="reading-improvement-1">
-  <h2>A slight improvement</h2>
-  <img src="https://www.evernote.com/shard/s265/sh/eb0f10a3-c42c-4189-a5b4-6dd03f4f4053/4fc5b76767f9b925298a7a2c1ef055f6/res/4cfb1f98-b4dd-4a03-aaa8-c8ed2a65b836/skitch.png" alt="Quickstart with paging info" />
-</section>
-
-<section class="slide" id="context">
-<!-- How this will manifest itself, pt 2 -->
-<h2>Example 2</h2>
-<div>
-<textarea class="code" mode="ruby">
-@client = Twilio::REST::Client.new
-@client.account.sms.messags.create(
-  :from =&gt; '+14159341234',
-  :to =&gt; '+16105557069',
-  :body =&gt; 'Hey there!'
-)</textarea>
-</div>
-<ol>
-  <li class='slide' id="environment">Assumes you've set environment variables
-  <li class='slide' id="typo">Typo in <code>sms.messags</code>
-  <li class='slide' id="importerror">Will fail on <code>ImportError</code>
-</ol>
-</section>
-
-<section class="slide" id="example-2">
-<!-- How this will manifest itself, pt 2 -->
-<h2>Example 3</h2>
-<div>
-<textarea class="code" mode="clike">
-  $ gem install rails</textarea>
-</div>
-  <div style="margin-top: 30px;" class="slide" id="command-not-found">
-    <textarea class="code" mode="clike">
-  bash: command not found: $</textarea>
-</div>
-</section>
-
-<section class="slide" id="searching">
-  <h1>Users are really bad at searching</h1>
-</section>
-
-<section class="slide" id="searching-source">
-  <h1>Jakob Nielsen, "Incompetent Research Skills Curb Users' Problem Solving"</h1>
-</section>
-
-<section class="slide" id="searching-source">
-  <h2>Searching, cont'd</h2>
-  <blockquote>There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
-  <p>Jeff Atwood, <a href="http://blog.stackoverflow.com/2010/11/dr-strangedupe-or-how-i-learned-to-stop-worrying-and-love-duplication/">"Dr. Strangedupe: Or, How I Learned to Stop Worrying and Love Duplication"</a></p>
-</section>
-
-<section class="slide" id="why-people-scan">
-  <h1>Why do people scan your docs?</h1>
-</section>
-
 <section class="slide" id="clay">
   <h2>Jobs to be done</h2>
   <img src="/slides/images/clay_christensen.jpg" alt="Clay Christensen"/>
-  <h6>credit: <a href="http://www.flickr.com/photos/betsyweber/6276753696/">Betsy Weber</a></h6>
+  <h6>Betsy Weber, <a href="http://www.flickr.com/photos/betsyweber/6276753696/">Clay Christensen</a></h6>
 </section>
 
 <section class="slide" id="jobs-documentation">
@@ -238,6 +182,73 @@
   </div>
 </section>
 
+<section class="slide" id="documentation-writer">
+  <h2>Imagine the documentation writer</h2>
+  <img src="/slides/images/man_writing.jpg" alt="old man writing" />
+  <h5>Aurelio Asiain, <a href="http://www.flickr.com/photos/ionushi/323766792/">"Donald Keene at home: Tokyo, 2002"</a></h5>
+</section>
+
+<section class="slide" id="documentation-reader">
+  <h1>Now imagine how people read on the internet</h1>
+  <h5 id="frenzy-link">Mike Baird, <a href="http://www.flickr.com/photos/mikebaird/293366644/">"Feeding Frenzy"</a></h5>
+</section>
+
+<section class="slide" id="reading-example-1">
+  <h2>How this will manifest itself, pt 1</h2>
+  <img src="/slides/images/bad_call_to_action.png" alt="Quickstart" />
+</section>
+
+<section class="slide" id="reading-improvement-1">
+  <h2>A slight improvement</h2>
+  <img src="/slides/images/quickstart_1of6.png" alt="Quickstart with paging info" />
+</section>
+
+<section class="slide" id="context">
+<h2>Example 2</h2>
+<div>
+<textarea class="code" mode="ruby">
+@client = Twilio::REST::Client.new
+@client.account.sms.messags.create(
+  :from =&gt; '+14159341234',
+  :to =&gt; '+16105557069',
+  :body =&gt; 'Hey there!'
+)</textarea>
+</div>
+<ol>
+  <li class='slide' id="environment">Assumes you've set environment variables
+  <li class='slide' id="typo">Typo in <code>sms.messags</code>
+  <li class='slide' id="importerror">Will <code>NameError</code> on first line
+</ol>
+</section>
+
+<section class="slide" id="context-betterment">
+<h2>Example 2 (Improvement)</h2>
+<div>
+<textarea class="code" mode="ruby">
+# Download twilio-ruby from twilio.com/docs/ruby/install
+require 'twilio-ruby'
+
+@client = Twilio::REST::Client.new "AC123456", "456789"
+@client.account.sms.messages.create(
+  :from =&gt; '+14159341234',
+  :to =&gt; '+16105557069',
+  :body =&gt; 'Hey there!'
+)</textarea>
+</div>
+</section>
+
+<section class="slide" id="command-not-found">
+<h2>Example 3</h2>
+<div>
+<textarea class="code" mode="clike">
+  $ gem install rails</textarea>
+</div>
+  <div style="margin-top: 30px;" class="slide" id="command-not-found">
+    <textarea class="code" mode="clike">
+  bash: command not found: $</textarea>
+</div>
+</section>
+
 <section class="slide" id="your-users">
   <h2>How can you find out what your users are trying to do?</h2>
   <img src="/slides/images/analytics.png" />
@@ -249,9 +260,9 @@
 </section>
 
 <section class="slide" id="ssl-problem">
-  <h2>You run into a problem</h2>
+  <h2>Example 2</h2>
   <pre><code>
-  OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
+OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
   </code></pre>
 </section>
 
@@ -260,7 +271,10 @@
 </section>
 
 <section class="slide" id="google">
-  <img src="/slides/images/google.png" />
+  <h2>Google search results</h2>
+  <div class="image-overlay">
+    <img alt="search results for ssl error" src="/slides/images/google.png" />
+  </div>
 </section>
 
 <section class="slide" id="google-teaching">
@@ -269,9 +283,7 @@
 
 <section class="slide" id="ehow">
   <h2>Some people on the Internet know this</h2>
-  <div style="float: left;">
-    <img src="https://www.evernote.com/shard/s265/sh/6c34ab9e-4ceb-410a-9e4a-944ae3b831a7/4e474c4a97915d1ac4069f740a961ebc/res/6a3d1ba1-708d-4a6c-8f1e-cb1ade7b2ee1/skitch.png" />
-  </div>
+  <img alt="wikihow docs" src="/slides/images/wikihow.png" />
 </section>
 
 <section class="slide" id="go-further">
