@@ -32,7 +32,7 @@
 
     <script src="/slides/static/modernizr.custom.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.2.min.js"><\/script>')</script>
   </head>
 
 <body class="deck-container" id="documentation">
@@ -40,16 +40,16 @@
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
   <h1>How to write documentation for users that don't read</h1>
-  <h6 style="position: absolute; bottom: 40px; right: 20px;"><a href="http://kev.inburke.com">Kevin Burke</a></h6>
+  <h3 style="position: absolute; bottom: 40px; right: 20px;"><a href="http://kev.inburke.com">Kevin Burke</a></h3>
 </section>
 
 <section class="slide" id="this-talk">
   <h2>This talk</h2>
   <ul>
     <li>Why people don't read your documentation</li>
-    <li>Look at things from a user's perspective</li>
+    <li>How to look at things from a user's perspective</li>
     <li>Tips for making your documentation readable</li>
-    <li>Other ways to work around the problem</li>
+    <li>Non-traditional sources for betterment</li>
   </ul>
 </section>
 
@@ -57,7 +57,7 @@
   <h2>Not in this talk</h2>
   <ul>
     <li>Motivating you to write documentation</li>
-    <li>Designing a better interface</li>
+    <li>How to design a better interface</li>
   </ul>
 </section>
 
@@ -80,18 +80,20 @@
 
 <section class="slide" id="f-pattern">
   <h2>F-Shaped Pattern</h2>
-  <img src="/slides/images/fpattern.jpg" />
-  <h5>Source: Jakob Nielsen, <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">"F-Shaped Pattern for Reading Web Content"</a></h5>
+  <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">
+    <img alt="F-shaped pattern for web content" src="/slides/images/fpattern.jpg" />
+  </a>
+  <h5>Jakob Nielsen, <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">"F-Shaped Pattern for Reading Web Content"</a></h5>
 </section>
 
 <section class="slide" id="reader-focus">
   <h2>What do readers actually look at?</h2>
   <ul>
+    <li><b>Meaningful text</b> and images
+    <li>The <b>beginnings of paragraphs</b> (first 3-5 words)
     <li>Bullet lists
-    <li>The beginnings of paragraphs (first 3-5 words)
-    <li>Meaningful text and images
     <li>Variations in typeface (Links, bold, etc)
-    <li>Code samples
+    <li><b>Code snippets</b>
   </ul>
   <h5><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
 </section>
@@ -281,8 +283,23 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
   <h1>If users get an error message a lot, put that error message in your documentation</h1>
 </section>
 
+<section class="slide" id="error-messages-seo">
+  <h2>Error messages example</h2>
+  <img src="/slides/images/closure_errors.png" />
+</section>
+
+<section class="slide" id="login-wall">
+  <h2>Make sure Google can reach your docs</h2>
+  <img src="/slides/images/login_wall.png" />
+</section>
+
+<section class="slide" id="no-pdfs">
+  <h2>Don't make your documentation a PDF</h2>
+  <!--<img src="/slides/images/login_wall.png" />-->
+</section>
+
 <section class="slide" id="ehow">
-  <h2>Some people on the Internet know this</h2>
+  <h2>Some people on the Internet know about Google</h2>
   <img alt="wikihow docs" src="/slides/images/wikihow.png" />
 </section>
 
@@ -290,14 +307,25 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
   <h1>If you put the error in your docs, why not go further?</h1>
 </section>
 
+<section class="slide" id="ssl-problem-2">
+  <h2>Certificate verify failed</h2>
+  <pre><code>
+OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
+  </code></pre>
+</section>
+
 <section class="slide" id="ssl-cert">
-<h2>Fixing the problem before it happens</h2>
-<img src="https://www.evernote.com/shard/s265/sh/c829dba8-c9e5-4aae-a7f7-1047a6d2d1ed/1fc77a2df876cbe389848b232f9e265b/res/ead42ec3-3b01-439b-9280-ac11354afc21/skitch.png" />
+  <h2>Fixing the problem before it happens</h2>
+  <img src="/slides/images/ssl_cert_fix.png" />
 </section>
 
 <section class="slide" id="curl-installation">
-<h2>Another example</h2>
-<textarea class="code" mode="clike">$ \curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled</textarea>
+  <h2>Another example</h2>
+  <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled</textarea>
+</section>
+
+<section class="slide" id="validation-documentation">
+  <h1>Validation as documentation</h1>
 </section>
 
 <section class="slide" id="url-validation">
@@ -322,6 +350,7 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
     def post
         if !params.has_key(:url) or params[:url].length == 0
             flash[:error] = "Please include a Url"
+            redirect_to :action => 'settings'
         end
         if !is_valid_url params[:url]
             flash[:error] = "Url #{params[:url]} is invalid"
@@ -345,7 +374,7 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 </section>
 
 <section class="slide" id="user-testing">
-  <h1>Is that worth it?</h1>
+  <h1>Is the effort worth it?</h1>
 </section>
 
 <section class="slide" id="user-testing">
@@ -358,19 +387,14 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
     <li>Can't find their Auth Token</li>
     <li>Can't find our helper libraries</li>
     <li>Got stuck on the Voicemail Howto</li>
-    <li>Don't know how to use Pip</li>
+    <li>Never used a package manager</li>
     <li>Thought they validated a phone number, but it failed</li>
-    <li>Kept clicking on "How it Works" to find examples of how to send an SMS</li>
+    <li>Clicked on marketing copy to find examples of how to send an SMS</li>
   </ul>
 </section>
 
 <section class="slide" id="seo-takeaway">
   <h1>Takeaways - SEO</h1>
-</section>
-
-<section class="slide" id="error-messages-seo">
-  <h2>Stick your error messages in your docs</h2>
-  <img src="/slides/images/closure_errors.png" />
 </section>
 
 <section class="slide" id="seo-tips">
@@ -379,40 +403,45 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
     <li>Headings should describe the page</li>
     <li>Meta description should describe the content</li>
     <li>URL should describe the content</li>
+    <li><b>Your documentation should always win</b></li>
     <li>Etc etc... read the <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf">Google Guide</a></li>
   </ul>
 </section>
 
-<section class="slide" id="pdf">
-  <h1>Don't make your documentation a PDF</h1>
-</section>
-
 <section class="slide" id="errors-takeaway">
-  <h1>Takeaways - Errors</h1>
+  <h1>Takeaways - Jobs to be done</h1>
 </section>
 
 <section class="slide" id="user-failure">
-  <h2>Cause of user failure</h2>
-  <h3>Rarely due to lack of documentation. More often:</h3>
+  <h2>Frequent causes of user failure</h2>
   <ul>
     <li>Not sure how to fix an error</li>
     <li>Not sure how to solve their own problem</li>
     <li>Couldn't find the right docs</li>
     <li>Model of the product does not match your model of the product</li>
+    <li><b>Some of these only tangentially related to your documentation</b>
   </ul>
 </section>
 
+<!--
+Users have very specific goals they want to accomplish.
+Think about your product, and your documentation, as a journey to help a user 
+accomplish that goal.
+Think about how to help them accomplish that goal, instead of writing 
+documentation to explain your product.
+-->
 <section class="slide" id="user-failure">
   <h2>Making it better</h2>
   <ul>
-    <li>Figure out the common problems users have</li>
-    <li>Make better error messages, if you can</li>
-    <li>Or solve the problem for the user</li>
+    <li>Look at your product from a user/goal/job-driven perspective</li>
+    <li>Figure out what problems your users have
+    <li>Make error messages explain how to fix the problem</li>
+    <li>Better yet, solve the problem for the user</li>
   </ul>
 </section>
 
 <section class="slide" id="errors-readability">
-  <h1>Making your documentation readable</h1>
+  <h1>Make your documentation readable</h1>
 </section>
 
 <section class="slide" id="thanks">
