@@ -331,7 +331,8 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 <section class="slide" id="curl-installation">
   <h2>Observance: RVM</h2>
   <div style="margin-top: 180px;">
-    <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash -s stable --rails</textarea>
+    <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash \
+      -s stable --rails</textarea>
   </div>
 </section>
 
@@ -352,7 +353,7 @@ end</textarea>
 </section>
 
 <section class="slide" id="better-url-validation">
-<h2>Observance: Better Validation</h2>
+<div style="margin-top: 20px;" >
 <textarea class="code" mode="ruby">
 post "/" do
   if (!params.has_key? :url or 
@@ -367,6 +368,7 @@ post "/" do
 
   # Do something with the form..
 end</textarea>
+</div>
 </section>
 
 <section class="slide" id="best-validation">
