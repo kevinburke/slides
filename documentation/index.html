@@ -268,6 +268,10 @@ require 'twilio-ruby'
   <img src="/slides/images/verbs.png" />
 </section>
 
+<section class="slide" id="jobs-failures">
+<h1>Every user failure<br />is a potential job to be done</h1>
+</section>
+
 <section class="slide" id="ssl-problem">
   <h2>Example 2</h2>
   <pre><code>
@@ -283,12 +287,7 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 </section>
 
 <section class="slide" id="google-teaching">
-  <h1>If users get an error message a lot, put that error message in your documentation</h1>
-</section>
-
-<section class="slide" id="error-messages-seo">
-  <h2>Error messages example</h2>
-  <img src="/slides/images/closure_errors.png" />
+  <h1>If users get an error message a lot, put the exact text in your documentation</h1>
 </section>
 
 <section class="slide" id="login-wall">
@@ -301,8 +300,13 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
   <img src="/slides/images/pdf.png" />
 </section>
 
+<section class="slide" id="error-messages-seo">
+  <h2>Observance: Error reference page</h2>
+  <img src="/slides/images/closure_errors.png" />
+</section>
+
 <section class="slide" id="ehow">
-  <h2>Some people on the Internet know about Google</h2>
+  <h2>Observance: WikiHow</h2>
   <img alt="wikihow docs" src="/slides/images/wikihow.png" />
 </section>
 
@@ -323,7 +327,7 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 </section>
 
 <section class="slide" id="curl-installation">
-  <h2>Another example</h2>
+  <h2>Observance: RVM</h2>
   <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled</textarea>
 </section>
 
@@ -334,25 +338,27 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 <section class="slide" id="url-validation">
 <h2>Transgression: Confusing error message</h2>
 <textarea class="code" mode="ruby">
+# From http://hurl.it
 post "/" do
-  if invalid_url?(params[:url])
-    return json(:error => "That's... wait.. what?!") 
+  if invalid_url? params[:url]
+    error = "That's... wait.. what?!"
+    return {:error => error}
   end
 end</textarea>
-  <li class='slide' id="invalid">Which url is invalid?
-  <li class='slide' id="why-invalid">Why is it invalid? Blacklisted?
-  <li class='slide' id="data">What data am I actually sending to the server?
 </section>
 
 <section class="slide" id="better-url-validation">
 <h2>Observance: Better Validation</h2>
 <textarea class="code" mode="ruby">
 post "/" do
-  if !params.has_key(:url) or params[:url].length == 0
-      return json(:error => "Please include a Url")
+  if (!params.has_key? :url or 
+      params[:url].length == 0)
+    error = "Please include a Url"
+    return {:error => error}
   end
-  if !is_valid_url params[:url]
-      return json(:error => "Url #{params[:url]} is invalid")
+  if invalid_url? params[:url]
+    error = "Url #{params[:url]} is invalid"
+    return {:error => error}
   end
 
   # Do something with the form..
@@ -362,12 +368,12 @@ end</textarea>
 <section class="slide" id="best-validation">
 <h2>Observance</h2>
 <textarea class="code" mode="ruby">
-if !is_valid_url params[:url]
+if invalid_url? params[:url]
   error = "Url #{params[:url]} is invalid"
-  if is_valid_url "http://#{params[:url]}"
+  if !invalid_url "http://#{params[:url]}"
     error += ". Did you mean http://#{params[:url]}?"
   end
-  return json(:error => error)
+  return {:error => error}
 end</textarea>
 </section>
 
@@ -376,7 +382,7 @@ end</textarea>
 </section>
 
 <section class="slide" id="user-testing">
-  <h1>Going even further - user testing</h1>
+  <h1>Going even further:<br /> user testing</h1>
 </section>
 
 <!--<section class="slide" id="user-failures">-->
