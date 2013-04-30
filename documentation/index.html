@@ -40,7 +40,10 @@
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
   <h1>How to write documentation for users that don't read</h1>
-  <h3 style="position: absolute; bottom: 40px; right: 20px;"><a href="http://kev.inburke.com">Kevin Burke</a></h3>
+  <div style="position: absolute; bottom: 40px; right: 20px;">
+    <h3 style="margin-bottom: 0;"><a href="http://kev.inburke.com">Kevin Burke</a></h3>
+    <h3><a style="color: #fff;" href="http://twitter.com/ekrubnivek">@ekrubnivek</a></h3>
+  </div>
 </section>
 
 <section class="slide" id="this-talk">
@@ -48,8 +51,8 @@
   <ul>
     <li>Why people don't read your documentation</li>
     <li>How to look at things from a user's perspective</li>
-    <li>Tips for making your documentation readable</li>
-    <li>Non-traditional sources for betterment</li>
+    <li>Usability tips for readable documentation</li>
+    <li>Non-traditional documentation resources</li>
   </ul>
 </section>
 
@@ -63,7 +66,7 @@
 
 <section class="slide" id="zoolander">
   <h2>Also not in this talk</h2>
-  <img src="/slides/images/zoolander.gif" alt="Zoolander" />
+  <img src="/slides/images/zoolander.gif" width="900" alt="Zoolander" />
 </section>
 
 <section class="slide" id="once-upon">
@@ -71,7 +74,7 @@
 </section>
 
 <section class="slide" id="nation-shudders">
-  <img style="margin-top: 30px;" alt="nation-shudders" src="/slides/images/theonion.png" />
+  <img style="margin-top: 30px;" alt="nation-shudders" src="/slides/images/onion.png" />
 </section>
 
 <section class="slide" id="how-users-read">
@@ -81,7 +84,7 @@
 <section class="slide" id="f-pattern">
   <h2>F-Shaped Pattern</h2>
   <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">
-    <img alt="F-shaped pattern for web content" src="/slides/images/fpattern.jpg" />
+    <img alt="F-shaped pattern for web content" width="785" src="/slides/images/fpattern.jpg" />
   </a>
   <h5>Jakob Nielsen, <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">"F-Shaped Pattern for Reading Web Content"</a></h5>
 </section>
@@ -122,7 +125,7 @@
 </section>
 
 <section class="slide" id="jira">
-  <h2>Transgression: Too many fixations per line</h2>
+  <h2>Transgression: Many fixations per line</h2>
   <img src="/slides/images/jira.png" />
 </section>
 
@@ -139,7 +142,7 @@
 
 <section class="slide" id="searching">
   <h1>Users are really bad at searching</h1>
-  <p style="position: absolute; left: 80px; bottom: 80px;"><a href="http://www.nngroup.com/articles/incompetent-search-skills/">Source</a></p>
+  <p style="position: absolute; left: 40px; bottom: 20px;"><a href="http://www.nngroup.com/articles/incompetent-search-skills/">Source</a></p>
 </section>
 
 <section class="slide" id="searching-atwood">
@@ -149,22 +152,22 @@
 </section>
 
 <section class="slide" id="searching-example">
-  <h2>Searching, cont'd</h2>
+  <h2>Mental models, cont'd</h2>
   <ul>
-    <li>Helper Libraries
-    <li>Client SDK's
-    <li>API SDK's
-    <li>Library Bindings
-    <li>Language-specific wrappers
+    <li>"Helper Libraries"
+    <li>"Client SDK's"
+    <li>"API SDK's"
+    <li>"Library Bindings"
+    <li>"Language-specific wrappers"
   </ul>
 </section>
 
 <section class="slide" id="frustrating">
-  <h1>Frustrating for you (and expensive!)</h1>
+<h1>Frustrating for you <br />(and expensive!)</h1>
 </section>
 
 <section class="slide" id="frustrating-users">
-  <h1>Even more frustrating for users</h1>
+<h1>Even more frustrating<br/>for users</h1>
 </section>
 
 <section class="slide" id="why-frustrating">
@@ -178,7 +181,7 @@
 </section>
 
 <section class="slide" id="jobs-documentation">
-  <h1>Apply the same technique to your documentation</h1>
+  <h1>Apply the same theory to your documentation</h1>
 </section>
 
 <section class="slide" id="jobs-example">
@@ -243,11 +246,11 @@ require 'twilio-ruby'
 
 <section class="slide" id="command-not-found">
 <h2>Transgression: Copy/paste fail</h2>
-<div>
+<div style="margin-top: 90px;">
 <textarea class="code" mode="clike">
   $ gem install rails</textarea>
 </div>
-  <div style="margin-top: 30px;" class="slide" id="command-not-found">
+  <div style="margin-top: 60px;" class="slide" id="command-not-found">
     <textarea class="code" mode="clike">
   bash: command not found: $</textarea>
 </div>
@@ -280,7 +283,6 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 </section>
 
 <section class="slide" id="google">
-  <h2>Google search results</h2>
   <div class="image-overlay">
     <img alt="search results for ssl error" src="/slides/images/google.png" />
   </div>
@@ -328,7 +330,9 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
 
 <section class="slide" id="curl-installation">
   <h2>Observance: RVM</h2>
-  <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled</textarea>
+  <div style="margin-top: 180px;">
+    <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash -s stable --rails</textarea>
+  </div>
 </section>
 
 <section class="slide" id="validation-documentation">
@@ -425,16 +429,16 @@ end</textarea>
   <h1>Takeaways - Jobs to be done</h1>
 </section>
 
-<section class="slide" id="user-failure">
-  <h2>Frequent causes of user failure</h2>
-  <ul>
-    <li>Not sure how to fix an error</li>
-    <li>Not sure how to solve their own problem</li>
-    <li>Couldn't find the right docs</li>
-    <li>Model of the product does not match your model of the product</li>
-    <li><b>Some of these only tangentially related to your documentation</b>
-  </ul>
-</section>
+<!--<section class="slide" id="user-failure">-->
+  <!--<h2>Frequent causes of user failure</h2>-->
+  <!--<ul>-->
+    <!--<li>Not sure how to fix an error</li>-->
+    <!--<li>Not sure how to solve their own problem</li>-->
+    <!--<li>Couldn't find the right docs</li>-->
+    <!--<li>Model of the product does not match your model of the product</li>-->
+    <!--<li><b>Some of these only tangentially related to your documentation</b>-->
+  <!--</ul>-->
+<!--</section>-->
 
 <!--
 Users have very specific goals they want to accomplish.
@@ -447,7 +451,7 @@ documentation to explain your product.
   <h2>Making it better</h2>
   <ul>
     <li>Look at your product from a user/goal/job-driven perspective</li>
-    <li>Figure out what problems your users have
+    <li>Users should "hire" things you control for most failures
     <li>Make error messages explain how to fix the problem</li>
     <li>Better yet, solve the problem for the user</li>
   </ul>
