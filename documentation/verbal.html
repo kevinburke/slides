@@ -70,15 +70,7 @@
 </section>
 
 <section class="slide" id="once-upon">
-  <h1>Once upon a time, people wrote documentation that no one read</h1>
-</section>
-
-<section class="slide" id="how-know">
-  <h1>How do I know?</h1>
-</section>
-
-<section class="slide" id="no-one-reads">
-  <h1>Because no one reads anything on the Internet</h1>
+  <h1>Once upon a time</h1>
 </section>
 
 <section class="slide" id="nation-shudders">
@@ -86,11 +78,11 @@
 </section>
 
 <section class="slide" id="how-users-read">
-  <h1>Bible: <a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">"How Users Read on the Web", Jakob Nielsen</a></h1>
+  <h1><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">"How Users Read on the Web", Jakob Nielsen</a></h1>
 </section>
 
 <section class="slide" id="f-pattern">
-  <h2>Users Read in F-Shaped Pattern</h2>
+  <h2>F-Shaped Pattern</h2>
   <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">
     <img alt="F-shaped pattern for web content" width="785" src="/slides/images/fpattern.jpg" />
   </a>
@@ -115,12 +107,6 @@
     <img style="width: 50%; float: left;" src="/slides/images/nebraska_bullets.png" />
     <img style="width: 50%; float: left;" src="/slides/images/nebraska_pp.png" />
   </div>
-  <h4>2.25x improvement</h4>
-  <ul>
-    <li>Shorter text
-    <li>Objective POV
-    <li>Words all start on the left margin
-  </ul>
   <h5 class="clearfix"><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
 </section>
 
@@ -167,7 +153,6 @@
 
 <section class="slide" id="searching-example">
   <h2>Mental models, cont'd</h2>
-  <h3>These all refer to the same concept:</h3>
   <ul>
     <li>"Helper Libraries"
     <li>"Client SDK's"
@@ -229,7 +214,6 @@
 <h2>Transgression: Assuming context</h2>
 <div>
 <textarea class="code" mode="ruby">
-# Your users won't read anything above or below this code snippet
 @client = Twilio::REST::Client.new
 @client.account.sms.messags.create(
   :from =&gt; '+14159341234',
@@ -269,7 +253,6 @@ require 'twilio-ruby'
   <div style="margin-top: 60px;" class="slide" id="command-not-found">
     <textarea class="code" mode="clike">
   bash: command not found: $</textarea>
-  <h3>No good suggestions here</h3>
 </div>
 </section>
 
@@ -293,28 +276,16 @@ require 'twilio-ruby'
 </section>
 
 <section class="slide" id="ssl-problem">
-  <h2>A user encounters this error:</h2>
+  <h2>Example 2</h2>
   <pre><code>
 OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
   </code></pre>
-</section>
-
-<section class="slide" id="jobs-failures">
-<h1>What are they going to do?</h1>
 </section>
 
 <section class="slide" id="google">
   <div class="image-overlay">
     <img alt="search results for ssl error" src="/slides/images/google.png" />
   </div>
-</section>
-
-<section class="slide" id="doc-failure">
-<h1>None of these are your documentation</h1>
-</section>
-
-<section class="slide" id="doc-failure">
-<h1>Your documentation failed this job.</h1>
 </section>
 
 <section class="slide" id="google-teaching">
@@ -382,7 +353,7 @@ end</textarea>
 </section>
 
 <section class="slide" id="better-url-validation">
-<h2>Different messages for different errors</h2>
+<div style="margin-top: 20px;" >
 <textarea class="code" mode="ruby">
 post "/" do
   if (!params.has_key? :url or 
@@ -412,29 +383,25 @@ if invalid_url? params[:url]
 end</textarea>
 </section>
 
-<section class="slide" id="worth-it">
+<section class="slide" id="user-testing">
   <h1>Is the effort worth it?</h1>
-</section>
-
-<section class="slide" id="costly">
-  <h1>Costly to lose users now</h1>
-</section>
-
-<section class="slide" id="">
-  <h1>Compare with time/effort spent on marketing and sales</h1>
 </section>
 
 <section class="slide" id="user-testing">
   <h1>Going even further:<br /> user testing</h1>
 </section>
 
-<section class="slide" id="user-testing">
-  <h1>No need for a lab, recruiters, formal process</h1>
-</section>
-
-<section class="slide" id="user-testing">
-  <h1>Just grab people, give them a task and watch them</h1>
-</section>
+<!--<section class="slide" id="user-failures">-->
+  <!--<h2>Lots of problems not solvable with better (traditional) documentation</h2>-->
+  <!--<ul>-->
+    <!--<li>Can't find their Auth Token</li>-->
+    <!--<li>Can't find our helper libraries</li>-->
+    <!--<li>Got stuck on the Voicemail Howto</li>-->
+    <!--<li>Never used a package manager</li>-->
+    <!--<li>Thought they validated a phone number, but it failed</li>-->
+    <!--<li>Clicked on marketing copy to find examples of how to send an SMS</li>-->
+  <!--</ul>-->
+<!--</section>-->
 
 <section class="slide" id="takeaways">
   <h1>Takeaways</h1>
@@ -463,6 +430,17 @@ end</textarea>
 <section class="slide" id="errors-takeaway">
   <h1>Takeaways - Jobs to be done</h1>
 </section>
+
+<!--<section class="slide" id="user-failure">-->
+  <!--<h2>Frequent causes of user failure</h2>-->
+  <!--<ul>-->
+    <!--<li>Not sure how to fix an error</li>-->
+    <!--<li>Not sure how to solve their own problem</li>-->
+    <!--<li>Couldn't find the right docs</li>-->
+    <!--<li>Model of the product does not match your model of the product</li>-->
+    <!--<li><b>Some of these only tangentially related to your documentation</b>-->
+  <!--</ul>-->
+<!--</section>-->
 
 <!--
 Users have very specific goals they want to accomplish.
