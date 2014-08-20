@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>How to submit better pull requests</title>
+	
+	<meta name="description" content="How to submit better pull requests">
+	<meta name="author" content="Kevin Burke">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="/slides/static/core/deck.core.css">
+	<link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
+	
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+	
+	<script src="/slides/static/modernizr.custom.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.min.js"><\/script>')</script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+	<h1>How to submit better pull requests</h1>
+	<p style="position: absolute; bottom: 20px; right: 80px;"><a href="https://kev.inburke.com">Kevin Burke</a></p>
+</section>
+
+<section class="slide" id="caveat-emptor">
+	<h1>What I'm not talking about</h1>
+</section>
+
+<section class="slide" id="caveat-emptor">
+	<h1>Caveat emptor</h1>
+</section>
+
+<section class="slide" id="pull-request-length">
+  <h2>How many errors are there to be found?</h2>
+  <h5>Probably around 1-25 per 1000 lines of code</h5>
+  <!-- especially if they are stuck -->
+</section>
+
+<section class="slide" id="types-of-errors">
+  <h2>What kinds of errors?</h2>
+  <ul>
+    <li>
+    <h5>18%-36% of errors are clerical errors</h5>
+    <img src="https://img.skitch.com/20120531-g3fxsa2fhyfpck4mfrbmncs787.png">
+    </li>
+    <li>
+    <h5>The 3 most expensive errors of all time - $1.6 billion, $900 million, $245 million - involved changing a single character in a correct program</h5>
+    </li>
+    <li>
+    <h5>Most errors (~85%) can be fixed in a short period of time</h5>
+    </li>
+    <li>
+    <h5>Most errors are the programmer's fault</h5>
+    </li>
+    <li>
+    <h5>Other common error sources - changing requirements, misunderstanding the design</h5>
+    </li>
+  </ul>
+  <!-- especially if they are stuck -->
+</section>
+
+<section class="slide" id="how-many-can-we-find">
+  <h2>How many can we expect to find?</h2>
+  <h4>If you do it <i>well</i>: 70%</h4>
+  <h4>If you do it <i>poorly</i>: 20%</h4>
+</section>
+
+<section class="slide" id="different-types-of-review">
+  <h2>Effectiveness of different bug-finding tools</h2>
+  <div id="bug_chart" style="width: 100%; height: 80%; min-height: 600px;"></div>
+  <!-- especially if they are stuck -->
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/flot/0.7/jquery.flot.min.js"></script>
+
+  <script src="https://kev.inburke.com/code/graph.js" type="text/javascript"></script>
+</section>
+
+<section class="slide" id="error-distribution">
+	<h2>How are errors distributed?</h2>
+	<h5>In general, 80% of the errors come from 20% of the code.</h5>
+	<h5>Also, 50% of errors from 5% of the code</h5>
+	<p>Case study at IBM: 31 of 425 classes found to be error-prone. 
+	After repair/refactoring, defects reported by customers were reduced by 1000%</p>
+</section>
+
+<section class="slide" id="pull-request-length">
+  <h2>Pull request length</h2>
+  <img src="https://img.skitch.com/20120531-g79ty5j6gqhmtue42rsc3um2hm.png" />
+  <!-- especially if they are stuck -->
+</section>
+
+<section class="slide">
+	<h2>Example</h2>
+	<img src="https://img.skitch.com/20120531-1yg67hxtd6p2ujkx51ima3tbh6.png" />
+</section>
+
+<section class="slide" id="pull-request-habits">
+	<h1>Longer pull requests take longer to get reviewed/merged (why?)</h1>
+</section>
+
+<section class="slide" id="code-review-speed">
+	<h2>How quickly can you do code review?</h2>
+	<h5>Estimates: 500 lines/hour for "application" code</h5>
+	<h5>125 lines/hour for "system" code</h5>
+	<h5>Attention span/effectiveness drops after 2 hours of review</h5>
+	<h5>Start at 200 lines/hour</h5>
+</section>
+
+<section class="slide" id="pull-request-advice">
+	<h2>Advice</h2>
+	<ul>
+		<li><h4>Limit the number of context switches your reviewers need to make</h4>
+		<li><h4>Try to keep review time under 2 hours</h4>
+		<li><h4>Note areas that have previously generated many bugs, and focus extra attention on them during review</h4>
+		<li><h4>Take extra care with small changes (1-10 lines)</h4>
+		<li><h4>Let machines help you (linting, static analysis, spell checking)</h4>
+</section>
+
+<section class="slide" id="kevin-track">
+	<h2>Kevin Track</h2>
+	<img src="https://img.skitch.com/20120531-phu6jwm11m5auhyugnc3y58jbu.png" alt="Spreadsheet with errors" />
+</section>
+
+<section class="slide" id="automated-linter">
+	<h2>Git pre-commit hooks</h2>
+	<pre><code>
+              ,
+          ,   |\ ,__
+          |\   \/   `.
+          \ `-.:.     `\
+           `-.__ `\=====|
+              /=`'/   ^_\
+            .'   /\   .=)
+         .-'  .'|  '-(/_|
+       .'  __(  \  .'`
+      /_.'`  `.  |`
+               \ |
+                |/
+								</pre></code>
+	<a href="http://twiliocode.com/kevin/trojan-man">source</a>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="https://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="https://kev.inburke.com/slides/pull-requests">kev.inburke.com/slides/pull-requests</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+<script src="/slides/static/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
