@@ -7,9 +7,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	<title>How to submit better pull requests</title>
+	<title>Everything you wanted to know about software errors</title>
 	
-	<meta name="description" content="How to submit better pull requests">
+	<meta name="description" content="Everything you wanted to know about software errors">
 	<meta name="author" content="Kevin Burke">
 	<meta name="viewport" content="width=1024, user-scalable=no">
 	
@@ -22,10 +22,8 @@
 	<link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
 	<link rel="stylesheet" href="/slides/static/extensions/scale/deck.scale.css">
 	
-	<!-- Style theme. More available in /themes/style/ or create your own. -->
 	<link rel="stylesheet" href="/slides/static/themes/style/swiss.css">
 	
-	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
 	<link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
 	
 	<script src="/slides/static/modernizr.custom.js"></script>
@@ -37,22 +35,122 @@
 
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
-	<h1>How to submit better pull requests</h1>
+	<h1>All about software errors</h1>
 	<p style="position: absolute; bottom: 20px; right: 80px;"><a href="https://kev.inburke.com">Kevin Burke</a></p>
 </section>
 
-<section class="slide" id="caveat-emptor">
-	<h1>What I'm not talking about</h1>
+<section class="slide" id="toc">
+	<h2>What we're covering today</h2>
+  <ul>
+    <li>Where do errors come from?</li>
+    <li>How often do we make errors?</li>
+    <li>How costly are errors to fix?</li>
+    <li>How can we catch more errors?</li>
+    <li>What effects will increased (testing, code review, design) have on development time?
+    <li>How can I get my pull requests accepted?
+  </ul>
 </section>
 
-<section class="slide" id="caveat-emptor">
-	<h1>Caveat emptor</h1>
+<section class="slide" id="qualifications">
+	<h1>What makes me an expert?</h1>
 </section>
 
-<section class="slide" id="pull-request-length">
-  <h2>How many errors are there to be found?</h2>
-  <h5>Probably around 1-25 per 1000 lines of code</h5>
-  <!-- especially if they are stuck -->
+<section class="slide" id="methodology">
+  <h2>Methodology</h2>
+  <ul>
+    <li>Survey a large company (Raytheon, AT&amp;T, IBM, Motorola, etc)
+    <li>Determine defect rate (survey, interview, or automated collection)
+    <li>Determine tools used to catch errors (testing, code review etc)
+  </ul>
+</section>
+
+<section class="slide" id="methodology-2">
+  <h2>Methodology (cont'd)</h2>
+  <ul>
+    <li>Ask many programmers to write same program, w/ different emphases
+    <li>Give programmers a program w/ known errors, ask them to find/fix
+  </ul>
+</section>
+
+<section class="slide" id="bugs">
+  <h1>Stop using the word "bug"</h1>
+</section>
+
+<section class="slide" id="bug-examples">
+  <h2>Examples of bugs</h2>
+  <img style="float: right;" src="/photos/slides/errors/bird-shit-in-hair.jpg" />
+  <ul>
+    <li>Colony of ants infests your laptop
+    <li>Bird poops on computer &amp; shorts the motherboard
+    <li>Termites chew through server cables, cause data center outage
+  </ul>
+</section>
+
+<section class="slide" id="not-bugs">
+  <h2>Things that are not bugs</h2>
+  <ul>
+    <li><h4>Syntax errors</h4>
+    <li><h4>Null pointer dereference</h4>
+    <li><h4>Misunderstanding requirements</h4>
+  </ul>
+</section>
+
+<section class="slide" id="errorsdefects">
+  <h1>These are errors/defects</h1>
+</section>
+
+<section class="slide" id="implications">
+  <h2>Terminology has implications</h2>
+  <ul>
+    <li>Bugs are "random", acts of God
+    <li>Errors can be measured
+    <li>Error rates can be tracked
+    <li>Errors can be reduced
+  </ul>
+</section>
+
+<section class="slide" id="improvement-room">
+  <h1>You have room to improve</h1>
+</section>
+
+<section class="slide" id="room-to-improve-0">
+  <h2>50% of time is spent debugging, refactoring, reworking</h2>
+  <p>Mills 1983, Boehm 1987, Cooper and Mullen 1993, Fishman 1996, Haley 1996</p>
+</section>
+
+<section class="slide" id="room-to-improve">
+  <h2>Room to improve</h2>
+  <h4>10x differences between pro programmers on:</h4>
+  <ul>
+    <li>Size of completed program
+    <li>Speed to complete program
+    <li>Error rate
+    <li>Error detection rate
+  </ul>
+</section>
+
+<section class="slide" id="room-to-improve-2">
+  <h2>Room to improve, cont'd</h2>
+  <h3>Productivity variation between programmers</h3>
+  <img src="/photos/slides/errors/valett_mcgarry_difference.png" />
+  <h5>Sackman, Erickson, Grant, "Exploratory Experimental Studies Comparing Online/Offline Programming Performance", 1968</h5>
+</section>
+
+<section class="slide" id="room-to-improve-3">
+  <h2>Room to improve, cont'd</h2>
+  <img src="/photos/slides/errors/curtis_table.png" />
+  <h5>Curtis, "Substantiating Programmer Variability", 1981</h5>
+</section>
+
+<section class="slide" id="room-to-improve-4">
+  <h2>Room to improve, cont'd</h2>
+  <img src="/photos/slides/errors/demarco_speed_defects.png" />
+  <h5>Demarco and Lister, "Programmer performance and the effects of the workplace", 1985</h5>
+  <!-- also gould, 1975 -->
+</section>
+
+<section class="slide" id="where-errors-are">
+  <h1>Where do errors come from?</h1>
 </section>
 
 <section class="slide" id="types-of-errors">
@@ -61,21 +159,74 @@
     <li>
     <h5>18%-36% of errors are clerical errors</h5>
     <img src="https://img.skitch.com/20120531-g3fxsa2fhyfpck4mfrbmncs787.png">
+    (Weiss 1975, Card 1987)
     </li>
     <li>
     <h5>The 3 most expensive errors of all time - $1.6 billion, $900 million, $245 million - involved changing a single character in a correct program</h5>
     </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-of-errors-2">
+  <h2>What kinds of errors?</h2>
     <li>
     <h5>Most errors (~85%) can be fixed in a short period of time</h5>
+    Endres, "An Analysis of Errors and Their Causes in System Programs", 1975
     </li>
     <li>
     <h5>Most errors are the programmer's fault</h5>
     </li>
     <li>
-    <h5>Other common error sources - changing requirements, misunderstanding the design</h5>
+    <h5>Other common error sources - changing requirements, communication breakdown, thin domain knowledge</h5>
     </li>
   </ul>
-  <!-- especially if they are stuck -->
+</section>
+
+<section class="slide" id="error-correlations">
+  <h2>What things are correlated with errors?</h2>
+    <li>
+    Unused variables (Card, Church, Agresti, 1986)
+    <img src="/photos/slides/errors/card_unused_vars.png" />
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="error-correlations-2">
+  <h2>What things are correlated with errors?</h2>
+    <li>
+    High numbers of comments
+    <img src="/photos/slides/errors/lind_comments.png" />
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="error-correlations-3">
+  <h2>What things are correlated with errors?</h2>
+    <li>
+    <h5>Complex control flow</h5> (McCabe, "A Complexity Measure", 1976)
+    See: <a href="https://github.com/fzipp/gocyclo">gocyclo</a>
+    </li>
+    <li>
+    <h5>3+ layers of nesting</h5> (Yourdon, "Managing the Structured Techniques: Strategies for Software Development in the 1990s", 1986)
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="error-distribution">
+	<h2>How are errors distributed?</h2>
+	<h5>In general, 80% of the errors come from 20% of the code.</h5>
+	<h5>Also, 50% of errors from 5% of the code</h5>
+	<p>Case study at IBM: 31 of 425 classes found to be error-prone. 
+	After repair/refactoring, defects reported by customers were reduced by 90%</p>
+  Capers Jones, "Software Assessments, Benchmarks, and Best Practices," 2000
+</section>
+
+<section class="slide" id="how-many-errors">
+  <h2>How often do we make errors?</h2>
+  <h5>Best estimates: you will find 1-25 errors per 1000 lines of code</h5>
+  <p>(McConnell, "Code Complete", 2003)</p>
+  <h5>5-8 defects/hour during coding</h5>
+  <p>(Humphrey, "Introduction to the Personal Software Process", 1997)</p>
 </section>
 
 <section class="slide" id="how-many-can-we-find">
@@ -94,79 +245,142 @@
   <script src="https://kev.inburke.com/code/graph.js" type="text/javascript"></script>
 </section>
 
-<section class="slide" id="error-distribution">
-	<h2>How are errors distributed?</h2>
-	<h5>In general, 80% of the errors come from 20% of the code.</h5>
-	<h5>Also, 50% of errors from 5% of the code</h5>
-	<p>Case study at IBM: 31 of 425 classes found to be error-prone. 
-	After repair/refactoring, defects reported by customers were reduced by 1000%</p>
+<section class="slide" id="tools-dont-overlap">
+  <h2>Tools don't overlap</h2>
+  <h4>Inspections/reviews find different errors than tests</h4>
+  <h4>Using a different tool can double effectiveness</h4>
+  <p>Myers, 1979; Kouchakdjian, Green, and Basili 1989; Tripp, Struck, and Pflug 1991; Schneider, Martin, and Tsai 1992</p>
 </section>
 
-<section class="slide" id="pull-request-length">
+<section class="slide" id="inspection-large">
+	<h1>What the heck is an inspection?</h1>
+</section>
+
+<section class="slide" id="inspection-detail">
+	<h2>What the heck is an inspection?</h2>
+  <h5>Michael Fagan (IBM), "Design and Code Inspections to Reduce Errors in Program Development", 1976</h5>
+  <ul>
+    <li>4 roles: Moderator, Author, Reviewer, Scribe
+    <li>Everyone prepares, brings notes
+    <li>Solutions not discussed
+    <li>Management isn't present
+    <li>Reviewers have checklists for points to cover
+  </ul>
+</section>
+
+<section class="slide" id="inspection-effectiveness">
+	<h1>Inspections crush testing on effectiveness</h1>
+</section>
+
+<section class="slide" id="inspection-crush">
+	<h2>Inspections crush testing</h2>
+  <ul>
+    <li>Basili &amp; Selby 1987: Code reading found 80% more faults/hour than testing
+    <li>Ackerman, Buchwald &amp; Lewski 1989: 6x as much time to find errors with testing as inspections
+    <li>Kaplan 1995: 3.5 staff hours/error with inspections, 15-25 hours per error with testing
+    <li>Moore 1992: Microsoft spent 3 hours/error with inspections, 12 hours with testing
+    <li>Russell 1991: One hour spent on inspections avoided 33 hours of maintenance
+  </ul>
+</section>
+
+<section class="slide" id="testing-catch">
+	<h2>What won't testing catch?</h2>
+  <ul>
+    <li>Changing requirements/lack of communication
+    <li>Hard coded variable values
+    <li>Unclear error messages (or typos)
+    <li>Duplicated code
+    <li>Inadequate comments
+    <li>Leaving debugging code turned on
+  </ul>
+</section>
+
+<section class="slide" id="tests">
+	<h2>If you do test:</h2>
+  <ul>
+    <li><h4>Automate test procedure</h4>
+    50% of tests run manually were run incorrectly
+    <li><h4>Double check test code for errors</h4>
+    Tests as likely or more likely to contain errors than code (Weiland 1983)
+    <li><h4>Make errors hard to miss</h4>
+    Easy to miss erroneous output, use <code>log.Fatal</code> or <code>panic</code> in development
+  </ul>
+</section>
+
+<section class="slide" id="review-small-changes">
+	<h1>Review small changes</h1>
+</section>
+
+<section class="slide" id="review-changes-detail">
+  <h2>Review small changes</h2>
+  <h4>In one company, 55% of one line changes were incorrect</h4>
+  <h4>After code review was implemented, 2% were incorrect</h4>
+  Freedman and Weinberg, 1990
+</section>
+
+<section class="slide" id="quote">
+	<h1>"Never debug standing up."</h1>
+	<p style="position: absolute; bottom: 20px; right: 80px;">Gerald Weinberg</p>
+</section>
+
+<section class="slide" id="small-change-error-rate">
   <h2>Pull request length</h2>
   <img src="https://img.skitch.com/20120531-g79ty5j6gqhmtue42rsc3um2hm.png" />
-  <!-- especially if they are stuck -->
 </section>
 
-<section class="slide">
+<section class="slide" id="small-change-example">
 	<h2>Example</h2>
 	<img src="https://img.skitch.com/20120531-1yg67hxtd6p2ujkx51ima3tbh6.png" />
 </section>
 
-<section class="slide" id="pull-request-habits">
-	<h1>Longer pull requests take longer to get reviewed/merged (why?)</h1>
+<section class="slide" id="requirements-change">
+  <h2>Requirements change</h2>
+  <p>Average change is 1-4% per month. (Jones 2000)</p>
+  <p><b>Store requirements in version control</b> so changes are visible</p>
 </section>
 
-<section class="slide" id="code-review-speed">
-	<h2>How quickly can you do code review?</h2>
-	<h5>Estimates: 500 lines/hour for "application" code</h5>
-	<h5>125 lines/hour for "system" code</h5>
-	<h5>Attention span/effectiveness drops after 2 hours of review</h5>
-	<h5>Start at 200 lines/hour</h5>
+<section class="slide" id="records-0">
+	<h1>Keep your own records</h1>
 </section>
 
-<section class="slide" id="pull-request-advice">
-	<h2>Advice</h2>
-	<ul>
-		<li><h4>Limit the number of context switches your reviewers need to make</h4>
-		<li><h4>Try to keep review time under 2 hours</h4>
-		<li><h4>Note areas that have previously generated many bugs, and focus extra attention on them during review</h4>
-		<li><h4>Take extra care with small changes (1-10 lines)</h4>
-		<li><h4>Let machines help you (linting, static analysis, spell checking)</h4>
+<section class="slide" id="records-1">
+	<h2>Things you can measure:</h2>
+  <ul>
+    <li>Compiler detected errors
+    <li>Total number of defects
+    <li>Errors per 1000 LOC
+    <li>Mean time between failures
+    <li>Defect severity
+    <li>Class/routine that caused defect
+    <li>Origin of the defect (Design confusion, syntax error, etc)
+    <li>Cost to correct defect (hours, $$$)
+  </ul>
+</section>
+
+<section class="slide" id="defect-cost">
+	<h2>Cost of fixing defects at various stages</h2>
+  <ul>
+    <li>Requirements defect is 5-10x as expensive once you've begun writing code
+    <li>Architecture defect is 10x as expensive once you've begun writing code
+    <li>Code is 10-25x as expensive after it's been released
+    <li>Requirements/architecture are 10-100x as expensive to fix after deploy
+  </ul>
+  <p>Fagan 1976, Dunn 1984, Shull 2002</p>
 </section>
 
 <section class="slide" id="kevin-track">
-	<h2>Kevin Track</h2>
+	<h2>Personal Error Tracking</h2>
 	<img src="https://img.skitch.com/20120531-phu6jwm11m5auhyugnc3y58jbu.png" alt="Spreadsheet with errors" />
-</section>
-
-<section class="slide" id="automated-linter">
-	<h2>Git pre-commit hooks</h2>
-	<pre><code>
-              ,
-          ,   |\ ,__
-          |\   \/   `.
-          \ `-.:.     `\
-           `-.__ `\=====|
-              /=`'/   ^_\
-            .'   /\   .=)
-         .-'  .'|  '-(/_|
-       .'  __(  \  .'`
-      /_.'`  `.  |`
-               \ |
-                |/
-								</pre></code>
-	<a href="http://twiliocode.com/kevin/trojan-man">source</a>
 </section>
 
 <section class="slide" id="thanks">
   <h2>Thanks!</h2>
   <h3>Kevin Burke</h3>
   <h4><a href="https://kev.inburke.com">kev.inburke.com</a></h4>
-  <h4><a href="mailto:kevin@twilio.com">kevin@twilio.com</a></h4>
+  <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
   <h4><a href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
   <p>These slides are available at:</p>
-  <h4><a href="https://kev.inburke.com/slides/pull-requests">kev.inburke.com/slides/pull-requests</a></h4>
+  <h4><a href="https://kev.inburke.com/slides/errors">kev.inburke.com/slides/errors</a></h4>
 </section>
 
 <!-- deck.navigation snippet -->
