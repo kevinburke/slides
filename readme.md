@@ -21,3 +21,7 @@ to reproduce:
         git clone git://github.com/iros/deck.js-kevinburke.git static/extensions/kevinburke
         # or
         ln -s ~/code/deck.js-kevin-theme $PWD/static/extensions/kevinburke
+
+## serving
+
+point MAMP at ~/code, then go to localhost:8888/slides in the browser
