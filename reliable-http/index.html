@@ -56,7 +56,128 @@
 </section>
 
 <section class="slide" id="takeaways">
+  <h1>2 mitigation techniques:<br />timeouts and retries</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Timeouts</h2>
+  <ul>
+    <li>Enforce contracts in UI
+    <li>Prevent service overload
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Hard Math - Avert Your Eyes</h2>
+  <ul>
+    <li>Server can handle 1000 concurrent connections.
+    <li>Each request takes 1 second. 200 requests come in per second.
+    <li>Now server is slow, requests take 6 seconds each
+    <li>Set timeout to prevent this
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Retries</h2>
+  <ul>
+    <li>Work around temporal failures
+    <li>Work around failures isolated to a single component
+    <li>Downside - can cause more pressure on overloaded server
+  </ul>
+</section>
+
+<section class="slide" id="takeaways">
   <h1>How can HTTP requests fail?</h1>
+</section>
+
+<section class="slide" id="takeaways">
+  <h1>Stage 1: Denial<br>(Validation)</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Validation Failures</h2>
+  <ul>
+    <li>Invalid URL
+    <li>Invalid timeout value
+    <li>Invalid parameters/data
+  </ul>
+</section>
+
+<section class="slide" id="takeaways">
+  <h1>Stage 2: Anger<br>(Connection)</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h1>DNS Lookup Failures</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>DNS Lookup Failures</h2>
+  <textarea class="code" mode="python">
+    requests.get('https://api.twilio.com')</textarea>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Resolve Unknown Domain</h2>
+  <textarea class="code" mode="python">
+    start = time.time()
+    try:
+        requests.get('http://foobarbizbang.com', timeout=3)
+    except ConnectionError: pass
+    print time.time() - start
+  </textarea>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>DNS Server is Down/Unreachable</h2>
+  <textarea class="code" mode="python">
+    start = time.time()
+    try:
+        requests.get('http://google.com', timeout=3)
+    except ConnectionError: pass
+    print time.time() - start
+  </textarea>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>DNS Server is Down - Workarounds</h2>
+  <ul>
+    <li>Connect directly to IP addresses instead of DNS
+    <li>Set shorter timeout in /etc/resolv.conf
+    <li>Resolve DNS in a separate thread
+    <li>Connect to HAProxy locally, use HAProxy round robin
+    <li>Use a backup nameserver (eg Google Public DNS)
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Network is Down</h2>
+  <ul>
+    <li>ECONNREFUSED
+    <li>ECONNRESET
+    <li>EHOSTUNREACH
+    <li><code>subprocess.call("man connect".split())</code></li>
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Remote Server Unreachable</h2>
+  <textarea class="code" mode="python">
+    start = time.time()
+    try:
+        requests.get('http://google.com:81', timeout=3)
+    except ConnectTimeout: pass
+    print time.time() - start
+  </textarea>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Server Unreachable - Workarounds</h2>
+  <ul>
+    <li>Set shorter, separate, connect timeout
+    <li>Try next connection to a different host
+    <li>Try same request to several machines - return the fastest, cancel others.
+  </ul>
 </section>
 
 <section class="slide" id="thanks">
