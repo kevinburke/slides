@@ -180,6 +180,53 @@
   </ul>
 </section>
 
+<section class="slide" id="takeaways">
+  <h1>Stage 3: Bargaining<br>(Socket Write)</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Socket Write Failure</h2>
+  <ul>
+    <li>EAGAIN
+    <li>ECONNRESET
+    <li>Large file upload causes 502 Bad Gateway
+    <li><code>subprocess.call("man send".split())</code></li>
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Socket Write - Workarounds</h2>
+  <ul>
+    <li>Retry the write
+    <li>Increase server's buffer size
+  </ul>
+</section>
+
+<section class="slide" id="takeaways">
+  <h1>Stage 4: Depression<br>(Socket Read)</h1>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Socket Read Failure</h2>
+  <ul>
+    <li>Normal list of socket errors
+    <li>Read timeouts
+    <li><code>subprocess.call("man 2 read".split())</code></li>
+  </ul>
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Socket Read Failure - Workarounds</h2>
+  <ul>
+    <li>Retry idempotent requests (GET, PUT, DELETE)
+    <li>Use backoff
+  </ul>
+</section>
+
+<section class="slide" id="takeaways">
+  <h1>Stage 5: Acceptance<br>(Response Parsing)</h1>
+</section>
+
 <section class="slide" id="thanks">
   <h2>Thanks!</h2>
   <h3>Kevin Burke</h3>
