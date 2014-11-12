@@ -1,7 +1,7 @@
 import requests
 
-r = requests.post('https://api.sendgrid.com/api/mail.send.json', data={
-    'large_body': 'a'*100000
+r = requests.post('https://api.github.com/authorizations', headers={
+    'large_body': 'a'*10000
 })
 
 print r.status_code

@@ -55,11 +55,11 @@
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="mitigation-techniques">
   <h1>2 mitigation techniques:<br />timeouts and retries</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="timeouts">
   <h2>Timeouts</h2>
   <ul>
     <li>Enforce contracts in UI
@@ -67,7 +67,7 @@
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="timeout-math">
   <h2>Hard Math - Avert Your Eyes</h2>
   <ul>
     <li>Server can handle 1000 concurrent connections.
@@ -77,7 +77,7 @@
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="retries">
   <h2>Retries</h2>
   <ul>
     <li>Work around temporal failures
@@ -86,15 +86,15 @@
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="how can requests fail">
   <h1>How can HTTP requests fail?</h1>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="stage-1">
   <h1>Stage 1: Denial<br>(Validation)</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="validation-failures">
   <h2>Validation Failures</h2>
   <ul>
     <li>Invalid URL
@@ -103,75 +103,101 @@
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="rfc3986">
+  <h1><a href="https://github.com/sigmavirus24/rfc3986">rfc3986</a></h1>
+</section>
+
+<section class="slide" id="stage-2">
   <h1>Stage 2: Anger<br>(Connection)</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="dns-lookup-failure">
   <h1>DNS Lookup Failures</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="dns-lookup-failure-1">
   <h2>DNS Lookup Failures</h2>
   <textarea class="code" mode="python">
     requests.get('https://api.twilio.com')</textarea>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="unknown-domain">
   <h2>Resolve Unknown Domain</h2>
   <textarea class="code" mode="python">
-    start = time.time()
-    try:
-        requests.get('http://foobarbizbang.com', timeout=3)
-    except ConnectionError: pass
-    print time.time() - start
-  </textarea>
+start = time.time()
+try:
+  requests.get('http://foobarbizbang.com', 
+               timeout=3)
+except ConnectionError: pass
+print time.time() - start </textarea>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="dns-server-down">
   <h2>DNS Server is Down/Unreachable</h2>
   <textarea class="code" mode="python">
-    start = time.time()
-    try:
-        requests.get('http://google.com', timeout=3)
-    except ConnectionError: pass
-    print time.time() - start
-  </textarea>
+start = time.time()
+try:
+  requests.get('http://google.com', 
+               timeout=3)
+except ConnectionError: pass
+print time.time() - start </textarea>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="dns-server-down-workaround">
   <h2>DNS Server is Down - Workarounds</h2>
   <ul>
     <li>Connect directly to IP addresses instead of DNS
-    <li>Set shorter timeout in /etc/resolv.conf
-    <li>Resolve DNS in a separate thread
     <li>Connect to HAProxy locally, use HAProxy round robin
+    <li>Set shorter timeout in /etc/resolv.conf
+  </ul>
+</section>
+
+<section class="slide" id="dns-server-down-workaround-1">
+  <h2>DNS Server is Down - Workarounds</h2>
+  <ul>
+    <li>Resolve DNS in a separate thread
     <li>Use a backup nameserver (eg Google Public DNS)
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
-  <h2>Network is Down</h2>
+<section class="slide" id="network-down">
+  <h2>Connection Errors</h2>
   <ul>
-    <li>ECONNREFUSED
-    <li>ECONNRESET
-    <li>EHOSTUNREACH
+    <li>Socket errors - ECONNREFUSED, ECONNRESET
+    <li>Unreachable server - EHOSTUNREACH
     <li><code>subprocess.call("man connect".split())</code></li>
+    <li>SSL/TLS failure - invalid certificate, handshake timeout
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="server-unreachable">
   <h2>Remote Server Unreachable</h2>
   <textarea class="code" mode="python">
-    start = time.time()
-    try:
-        requests.get('http://google.com:81', timeout=3)
-    except ConnectTimeout: pass
-    print time.time() - start
-  </textarea>
+start = time.time()
+try:
+  requests.get('http://google.com:81', 
+               timeout=3)
+except ConnectTimeout: pass
+print time.time() - start </textarea>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="server-unreachable-dns">
+  <h2>Why 18 Seconds?</h2>
+  <textarea class="code">
+Non-authoritative answer:
+Name:	www.google.com
+Address: 74.125.239.49
+Name:	www.google.com
+Address: 74.125.239.48
+Name:	www.google.com
+Address: 74.125.239.52
+Name:	www.google.com
+Address: 74.125.239.50
+Name:	www.google.com
+Address: 74.125.239.51</textarea>
+</section>
+
+<section class="slide" id="server-unreachable-workarounds">
   <h2>Server Unreachable - Workarounds</h2>
   <ul>
     <li>Set shorter, separate, connect timeout
@@ -180,11 +206,20 @@
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="connect-timeout-requests">
+  <h2>Connect Timeout</h2>
+  <textarea class="code" mode="python">
+import requests
+requests.get('http://10.10.10.123', 
+             timeout=(3, 29.5))</textarea>
+  <h4>Not available in the standard library!</h4>
+</section>
+
+<section class="slide" id="stage-3">
   <h1>Stage 3: Bargaining<br>(Socket Write)</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="socket-write">
   <h2>Socket Write Failure</h2>
   <ul>
     <li>EAGAIN
@@ -194,7 +229,7 @@
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="socket-write-workarounds">
   <h2>Socket Write - Workarounds</h2>
   <ul>
     <li>Retry the write
@@ -202,29 +237,132 @@
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="stage-4">
   <h1>Stage 4: Depression<br>(Socket Read)</h1>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="socket-read-failure">
   <h2>Socket Read Failure</h2>
   <ul>
     <li>Normal list of socket errors
-    <li>Read timeouts
+    <li>Read timeouts - slow servers will crush you
     <li><code>subprocess.call("man 2 read".split())</code></li>
   </ul>
 </section>
 
-<section class="slide" id="inline-code">
+<section class="slide" id="socket-read-failure-workarounds">
   <h2>Socket Read Failure - Workarounds</h2>
   <ul>
     <li>Retry idempotent requests (GET, PUT, DELETE)
-    <li>Use backoff
+    <li>Timeout can mean a slow server - use backoff
   </ul>
 </section>
 
-<section class="slide" id="takeaways">
+<section class="slide" id="stage-5">
   <h1>Stage 5: Acceptance<br>(Response Parsing)</h1>
+</section>
+
+<section class="slide" id="didnt-process-request">
+  <h2>Server Didn't Process Request</h2>
+  <img style="float: right" src="images/429.jpg" />
+  <ul>
+    <li>429 Too Many Requests
+    <li>503 Service Unavailable
+  </ul>
+</section>
+
+<section class="slide" id="didnt-process-request-workarounds">
+  <h2>Server Didn't Process Request - Workarounds</h2>
+  <ul>
+    <li>Retry it! Usually can retry everything - even POST.
+    <li>Be careful about backoff.
+  </ul>
+</section>
+
+<section class="slide" id="dont-retry-these">
+  <h2>No Point in Retrying</h2>
+  <ul>
+    <li>400 Bad Request
+    <li>405 Method Not Allowed
+  </ul>
+</section>
+
+<section class="slide" id="other-errors">
+  <h2>Server Errors</h2>
+  <img src="images/500.jpg" style="float: right;" />
+  <ul>
+    <li>500 Server Error
+    <li>502 Bad Gateway
+    <li>504 Gateway Timeout
+  </ul>
+</section>
+
+<section class="slide" id="junk-data">
+  <h2>Junk Data</h2>
+  <img src="images/500.jpg" style="float: right;" />
+  <ul>
+    <li>BadStatusLine/EOFError: Server closed connection (proxy with HTTPS)
+    <li>Content-type mismatch
+    <li>Error reading a chunk
+  </ul>
+</section>
+
+<section class="slide" id="server-errors-workarounds">
+  <h2>Server/Junk Errors - Workarounds</h2>
+  <ul>
+    <li>Retry only idempotent requests
+    <li>Be careful about backoff.
+  </ul>
+</section>
+
+<section class="slide" id="response-parsing-summary">
+  <h2>Response Parsing - Summary</h2>
+  <ul>
+    <li>Retry behavior depends on the status code &amp; the HTTP method used!
+    <li>Be careful about backoff.
+  </ul>
+</section>
+
+<section class="slide" id="stage-5">
+  <h1>What to do?</h1>
+</section>
+
+<section class="slide" id="side-effecting-request">
+  <h2>Not idempotent</h2>
+  <textarea class="code" mode="python">
+POST /v1/&lt;account_sid&gt;/Messages
+To=123&amp;From=456&amp;Body=Hello+World</textarea>
+</section>
+
+<section class="slide" id="idempotent-request">
+  <h2>Idempotent (retryable) request</h2>
+  <textarea class="code" mode="bash">
+PUT /v1/&lt;account_id&gt;/Messages/MM123
+To=123&amp;From=456&amp;Body=Hello+World</textarea>
+<h4>Requires sid collision handling!</h4>
+</section>
+
+<section class="slide" id="retry-object">
+  <h2>Retry object</h2>
+  <textarea class="code" mode="python">
+from urllib3.util import Retry
+from urllib3 import PoolManager
+r = Retry(connect=3, read=False)
+http = PoolManager(retries=r)</textarea>
+</section>
+
+<section class="slide" id="retry-everything">
+  <h2>Retry everything 5 times</h2>
+  <textarea class="code" mode="python">
+r = Retry(total=5, 
+          codes_whitelist=[429, 500, 503])</textarea>
+</section>
+
+<section class="slide" id="retry-everything">
+  <h2>Retry idempotent requests only</h2>
+  <textarea class="code" mode="python">
+r = Retry(total=5, method_whitelist=['GET', 'POST'],
+          codes_whitelist=[429, 500, 503])</textarea>
 </section>
 
 <section class="slide" id="thanks">
@@ -258,8 +396,6 @@
 
 <!-- deck.hash snippet -->
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
-
-
 
 <!-- Deck Core and extensions -->
 <script src="/slides/static/core/deck.core.js"></script>
