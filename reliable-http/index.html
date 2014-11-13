@@ -47,22 +47,11 @@
 </section>
 
 <section class="slide" id="this-talk">
-  <h2>This talk</h2>
-  <ul>
-    <li>How can HTTP requests fail?</li>
-    <li>How can I make my HTTP traffic more reliable?</li>
-    <li>How can I test my HTTP traffic?</li>
-    <li>How can I design fault-tolerant services?</li>
-  </ul>
-</section>
-
-<section class="slide" id="this-talk">
   <h2>Chasing Five Nines</h2>
   <ul>
-    <li>5.26 min. downtime per year; 1 failure out of 100,000
-    <li>Some srv. errors are transitive
-    <li>Some cross the whole service
-    <li>Some cascade (slow server)
+    <li>5.26 min. downtime per year
+    <li>1 failure out of 100,000
+    <li>You can blow your yearly budget at one time
   </ul>
 </section>
 
@@ -81,9 +70,9 @@
 <section class="slide" id="timeout-math">
   <h2>Hard Math - Avert Your Eyes</h2>
   <ul>
-    <li>Server can handle 1000 concurrent connections.
-    <li>Each request takes 1 second. 200 requests come in per second.
-    <li>Now server is slow, requests take 6 seconds each
+    <li>Thread pool with 100 workers
+    <li>Each request takes 1 second. 20 requests come in per second.
+    <li>Downstream server is slow, requests take 6 seconds each
     <li>Set timeout to prevent this
   </ul>
 </section>
@@ -148,7 +137,6 @@ print time.time() - start </textarea>
   <ul>
     <li>Connect directly to IP addresses instead of DNS
     <li>Connect to HAProxy locally, use HAProxy round robin
-    <li>Set shorter timeout in /etc/resolv.conf
   </ul>
 </section>
 
@@ -157,6 +145,7 @@ print time.time() - start </textarea>
   <ul>
     <li>Resolve DNS in a separate thread
     <li>Use a backup nameserver (eg Google Public DNS)
+    <li>Set shorter timeout in /etc/resolv.conf
   </ul>
 </section>
 
@@ -213,7 +202,8 @@ Address: 74.125.239.51</textarea>
   <textarea class="code" mode="python">
 import requests
 requests.get('http://10.10.10.123', 
-             timeout=(3, 29.5))</textarea>
+             timeout=(3, 31.5))</textarea>
+  <p>
   <h4>Not available in the standard library!</h4>
 </section>
 
@@ -236,7 +226,7 @@ requests.get('http://10.10.10.123',
 <section class="slide" id="socket-read-failure">
   <h2>Socket Read Failure</h2>
   <ul>
-    <li>Normal list of socket errors
+    <li>More (different) socket errors
     <li>Read timeouts - slow servers will crush you
     <li><code>man 2 read</code></li>
   </ul>
@@ -335,10 +325,11 @@ http = PoolManager(retries=r)</textarea>
 </section>
 
 <section class="slide" id="retry-everything">
-  <h2>Retry everything 5 times</h2>
+  <h2>Retry everything with backoff</h2>
   <textarea class="code" mode="python">
 r = Retry(
   total=5, 
+  backoff_factor=3,
   codes_whitelist=[429, 500, 503])</textarea>
 </section>
 
@@ -347,7 +338,6 @@ r = Retry(
   <textarea class="code" mode="python">
 r = Retry(
   total=5, 
-  backoff_factor=3,
   method_whitelist=['GET', 'POST'],
   codes_whitelist=[429, 500, 503])</textarea>
 </section>
