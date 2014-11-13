@@ -50,8 +50,19 @@
   <h2>This talk</h2>
   <ul>
     <li>How can HTTP requests fail?</li>
-    <li>Which failures are safe to retry?</li>
-    <li>How can I make HTTP traffic more reliable?</li>
+    <li>How can I make my HTTP traffic more reliable?</li>
+    <li>How can I test my HTTP traffic?</li>
+    <li>How can I design fault-tolerant services?</li>
+  </ul>
+</section>
+
+<section class="slide" id="this-talk">
+  <h2>Chasing Five Nines</h2>
+  <ul>
+    <li>5.26 min. downtime per year; 1 failure out of 100,000
+    <li>Some srv. errors are transitive
+    <li>Some cross the whole service
+    <li>Some cascade (slow server)
   </ul>
 </section>
 
@@ -86,7 +97,7 @@
   </ul>
 </section>
 
-<section class="slide" id="how can requests fail">
+<section class="slide" id="how-can-requests-fail">
   <h1>How can HTTP requests fail?</h1>
 </section>
 
@@ -118,18 +129,7 @@
 <section class="slide" id="dns-lookup-failure-1">
   <h2>DNS Lookup Failures</h2>
   <textarea class="code" mode="python">
-    requests.get('https://api.twilio.com')</textarea>
-</section>
-
-<section class="slide" id="unknown-domain">
-  <h2>Resolve Unknown Domain</h2>
-  <textarea class="code" mode="python">
-start = time.time()
-try:
-  requests.get('http://foobarbizbang.com', 
-               timeout=3)
-except ConnectionError: pass
-print time.time() - start </textarea>
+requests.get('https://api.twilio.com')</textarea>
 </section>
 
 <section class="slide" id="dns-server-down">
@@ -162,11 +162,12 @@ print time.time() - start </textarea>
 
 <section class="slide" id="network-down">
   <h2>Connection Errors</h2>
+  <img style="float: right;" src="images/mont-saint-michel.jpg" />
   <ul>
     <li>Socket errors - ECONNREFUSED, ECONNRESET
-    <li>Unreachable server - EHOSTUNREACH
-    <li><code>subprocess.call("man connect".split())</code></li>
+    <li><code>man connect</code></li>
     <li>SSL/TLS failure - invalid certificate, handshake timeout
+    <li>Unreachable server - EHOSTUNREACH
   </ul>
 </section>
 
@@ -200,9 +201,10 @@ Address: 74.125.239.51</textarea>
 <section class="slide" id="server-unreachable-workarounds">
   <h2>Server Unreachable - Workarounds</h2>
   <ul>
+    <li>Data never made it, so retry!
     <li>Set shorter, separate, connect timeout
-    <li>Try next connection to a different host
-    <li>Try same request to several machines - return the fastest, cancel others.
+    <li>Next connection to a different host
+    <li>Same request to several machines - return the fastest, cancel others.
   </ul>
 </section>
 
@@ -222,18 +224,8 @@ requests.get('http://10.10.10.123',
 <section class="slide" id="socket-write">
   <h2>Socket Write Failure</h2>
   <ul>
-    <li>EAGAIN
-    <li>ECONNRESET
-    <li>Large file upload causes 502 Bad Gateway
-    <li><code>subprocess.call("man send".split())</code></li>
-  </ul>
-</section>
-
-<section class="slide" id="socket-write-workarounds">
-  <h2>Socket Write - Workarounds</h2>
-  <ul>
-    <li>Retry the write
-    <li>Increase server's buffer size
+    <li>Socket errors - EAGAIN, ECONNRESET
+    <li><code>man send</code></li>
   </ul>
 </section>
 
@@ -246,7 +238,7 @@ requests.get('http://10.10.10.123',
   <ul>
     <li>Normal list of socket errors
     <li>Read timeouts - slow servers will crush you
-    <li><code>subprocess.call("man 2 read".split())</code></li>
+    <li><code>man 2 read</code></li>
   </ul>
 </section>
 
@@ -279,14 +271,6 @@ requests.get('http://10.10.10.123',
   </ul>
 </section>
 
-<section class="slide" id="dont-retry-these">
-  <h2>No Point in Retrying</h2>
-  <ul>
-    <li>400 Bad Request
-    <li>405 Method Not Allowed
-  </ul>
-</section>
-
 <section class="slide" id="other-errors">
   <h2>Server Errors</h2>
   <img src="images/500.jpg" style="float: right;" />
@@ -299,7 +283,6 @@ requests.get('http://10.10.10.123',
 
 <section class="slide" id="junk-data">
   <h2>Junk Data</h2>
-  <img src="images/500.jpg" style="float: right;" />
   <ul>
     <li>BadStatusLine/EOFError: Server closed connection (proxy with HTTPS)
     <li>Content-type mismatch
@@ -329,8 +312,8 @@ requests.get('http://10.10.10.123',
 
 <section class="slide" id="side-effecting-request">
   <h2>Not idempotent</h2>
-  <textarea class="code" mode="python">
-POST /v1/&lt;account_sid&gt;/Messages
+  <textarea class="code" mode="bash">
+POST /v1/&lt;account_id&gt;/Messages
 To=123&amp;From=456&amp;Body=Hello+World</textarea>
 </section>
 
@@ -354,15 +337,28 @@ http = PoolManager(retries=r)</textarea>
 <section class="slide" id="retry-everything">
   <h2>Retry everything 5 times</h2>
   <textarea class="code" mode="python">
-r = Retry(total=5, 
-          codes_whitelist=[429, 500, 503])</textarea>
+r = Retry(
+  total=5, 
+  codes_whitelist=[429, 500, 503])</textarea>
 </section>
 
 <section class="slide" id="retry-everything">
   <h2>Retry idempotent requests only</h2>
   <textarea class="code" mode="python">
-r = Retry(total=5, method_whitelist=['GET', 'POST'],
-          codes_whitelist=[429, 500, 503])</textarea>
+r = Retry(
+  total=5, 
+  backoff_factor=3,
+  method_whitelist=['GET', 'POST'],
+  codes_whitelist=[429, 500, 503])</textarea>
+</section>
+
+<section class="slide" id="retry-everything">
+  <h2>Testing your clients</h2>
+  <ul>
+    <li><a href="https://httpbin.org">httpbin</a>
+    <li><a href="https://github.com/kevinburke/hamms">hamms</a>
+    <li><a href="http://pathod.net">pathod</a>
+  </ul>
 </section>
 
 <section class="slide" id="thanks">
