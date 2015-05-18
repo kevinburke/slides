@@ -62,15 +62,19 @@
 </section>
 
 <section class="slide" id="no-one-reads">
+  <h1>People aren't reading your docs because...</h1>
+</section>
+
+<section class="slide" id="no-one-reads">
   <h1>No one reads anything on the Internet</h1>
 </section>
 
 <section class="slide" id="nation-shudders">
-  <img style="margin-top: 30px;" alt="nation-shudders" src="/slides/images/onion.png" />
+  <img alt="nation-shudders" src="/slides/images/onion.png" />
 </section>
 
 <section class="slide" id="how-users-read">
-  <h1>Bible: <a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">"How Users Read on the Web", Jakob Nielsen</a></h1>
+  <h1><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">"How Users Read on the Web", Jakob Nielsen</a></h1>
 </section>
 
 <section class="slide" id="f-pattern">
@@ -87,13 +91,21 @@
     <li><b>Meaningful text</b> and images
     <li>The <b>beginnings of paragraphs</b> (first 3-5 words)
     <li>Bullet lists
-    <li>Variations in typeface (Links, bold, etc)
+    <li>Variations in typeface (<u><a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">Links</a></u>, <b>bold</b>, etc)
     <li><b>Code snippets</b>
   </ul>
   <h5><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
 </section>
 
-<section class="slide" id="usability-of-text">
+<section class="slide" id="usability-of-text-1">
+  <h2>Usability varies</h2>
+  <div class="clearfix">
+    <img style="width: 50%; float: left;" src="/slides/images/nebraska_bullets.png" />
+    <img style="width: 50%; float: left;" src="/slides/images/nebraska_pp.png" />
+  </div>
+</section>
+
+<section class="slide" id="usability-of-text-2">
   <h2>Usability varies</h2>
   <div class="clearfix">
     <img style="width: 50%; float: left;" src="/slides/images/nebraska_bullets.png" />
@@ -101,9 +113,9 @@
   </div>
   <h4>2.25x improvement</h4>
   <ul>
-    <li>Shorter text
+    <li><b>Shorter</b> text
     <li>Objective POV
-    <li>Words all start on the left margin
+    <li>Left-aligned sentence starts
   </ul>
   <h5 class="clearfix"><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
 </section>
@@ -137,15 +149,19 @@
   <img src="/slides/images/heroku.png" />
 </section>
 
+<section class="slide" id="searching-1">
+  <h1>Users don't read...</h1>
+  <p style="position: absolute; left: 40px; bottom: 20px;"><a href="http://www.nngroup.com/articles/incompetent-search-skills/">Source</a></p>
+</section>
 
-<section class="slide" id="searching">
-  <h1>Users are really bad at searching</h1>
+<section class="slide" id="searching-2">
+  <h1>Users don't read...<br />and they are awful at searching</h1>
   <p style="position: absolute; left: 40px; bottom: 20px;"><a href="http://www.nngroup.com/articles/incompetent-search-skills/">Source</a></p>
 </section>
 
 <section class="slide" id="searching-atwood">
   <h2>Searching, cont'd</h2>
-  <blockquote>There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
+  <blockquote style="font-size: 40px;">There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
   <p><a href="http://blog.stackoverflow.com/2010/11/dr-strangedupe-or-how-i-learned-to-stop-worrying-and-love-duplication/">Jeff Atwood</a></p>
 </section>
 
@@ -171,53 +187,59 @@
   </div>
 </section>
 
-<!--<section class="slide" id="documentation-writer">-->
-  <!--<h2>Imagine the documentation writer</h2>-->
-  <!--<img src="/slides/images/man_writing.jpg" alt="old man writing" />-->
-  <!--<h5>Aurelio Asiain, <a href="http://www.flickr.com/photos/ionushi/323766792/">"Donald Keene at home: Tokyo, 2002"</a></h5>-->
-<!--</section>-->
-
-<!--<section class="slide" id="documentation-reader">-->
-  <!--<h1>Now imagine how people read on the internet</h1>-->
-  <!--<h5 id="frenzy-link">Mike Baird, <a href="http://www.flickr.com/photos/mikebaird/293366644/">"Feeding Frenzy"</a></h5>-->
-<!--</section>-->
-
 <section class="slide" id="reading-example-1">
+  <h2>Transgression: Search failure</h2>
+  <img src="/slides/documentation/images/twilio-next-page.png" alt="Quickstart" />
+</section>
+
+<section class="slide" id="reading-example-2">
   <h2>Transgression: Assuming linear style</h2>
-  <img src="/slides/images/bad_call_to_action.png" alt="Quickstart" />
+  <img src="/slides/documentation/images/twilio-next-page-diagrammed.png" alt="Quickstart" />
 </section>
 
 <section class="slide" id="context">
 <h2>Transgression: Assuming context</h2>
 <div>
 <textarea class="code" mode="ruby">
-# Your users won't read anything above or below this code snippet
+# No one will read the sentences
+# above/below the code.
 @client = Twilio::REST::Client.new
 @client.account.sms.messags.create(
-  :from =&gt; '+14159341234',
-  :to =&gt; '+16105557069',
-  :body =&gt; 'Hey there!'
+  :from =&gt; '+14109341234',
+  :to =&gt; '+14105557069',
+  :body =&gt; 'Lester, are we still cops?'
 )</textarea>
 </div>
-<ol>
-  <li class='slide' id="environment">Assumes you've set environment variables
-  <li class='slide' id="typo">Typo in <code>sms.messags</code>
-  <li class='slide' id="importerror">Will <code>NameError</code> on first line
-</ol>
+</section>
+
+<section class="slide" id="context-2">
+  <h2>Transgression: Assuming context</h2>
+  <img src="/slides/documentation/images/code-typo-implicit-config.png" alt="Assuming environment variable context in a code snippet" />
+</section>
+
+<section class="slide" id="context-3">
+  <h2>Transgression: Assuming context</h2>
+  <img src="/slides/documentation/images/code-typo-typo.png" alt="Typo in the text" />
+</section>
+
+<section class="slide" id="context-4">
+  <h2>Transgression: Assuming context</h2>
+  <img src="/slides/documentation/images/code-typo-name-error.png" alt="Missing import on the first line" />
 </section>
 
 <section class="slide" id="context-betterment">
 <h2>Observance</h2>
 <div>
 <textarea class="code" mode="ruby">
-# Download twilio-ruby from twilio.com/docs/ruby/install
+# Download twilio-ruby from 
+# twilio.com/docs/ruby/install
 require 'twilio-ruby'
 
-@client = Twilio::REST::Client.new "AC123456", "456789"
+@client = Twilio::REST::Client.new "AC123", "bef"
 @client.account.sms.messages.create(
-  :from =&gt; '+14159341234',
-  :to =&gt; '+16105557069',
-  :body =&gt; 'Hey there!'
+  :from =&gt; '+14109341234',
+  :to =&gt; '+14105557069',
+  :body =&gt; 'Omar comin!'
 )</textarea>
 </div>
 </section>
@@ -235,7 +257,11 @@ require 'twilio-ruby'
 </div>
 </section>
 
-<section class="slide" id="your-users">
+<section class="slide" id="your-users-1">
+  <h1>How can you find out what your users are trying to do?</h1>
+</section>
+
+<section class="slide" id="your-users-2">
   <h2>How can you find out what your users are trying to do?</h2>
   <img src="/slides/images/analytics.png" />
 </section>
@@ -271,16 +297,20 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
   </div>
 </section>
 
-<section class="slide" id="doc-failure">
-<h1>None of these are your documentation</h1>
+<section class="slide" id="google-2">
+  <div class="image-overlay">
+    <img alt="search results for ssl error" src="/slides/documentation/images/google-annotated.png" />
+  </div>
+</section>
+
+<section class="slide" id="google-3">
+  <div class="image-overlay">
+    <img alt="search results for ssl error" src="/slides/documentation/images/google-not-your-docs.png" />
+  </div>
 </section>
 
 <section class="slide" id="doc-failure">
-<h1>Your documentation failed this job.</h1>
-</section>
-
-<section class="slide" id="google-teaching">
-  <h1>If users get an error message a lot, put the exact text in your documentation</h1>
+  <h1>Your documentation just failed.</h1>
 </section>
 
 <section class="slide" id="login-wall">
@@ -293,14 +323,18 @@ OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server c
   <img src="/slides/images/pdf.png" />
 </section>
 
+<section class="slide" id="wikihow">
+  <h2>Observance: WikiHow</h2>
+  <img alt="wikihow docs" src="/slides/images/wikihow.png" />
+</section>
+
+<section class="slide" id="google-teaching">
+  <h1>If users get an error message a lot, put the exact text in your documentation</h1>
+</section>
+
 <section class="slide" id="error-messages-seo">
   <h2>Observance: Error reference page</h2>
   <img src="/slides/images/closure_errors.png" />
-</section>
-
-<section class="slide" id="ehow">
-  <h2>Observance: WikiHow</h2>
-  <img alt="wikihow docs" src="/slides/images/wikihow.png" />
 </section>
 
 <section class="slide" id="curl-installation">
@@ -358,16 +392,12 @@ if invalid_url? params[:url]
 end</textarea>
 </section>
 
-<section class="slide" id="worth-it">
-  <h1>Is the effort worth it?</h1>
+<section class="slide" id="you-can-fix">
+  <h1>You can fix these!</h1>
 </section>
 
-<section class="slide" id="costly">
-  <h1>Costly to lose users now</h1>
-</section>
-
-<section class="slide" id="">
-  <h1>Compare with time/effort spent on marketing and sales</h1>
+<section class="slide" id="strings-change">
+  <h1>Strings are easy to find/change</h1>
 </section>
 
 <section class="slide" id="takeaways">
@@ -397,7 +427,7 @@ end</textarea>
 <section class="slide" id="user-failure">
   <h2>Making it better</h2>
   <ul>
-    <li>Look at your product from a user/goal/job-driven perspective</li>
+    <li>Look at your product from a user/task-driven perspective</li>
     <li>Users should "hire" things you control for most failures
     <li>Make error messages explain how to fix the problem</li>
     <li>Better yet, solve the problem for the user</li>
