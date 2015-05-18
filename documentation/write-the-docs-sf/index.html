@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>How to write documentation for users that don't read</title>
+
+    <meta name="description" content="How to write documentation for users that don't read">
+    <meta name="author" content="Kevin Burke">
+
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" href="/slides/static/core/deck.core.css">
+    <link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+    <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+
+    <script src="/slides/static/modernizr.custom.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.2.min.js"><\/script>')</script>
+  </head>
+
+<body class="deck-container" id="documentation">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+  <h1>How to write documentation for users that don't read</h1>
+  <div style="position: absolute; bottom: 40px; right: 20px;">
+    <h3 style="margin-bottom: 0;"><a href="https://kev.inburke.com">Kevin Burke</a></h3>
+    <h3><a style="color: #fff;" href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h3>
+  </div>
+</section>
+
+<section class="slide" id="this-talk">
+  <h2>This talk</h2>
+  <ul>
+    <li>Why people don't read your documentation</li>
+    <li>How to look at things from a user's perspective</li>
+    <li>Usability tips for readable documentation</li>
+    <li>Non-traditional documentation resources</li>
+  </ul>
+</section>
+
+<section class="slide" id="zoolander">
+  <h2>Not in this talk</h2>
+  <img src="/slides/images/zoolander.gif" width="900" alt="Zoolander" />
+</section>
+
+<section class="slide" id="no-one-reads">
+  <h1>No one reads anything on the Internet</h1>
+</section>
+
+<section class="slide" id="nation-shudders">
+  <img style="margin-top: 30px;" alt="nation-shudders" src="/slides/images/onion.png" />
+</section>
+
+<section class="slide" id="how-users-read">
+  <h1>Bible: <a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">"How Users Read on the Web", Jakob Nielsen</a></h1>
+</section>
+
+<section class="slide" id="f-pattern">
+  <h2>Users Scan in F-Shaped Pattern</h2>
+  <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">
+    <img alt="F-shaped pattern for web content" width="785" src="/slides/images/fpattern.jpg" />
+  </a>
+  <h5>Jakob Nielsen, <a href="http://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/">"F-Shaped Pattern for Reading Web Content"</a></h5>
+</section>
+
+<section class="slide" id="reader-focus">
+  <h2>What do readers actually look at?</h2>
+  <ul>
+    <li><b>Meaningful text</b> and images
+    <li>The <b>beginnings of paragraphs</b> (first 3-5 words)
+    <li>Bullet lists
+    <li>Variations in typeface (Links, bold, etc)
+    <li><b>Code snippets</b>
+  </ul>
+  <h5><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
+</section>
+
+<section class="slide" id="usability-of-text">
+  <h2>Usability varies</h2>
+  <div class="clearfix">
+    <img style="width: 50%; float: left;" src="/slides/images/nebraska_bullets.png" />
+    <img style="width: 50%; float: left;" src="/slides/images/nebraska_pp.png" />
+  </div>
+  <h4>2.25x improvement</h4>
+  <ul>
+    <li>Shorter text
+    <li>Objective POV
+    <li>Words all start on the left margin
+  </ul>
+  <h5 class="clearfix"><a href="http://www.nngroup.com/articles/how-users-read-on-the-web/">Source</a></h5>
+</section>
+
+<section class="slide" id="readability-examples">
+  <h1>Examples</h1>
+</section>
+
+<section class="slide" id="docusign">
+  <h2>Transgression: Fixed width text</h2>
+  <img src="/slides/images/docusign.png" />
+</section>
+
+<section class="slide" id="banner-blindness">
+  <h2>Transgression: Banner blindness</h2>
+  <img src="/slides/images/twilio_blindness.png" />
+</section>
+
+<section class="slide" id="jira">
+  <h2>Transgression: Many fixations per line</h2>
+  <img src="/slides/images/jira.png" />
+</section>
+
+<section class="slide" id="github">
+  <h2>Observance: Breaking up content</h2>
+  <img src="/slides/images/github.png" />
+</section>
+
+<section class="slide" id="heroku">
+  <h2>Observance: Table of Contents</h2>
+  <img src="/slides/images/heroku.png" />
+</section>
+
+
+<section class="slide" id="searching">
+  <h1>Users are really bad at searching</h1>
+  <p style="position: absolute; left: 40px; bottom: 20px;"><a href="http://www.nngroup.com/articles/incompetent-search-skills/">Source</a></p>
+</section>
+
+<section class="slide" id="searching-atwood">
+  <h2>Searching, cont'd</h2>
+  <blockquote>There’s often benefit to having multiple subtle variants of a question around, as people tend to ask and search using completely different words, and the better our coverage, the better odds people can find the answer they’re looking for.</blockquote>
+  <p><a href="http://blog.stackoverflow.com/2010/11/dr-strangedupe-or-how-i-learned-to-stop-worrying-and-love-duplication/">Jeff Atwood</a></p>
+</section>
+
+<section class="slide" id="searching-example">
+  <h2>Mental models, cont'd</h2>
+  <h3>These all refer to the same concept:</h3>
+  <ul>
+    <li>"Helper Libraries"
+    <li>"Client SDK's"
+    <li>"API SDK's"
+    <li>"Library Bindings"
+    <li>"Language-specific wrappers"
+  </ul>
+</section>
+
+<section class="slide" id="jobs-example">
+  <h2>Example</h2>
+  <p>Your user:</p>
+  <blockquote>How do I forward a number to my cell phone</blockquote>
+  <div class="slide" id="docs-match">
+    <p>Your documentation:</p>
+    <blockquote>How to do everything with an incoming call</blockquote>
+  </div>
+</section>
+
+<!--<section class="slide" id="documentation-writer">-->
+  <!--<h2>Imagine the documentation writer</h2>-->
+  <!--<img src="/slides/images/man_writing.jpg" alt="old man writing" />-->
+  <!--<h5>Aurelio Asiain, <a href="http://www.flickr.com/photos/ionushi/323766792/">"Donald Keene at home: Tokyo, 2002"</a></h5>-->
+<!--</section>-->
+
+<!--<section class="slide" id="documentation-reader">-->
+  <!--<h1>Now imagine how people read on the internet</h1>-->
+  <!--<h5 id="frenzy-link">Mike Baird, <a href="http://www.flickr.com/photos/mikebaird/293366644/">"Feeding Frenzy"</a></h5>-->
+<!--</section>-->
+
+<section class="slide" id="reading-example-1">
+  <h2>Transgression: Assuming linear style</h2>
+  <img src="/slides/images/bad_call_to_action.png" alt="Quickstart" />
+</section>
+
+<section class="slide" id="context">
+<h2>Transgression: Assuming context</h2>
+<div>
+<textarea class="code" mode="ruby">
+# Your users won't read anything above or below this code snippet
+@client = Twilio::REST::Client.new
+@client.account.sms.messags.create(
+  :from =&gt; '+14159341234',
+  :to =&gt; '+16105557069',
+  :body =&gt; 'Hey there!'
+)</textarea>
+</div>
+<ol>
+  <li class='slide' id="environment">Assumes you've set environment variables
+  <li class='slide' id="typo">Typo in <code>sms.messags</code>
+  <li class='slide' id="importerror">Will <code>NameError</code> on first line
+</ol>
+</section>
+
+<section class="slide" id="context-betterment">
+<h2>Observance</h2>
+<div>
+<textarea class="code" mode="ruby">
+# Download twilio-ruby from twilio.com/docs/ruby/install
+require 'twilio-ruby'
+
+@client = Twilio::REST::Client.new "AC123456", "456789"
+@client.account.sms.messages.create(
+  :from =&gt; '+14159341234',
+  :to =&gt; '+16105557069',
+  :body =&gt; 'Hey there!'
+)</textarea>
+</div>
+</section>
+
+<section class="slide" id="command-not-found">
+<h2>Transgression: Copy/paste fail</h2>
+<div style="margin-top: 90px;">
+<textarea class="code" mode="clike">
+  $ gem install rails</textarea>
+</div>
+  <div style="margin-top: 60px;" class="slide" id="command-not-found">
+    <textarea class="code" mode="clike">
+  bash: command not found: $</textarea>
+  <h3>No good suggestions here</h3>
+</div>
+</section>
+
+<section class="slide" id="your-users">
+  <h2>How can you find out what your users are trying to do?</h2>
+  <img src="/slides/images/analytics.png" />
+</section>
+
+<section class="slide" id="inline-code">
+  <h2>Observance: Inline code</h2>
+  <img src="/slides/images/inline_code.png" />
+</section>
+
+<section class="slide" id="verbs">
+  <h2>Observance: Verbs</h2>
+  <img src="/slides/images/verbs.png" />
+</section>
+
+<section class="slide" id="jobs-failures">
+<h1>Every user failure<br />is a potential job to be done</h1>
+</section>
+
+<section class="slide" id="ssl-problem">
+  <h2>A user encounters this error:</h2>
+  <pre><code>
+OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B:  certificate verify failed
+  </code></pre>
+</section>
+
+<section class="slide" id="jobs-failures">
+<h1>What are they going to do?</h1>
+</section>
+
+<section class="slide" id="google">
+  <div class="image-overlay">
+    <img alt="search results for ssl error" src="/slides/images/google.png" />
+  </div>
+</section>
+
+<section class="slide" id="doc-failure">
+<h1>None of these are your documentation</h1>
+</section>
+
+<section class="slide" id="doc-failure">
+<h1>Your documentation failed this job.</h1>
+</section>
+
+<section class="slide" id="google-teaching">
+  <h1>If users get an error message a lot, put the exact text in your documentation</h1>
+</section>
+
+<section class="slide" id="login-wall">
+  <h2>Transgression: Docs behind a wall</h2>
+  <img src="/slides/images/login_wall.png" />
+</section>
+
+<section class="slide" id="no-pdfs">
+  <h2>Transgression: PDF's</h2>
+  <img src="/slides/images/pdf.png" />
+</section>
+
+<section class="slide" id="error-messages-seo">
+  <h2>Observance: Error reference page</h2>
+  <img src="/slides/images/closure_errors.png" />
+</section>
+
+<section class="slide" id="ehow">
+  <h2>Observance: WikiHow</h2>
+  <img alt="wikihow docs" src="/slides/images/wikihow.png" />
+</section>
+
+<section class="slide" id="curl-installation">
+  <h2>Observance: RVM</h2>
+  <div style="margin-top: 130px;">
+    <textarea class="code" mode="clike">$ curl -L https://get.rvm.io | bash \
+      -s stable --rails</textarea>
+  </div>
+</section>
+
+<section class="slide" id="validation-documentation">
+  <h1>Validation as documentation</h1>
+</section>
+
+<section class="slide" id="url-validation">
+<h2>Transgression: Confusing error message</h2>
+<textarea class="code" mode="ruby">
+# From http://hurl.it
+post "/" do
+  if invalid_url? params[:url]
+    error = "That's... wait.. what?!"
+    return {:error => error}
+  end
+end</textarea>
+</section>
+
+<section class="slide" id="better-url-validation">
+<h2>Different messages for different errors</h2>
+<textarea class="code" mode="ruby">
+post "/" do
+  if (!params.has_key? :url or 
+      params[:url].length == 0)
+    error = "Please include a Url"
+    return {:error => error}
+  end
+  if invalid_url? params[:url]
+    error = "Url #{params[:url]} is invalid"
+    return {:error => error}
+  end
+
+  # Do something with the form..
+end</textarea>
+</div>
+</section>
+
+<section class="slide" id="best-validation">
+<h2>Observance</h2>
+<textarea class="code" mode="ruby">
+if invalid_url? params[:url]
+  error = "Url #{params[:url]} is invalid"
+  if !invalid_url "http://#{params[:url]}"
+    error += ". Did you mean http://#{params[:url]}?"
+  end
+  return {:error => error}
+end</textarea>
+</section>
+
+<section class="slide" id="worth-it">
+  <h1>Is the effort worth it?</h1>
+</section>
+
+<section class="slide" id="costly">
+  <h1>Costly to lose users now</h1>
+</section>
+
+<section class="slide" id="">
+  <h1>Compare with time/effort spent on marketing and sales</h1>
+</section>
+
+<section class="slide" id="takeaways">
+  <h1>Takeaways</h1>
+</section>
+
+<section class="slide" id="errors-readability">
+  <h2>1. Make your documentation readable</h2>
+  <ul>
+    <li>Break up the text often</li>
+    <li>First 3-5 words of every paragraph are most important</li>
+    <li><b>65-90</b> chars per line is a good guideline</li>
+  </ul>
+</section>
+
+<section class="slide" id="seo-tips">
+  <h2>2. Care about SEO</h2>
+  <ul>
+    <li>Meta description should describe the content</li>
+    <li>URL should describe the content</li>
+    <li>Every page is a landing page</li>
+    <li><b>Your documentation should always win</b></li>
+    <li>Etc etc... read the <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf">Google Guide</a></li>
+  </ul>
+</section>
+
+<section class="slide" id="user-failure">
+  <h2>Making it better</h2>
+  <ul>
+    <li>Look at your product from a user/goal/job-driven perspective</li>
+    <li>Users should "hire" things you control for most failures
+    <li>Make error messages explain how to fix the problem</li>
+    <li>Better yet, solve the problem for the user</li>
+  </ul>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="https://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
+  <h4><a href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="http://kev.inburke.com/slides/documentation">kev.inburke.com/slides/documentation</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/clike/clike.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/ruby/ruby.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/css/css.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/php/php.js"></script>
+
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
