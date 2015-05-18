@@ -50,9 +50,8 @@
   <h2>This talk</h2>
   <ul>
     <li>Why people don't read your documentation</li>
-    <li>How to look at things from a user's perspective</li>
-    <li>Usability tips for readable documentation</li>
-    <li>Non-traditional documentation resources</li>
+    <li>Why your awesome docs aren't solving users' problems</li>
+    <li>Get more effective at solving your users' problems</li>
   </ul>
 </section>
 
@@ -139,6 +138,16 @@
   <img src="/slides/images/jira.png" />
 </section>
 
+<section class="slide" id="reading-example-1">
+  <h2>Transgression: Search failure</h2>
+  <img src="/slides/documentation/images/twilio-next-page.png" alt="Quickstart" />
+</section>
+
+<section class="slide" id="reading-example-2">
+  <h2>Transgression: Search failure</h2>
+  <img src="/slides/documentation/images/twilio-next-page-diagrammed.png" alt="Quickstart" />
+</section>
+
 <section class="slide" id="github">
   <h2>Observance: Breaking up content</h2>
   <img src="/slides/images/github.png" />
@@ -187,19 +196,14 @@
   </div>
 </section>
 
-<section class="slide" id="reading-example-1">
-  <h2>Transgression: Search failure</h2>
-  <img src="/slides/documentation/images/twilio-next-page.png" alt="Quickstart" />
-</section>
-
-<section class="slide" id="reading-example-2">
-  <h2>Transgression: Assuming linear style</h2>
-  <img src="/slides/documentation/images/twilio-next-page-diagrammed.png" alt="Quickstart" />
+<section class="slide" id="verbs">
+  <h2>Observance: Verbs</h2>
+  <img src="/slides/images/verbs.png" />
 </section>
 
 <section class="slide" id="context">
-<h2>Transgression: Assuming context</h2>
-<div>
+<h2>Transgression: Context</h2>
+<div style="margin-top: -10px;">
 <textarea class="code" mode="ruby">
 # No one will read the sentences
 # above/below the code.
@@ -213,23 +217,23 @@
 </section>
 
 <section class="slide" id="context-2">
-  <h2>Transgression: Assuming context</h2>
-  <img src="/slides/documentation/images/code-typo-implicit-config.png" alt="Assuming environment variable context in a code snippet" />
+  <h2>Transgression: Context</h2>
+  <img style="max-width: auto;" src="/slides/documentation/images/code-typo-implicit-config.png" alt="Assuming environment variable context in a code snippet" />
 </section>
 
 <section class="slide" id="context-3">
-  <h2>Transgression: Assuming context</h2>
-  <img src="/slides/documentation/images/code-typo-typo.png" alt="Typo in the text" />
+  <h2>Transgression: Context</h2>
+  <img style="max-width: auto;" src="/slides/documentation/images/code-typo-typo.png" alt="Typo in the text" />
 </section>
 
 <section class="slide" id="context-4">
-  <h2>Transgression: Assuming context</h2>
-  <img src="/slides/documentation/images/code-typo-name-error.png" alt="Missing import on the first line" />
+  <h2>Transgression: Context</h2>
+  <img style="max-width: auto;" src="/slides/documentation/images/code-typo-name-error.png" alt="Missing import on the first line" />
 </section>
 
 <section class="slide" id="context-betterment">
 <h2>Observance</h2>
-<div>
+<div style="margin-top: -10px;">
 <textarea class="code" mode="ruby">
 # Download twilio-ruby from 
 # twilio.com/docs/ruby/install
@@ -249,18 +253,13 @@ require 'twilio-ruby'
   <img src="/slides/images/inline_code.png" />
 </section>
 
-<section class="slide" id="verbs">
-  <h2>Observance: Verbs</h2>
-  <img src="/slides/images/verbs.png" />
-</section>
-
 <section class="slide" id="command-not-found">
 <h2>Transgression: Copy/paste fail</h2>
-<div style="margin-top: 90px;">
-<textarea class="code" mode="clike">
+<div style="margin-top: 30px;">
+<textarea class="code" style="font-size: 50px" mode="clike">
   $ gem install rails</textarea>
 </div>
-  <div style="margin-top: 60px;" class="slide" id="command-not-found">
+  <div style="margin-top: 50px; font-size: 50px" class="slide" id="command-not-found">
     <textarea class="code" mode="clike">
   bash: command not found: $</textarea>
   <h3>No good suggestions here</h3>
