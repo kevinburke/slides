@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=1024, user-scalable=no">
 
-    <title>Making Reliable HTTP Requests with Python</title>
+    <title>Making Your Services More Reliable</title>
 
-    <meta name="description" content="Making Reliable HTTP Requests with Python">
+    <meta name="description" content="Making Your Services More Reliable">
     <meta name="author" content="Kevin Burke">
 
     <!-- Core and extension CSS files -->
@@ -39,42 +39,139 @@
 
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
-  <h1>Making Reliable HTTP Requests with Python</h1>
+  <h1>Making Your Services More Reliable</h1>
   <div style="position: absolute; bottom: 40px; right: 20px;">
     <h3 style="margin-bottom: 0;"><a href="https://kev.inburke.com">Kevin Burke</a></h3>
     <h3><a style="color: #fff;" href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h3>
   </div>
 </section>
 
+<section class="slide" id="mitigation-techniques">
+  <h1>Five Nines = you can fail 0.001% of the time</h1>
+</section>
+
 <section class="slide" id="this-talk">
   <h2>Chasing Five Nines</h2>
   <ul>
     <li>5.26 min. downtime per year
-    <li>1 failure out of 100,000
+    <li>1 request out of 100,000 fails
     <li>You can blow your yearly budget at one time
   </ul>
 </section>
 
+<section class="slide" id="this-talk">
+  <h2>Microservices: </h2>
+  <ul>
+    <li>Rate Limiting
+    <li>Auth
+    <li>Fraud/IP address scoring
+    <li>Validation
+    <li>Database service 1
+    <li>Database service 2
+    <li>Billing
+    <li>Feature flags
+  </ul>
+</section>
+
+<section class="slide" id="this-talk">
+  <h1>Many more opportunities for failure!</h1>
+</section>
+
 <section class="slide" id="mitigation-techniques">
-  <h1>2 mitigation techniques:<br />timeouts and retries</h1>
+  <h1>Timeouts</h1>
 </section>
 
 <section class="slide" id="timeouts">
-  <h2>Timeouts</h2>
+  <h1>When something is taking too long, you abandon it</h1>
+</section>
+
+<section class="slide" id="timeouts">
+  <h1>Your users have a timeout, whether your system does or not</h1>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h2>Outside In</h2>
+  <img src="https://api.monosnap.com/rpc/file/download?id=DvsyQzRqUz0l99wIdZkMtnyjk6yXJO" />
+</section>
+
+<section class="slide" id="timeouts">
+  <h2>Timeouts - 2 Questions</h2>
   <ul>
-    <li>Enforce contracts in UI
-    <li>Prevent service overload
+    <li>What's the maximum acceptable response time?
+    <li>How long can my service afford to spend processing requests?
   </ul>
 </section>
 
 <section class="slide" id="timeout-math">
-  <h2>Hard Math - Avert Your Eyes</h2>
+  <h2>Hard Math Stuff</h2>
   <ul>
     <li>Thread pool with 100 workers
     <li>Each request takes 1 second. 20 requests come in per second.
     <li>Downstream server is slow, requests take 6 seconds each
     <li>Set timeout to prevent this
   </ul>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Socket Timeouts Are Lies</h1>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Same Timeout set on Connect/Read</h1>
+</section>
+
+<section class="slide" id="server-unreachable">
+  <h2>Remote Server Unreachable</h2>
+  <textarea class="code" mode="python">
+start = time.time()
+try:
+  requests.get('http://google.com:81', 
+               timeout=3)
+except ConnectTimeout: pass
+print time.time() - start </textarea>
+</section>
+
+<section class="slide" id="server-unreachable-dns">
+  <h2>Why 18 Seconds?</h2>
+  <textarea class="code">
+Non-authoritative answer:
+Name:	www.google.com
+Address: 74.125.239.49
+Name:	www.google.com
+Address: 74.125.239.48
+Name:	www.google.com
+Address: 74.125.239.52
+Name:	www.google.com
+Address: 74.125.239.50
+Name:	www.google.com
+Address: 74.125.239.51</textarea>
+</section>
+
+<section class="slide" id="connect-timeout-requests">
+  <h2>Connect Timeout</h2>
+  <textarea class="code" mode="python">
+import requests
+requests.get('http://10.10.10.123', 
+             timeout=(3, 31.5))</textarea>
+  <p>
+  <h4>Not available in the standard library!</h4>
+</section>
+
+<section class="slide" id="connect-timeout-requests">
+  <h2>Slow Read</h2>
+  <textarea class="code" mode="python">
+timer = 30
+# 13 minute long 204
+for byte in 'HTTP/1.1 204 No Content\r\n\r\n':
+    reactor.callLater(timer, self._send_byte, byte)
+    timer += 30
+reactor.callLater(timer, self.transport.loseConnection)</textarea>
+  <p>
+  <h4>Not available in the standard library!</h4>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Retries</h1>
 </section>
 
 <section class="slide" id="retries">
@@ -86,31 +183,6 @@
   </ul>
 </section>
 
-<section class="slide" id="how-can-requests-fail">
-  <h1>How can HTTP requests fail?</h1>
-</section>
-
-<section class="slide" id="stage-1">
-  <h1>Stage 1: Denial<br>(Validation)</h1>
-</section>
-
-<section class="slide" id="validation-failures">
-  <h2>Validation Failures</h2>
-  <ul>
-    <li>Invalid URL
-    <li>Invalid timeout value
-    <li>Invalid parameters/data
-  </ul>
-</section>
-
-<section class="slide" id="rfc3986">
-  <h1><a href="https://github.com/sigmavirus24/rfc3986">rfc3986</a></h1>
-</section>
-
-<section class="slide" id="stage-2">
-  <h1>Stage 2: Anger<br>(Connection)</h1>
-</section>
-
 <section class="slide" id="dns-lookup-failure">
   <h1>DNS Lookup Failures</h1>
 </section>
@@ -119,6 +191,15 @@
   <h2>DNS Lookup Failures</h2>
   <textarea class="code" mode="python">
 requests.get('https://api.twilio.com')</textarea>
+</section>
+
+<section class="slide" id="retries">
+  <h2>DNS Failures...</h2>
+  <ul>
+    <li>Mobile apps that use DNS to connect to an API
+    <li>Client libraries that use DNS to connect to an API
+    <li>Your service uses DNS to connect to third party API's (Stripe, Mailchimp...)
+  </ul>
 </section>
 
 <section class="slide" id="dns-server-down">
@@ -160,33 +241,6 @@ print time.time() - start </textarea>
   </ul>
 </section>
 
-<section class="slide" id="server-unreachable">
-  <h2>Remote Server Unreachable</h2>
-  <textarea class="code" mode="python">
-start = time.time()
-try:
-  requests.get('http://google.com:81', 
-               timeout=3)
-except ConnectTimeout: pass
-print time.time() - start </textarea>
-</section>
-
-<section class="slide" id="server-unreachable-dns">
-  <h2>Why 18 Seconds?</h2>
-  <textarea class="code">
-Non-authoritative answer:
-Name:	www.google.com
-Address: 74.125.239.49
-Name:	www.google.com
-Address: 74.125.239.48
-Name:	www.google.com
-Address: 74.125.239.52
-Name:	www.google.com
-Address: 74.125.239.50
-Name:	www.google.com
-Address: 74.125.239.51</textarea>
-</section>
-
 <section class="slide" id="server-unreachable-workarounds">
   <h2>Server Unreachable - Workarounds</h2>
   <ul>
@@ -195,16 +249,6 @@ Address: 74.125.239.51</textarea>
     <li>Next connection to a different host
     <li>Same request to several machines - return the fastest, cancel others.
   </ul>
-</section>
-
-<section class="slide" id="connect-timeout-requests">
-  <h2>Connect Timeout</h2>
-  <textarea class="code" mode="python">
-import requests
-requests.get('http://10.10.10.123', 
-             timeout=(3, 31.5))</textarea>
-  <p>
-  <h4>Not available in the standard library!</h4>
 </section>
 
 <section class="slide" id="stage-3">
