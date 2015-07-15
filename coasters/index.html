@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>Hacking Roller Coaster Tycoon</title>
+
+    <meta name="description" content="Hacking Roller Coaster Tycoon">
+    <meta name="author" content="Kevin Burke">
+
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" href="/slides/static/core/deck.core.css">
+    <link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+    <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+
+    <script src="/slides/static/modernizr.custom.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.2.min.js"><\/script>')</script>
+  </head>
+
+<body class="deck-container" id="coasters">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+  <h1>Hacking Roller Coaster Tycoon</h1>
+  <div style="position: absolute; bottom: 40px; right: 20px;">
+    <h3 style="margin-bottom: 0;"><a href="https://kev.inburke.com">Kevin Burke</a></h3>
+    <h3><a style="color: #fff;" href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h3>
+  </div>
+</section>
+
+<!-- XXX - Shyp logo -->
+
+<section class="slide" id="five-nines-what">
+  <h2>Help me get better!</h2>
+  <ul>
+    <li>What parts are confusing?
+    <li>What sounds really cool and you want to know more about?
+    <li>What should I skip through
+    <li>Please interrupt me
+  </ul>
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h1>Goal - Build cool coasters via computer program</h1>
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>Goal - Build cool coasters via computer program</h2>
+  <img src="images/mine-train.jpg" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>How do you interface with the game?</h2>
+  <img src="http://share.gifyoutube.com/m6ArJp.gif" alt="Mario beating the game" />
+</section>
+
+<section class="slide" id="duck-hunt">
+  <h2>How do you interface with the game?</h2>
+  <img src="http://share.gifyoutube.com/ygxeD6.gif" alt="Duck Hunt" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>Tracks are stored separately</h2>
+  <img src="images/load-track-design.png" alt="Track designs are loadable" />
+</section>
+
+<section class="slide" id="five-nines">
+  <h2>Plan of action:</h2>
+  <ul>
+    <li>Generate tracks outside of the game
+    <li>Save to the RCT track format
+    <li>Load in the game
+    <li>...
+    <li>Profit
+  </ul>
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>What is a cool coaster?</h2>
+  <img src="images/double-dare-better.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>High Excitement/Low Sickness</h2>
+  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>High Excitement/Low Sickness Cont'd</h2>
+  <img src="http://share.gifyoutube.com/v1X19G.gif" alt="Excitement vs. Sickness" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>Track needs to be a complete circuit!</h2>
+  <img src="http://share.gifyoutube.com/v9AMoq.gif" alt="Complete circuit" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>Track can't collide with itself</h2>
+  <img src="images/collide-with-itself.png" alt="Complete circuit" />
+</section>
+
+<section class="slide" id="five-nines-def">
+  <h2>Car needs to make it around the track</h2>
+  <video autoplay>
+    <source src="images/gravity.mp4" type="video/mp4" alt="Complete loop" />
+  </video>
+</section>
+
+<section class="slide" id="not-appropriate">
+  <h1>How to represent track data?</h1>
+</section>
+
+<section class="slide" id="microservices">
+  <h2>Track Data (cont'd)</h2>
+  <img src="https://api.monosnap.com/rpc/file/download?id=FkIvSrWzv0vkt9rp2f6cbkDQcKDURp" />
+</section>
+
+<section class="slide" id="microservices">
+  <h2>x86 Source Code</h2>
+  <ul>
+    <li>4,862,557 instructions
+    <li>~1,289,635 bytes of data
+    <li>No labels!
+  </ul>
+</section>
+
+<section class="slide" id="this-talk">
+  <h1>What is assembler?</h1>
+</section>
+
+<section class="slide" id="this-talk">
+  <h2>8 Registers</h2>
+  <textarea class="code" mode="python">
+EAX (ax, al)
+EBX
+ECX
+EDX
+ESI (pointer to current ride)
+EDI
+ESP (stack pointer)
+EBP (base pointer)
+(flag register)
+</textarea>
+</section>
+
+<section class="slide" id="this-talk">
+  <h2>What is assembler cont'd</h2>
+  <textarea class="code" mode="python">
+a = 3
+a = a + 4
+b = 6
+if a > b:
+  a++
+else:
+  b++</textarea>
+</section>
+
+<section class="slide" id="this-talk">
+  <h2>What is assembler cont'd</h2>
+  <textarea class="code" mode="python">
+1  MOV $3,CX   ; a = 3
+2  ADD $4,CX   ; a = a + 4
+3  MOV $6,AX   ; b = 6
+4  CMP CX,AX   ; a &gt; b ?
+5  JLE 9       
+6  INC CX      ; a++
+7  NOP 
+8  RET         ; return
+9  9:          ; else (label)
+10   INC BX    ; b++</textarea>
+</section>
+
+<section class="slide" id="dns">
+  <h1>How do you find what you are looking for?</h1>
+</section>
+
+<section class="slide" id="dns-outages">
+  <img src="images/openrct2-logo.png" />
+</section>
+
+<section class="slide" id="openrct2-features">
+  <h2>OpenRCT2</h2>
+  <ul>
+    <li>Cross platform support! (via SDL2)
+    <li>Better game AI!
+    <li>Cheats!
+    <li>Languages (CN, FR, NL, ES, PO, HU, more)
+    <li><strike>Janitor unionization</strike>
+  </ul>
+</section>
+
+<section class="slide" id="openrct2-features">
+  <h1>NB: you still need the game assets</h1>
+</section>
+
+<section class="slide" id="dnsimple-outage">
+  <h2>How does it work?</h2>
+  <ul>
+    <li>CPU starts execution at an entry point specified by ABI
+    <li>Compile game, C into shared DLL
+    <li>Modify game's rct2.exe to point to the C entry point
+    <li>Distribute new .exe
+  </ul>
+</section>
+
+<section class="slide" id="dnsimple-outage">
+  <h2>You can drop into assembler from C</h2>
+  <textarea class="code" mode="c">
+void rct2_update() {
+	__asm {
+		mov eax, 009DE564h
+		mov [eax], esp
+	}
+	if (!setjmp(_end_update_jump))
+		rct2_update_2();
+} </textarea>
+</section>
+
+<section class="slide" id="dnsimple-outage">
+  <h2>Call subroutines</h2>
+  <textarea class="code" mode="c">
+static void sub_68B2B7(int x, int y)
+{
+	RCT2_CALLPROC_X(0x0068B2B7, x, 0, y, 0, 0, 0, 0);
+}</textarea>
+</section>
+
+<section class="slide" id="dnsimple-outage">
+  <h2>Finding Game Data - 2 Objectives</h2>
+  <ul>
+    <li>Find the track data
+    <li>Find the ratings
+  </ul>
+</section>
+
+<section class="slide" id="dns-lookup-failure-1">
+  <h2>IDA Pro</h2>
+  <img src="images/ida-pro.png" alt="IDA Pro">
+</section>
+
+<section class="slide" id="dns-lookup-failure-1">
+  <h2>IDA (cont'd)</h2>
+  <img src="images/ida-instructions.png" alt="IDA Pro">
+</section>
+
+<section class="slide" id="dns-lookup-failure-1">
+  <h2>Where Is Anything</h2>
+  <img src="images/rct2-addresses.png" alt="IDA Pro">
+</section>
+
+<section class="slide" id="dns-lookup-failure-1">
+  <h2>Track Data Has Consistent Order</h2>
+  <img src="images/track-order.png" alt="Track Order">
+</section>
+
+<section class="slide" id="dns-lookup-failure-1">
+  <h2>Track Formula</h2>
+  <textarea class="code" mode="c">
+  PIECE_WIDTH*[BASE_TRACK_PTR]+OFFSET</textarea>
+</section>
+
+<section class="slide" id="openrct2-features">
+  <h1>Good enough to make guesses</h1>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Guessing Track Data</h2>
+  <textarea class="code" mode="python">
+f, err := os.Open("~/code/OpenRCT2/openrct2.exe")
+var WIDTH = 0x12
+b := make([]byte, 100*WIDTH)
+f.ReadAt([100]byte{}, int64(0x0057E3A8))</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Guessing Track Data (cont'd)</h2>
+  <textarea class="code" mode="python">
+for i := 0; i < len(rct.RIDENAMES); i++ {
+  fmt.Printf("\t%d,\t", b[i*WIDTH])
+  fmt.Printf("// %02x ", i)
+  fmt.Printf("%s\n", rct.RIDENAMES[i])
+}</textarea>
+</section>
+
+<section class="slide" id="retries">
+  <h2>You Might Be Vulnerable If...</h2>
+  <ul>
+    <li>Mobile apps that use DNS to connect to an API
+    <li>Client libraries that use DNS to connect to an API
+    <li>Your service uses DNS to connect to third party API's (Stripe, Mailchimp...)
+  </ul>
+</section>
+
+<section class="slide" id="dns-server-down-workaround">
+  <h2>DNS Resolver is Down - Workarounds</h2>
+  <ul>
+    <li>Use multiple resolvers 
+    <li>Internally, connect directly to IP addresses instead of DNS
+    <li>Set shorter timeout in /etc/resolv.conf
+    <li>If you don't get a response, ignore TTL
+  </ul>
+</section>
+
+<section class="slide" id="dns-server-down-workaround-1">
+  <h2>DNS Provider is Down - Workarounds</h2>
+  <ul>
+    <li>Maintain DNS records at two hosts
+    <li>Reference both in nameserver list
+  </ul>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Timeouts</h1>
+</section>
+
+<section class="slide" id="timeouts">
+  <h1>When something is taking too long, you abandon it</h1>
+</section>
+
+<section class="slide" id="timeouts">
+  <h1>Your users have a timeout, whether your system does or not</h1>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h2>Outside In</h2>
+  <img src="https://api.monosnap.com/rpc/file/download?id=DvsyQzRqUz0l99wIdZkMtnyjk6yXJO" />
+</section>
+
+<section class="slide" id="timeouts">
+  <h2>Setting Timeouts - 2 Questions</h2>
+  <ul>
+    <li>What's the maximum acceptable response time?
+    <li>How long can my service afford to spend processing requests?
+  </ul>
+</section>
+
+<section class="slide" id="timeout-math">
+  <h2>Hard Math Stuff</h2>
+  <ul>
+    <li>Thread pool with 100 workers
+    <li>Each request takes 1 second. 20 requests come in per second.
+    <li>Downstream server is slow, requests take 6 seconds each
+    <li>Set timeout to prevent this
+  </ul>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Fail early if you can't serve a request</h1>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>Socket Timeouts Are Liars</h1>
+</section>
+
+<section class="slide" id="connect-timeout-requests">
+  <h2>Slow Read</h2>
+  <textarea class="code" mode="python">
+timer = 29
+# 13 minute long 204
+for byte in 'HTTP/1.1 204 No Content\r\n\r\n':
+    reactor.callLater(timer, self._send_byte, byte)
+    timer += 29
+reactor.callLater(timer, self.transport.loseConnection)</textarea>
+  <p>
+</section>
+
+<section class="slide" id="server-unreachable">
+  <h2>Remote Server Unreachable</h2>
+  <textarea class="code" mode="python">
+start = time.time()
+try:
+  requests.get('http://google.com:81', 
+               timeout=3)
+except ConnectTimeout: pass
+print time.time() - start </textarea>
+</section>
+
+<section class="slide" id="server-unreachable-dns">
+  <h2>Why 18 Seconds?</h2>
+  <textarea class="code">
+Non-authoritative answer:
+Name:	www.google.com
+Address: 74.125.239.49
+Name:	www.google.com
+Address: 74.125.239.48
+Name:	www.google.com
+Address: 74.125.239.52
+Name:	www.google.com
+Address: 74.125.239.50
+Name:	www.google.com
+Address: 74.125.239.51</textarea>
+</section>
+
+<section class="slide" id="timeouts">
+  <h2>HAProxy</h2>
+  <blockquote><code>retries</code> is the number of times a connection attempt should be retried on
+  a server when a connection either is refused or times out. The
+  default value is 3.
+  </blockquote>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h2>Timeouts</h2>
+  <h1>One Timeout Value = set on both Connect/Read</h1>
+</section>
+
+<section class="slide" id="connect-timeout-requests">
+  <h2>Separate Connect Timeout</h2>
+  <textarea class="code" mode="python">
+import requests
+requests.get('http://10.10.10.123', 
+             timeout=(3, 31.5))</textarea>
+  <p>
+  <h4>Not available in the standard library!</h4>
+</section>
+
+<section class="slide" id="timeout-math">
+  <h2>Timeouts - Workarounds</h2>
+  <ul>
+    <li>*Set timeouts*
+    <li>Set shorter, separate, connect timeout
+    <li>Know how your HTTP client behaves
+  </ul>
+</section>
+
+<section class="slide" id="timeout-workarounds-wall-clock">
+  <h2>Timeouts - Wall Clock Timeout</h2>
+  <textarea class="code" mode="python">
+# net/http/transport
+var respHeaderTimer &lt;-chan time.Time
+respHeaderTimer = time.After(d)
+case &lt;-respHeaderTimer:
+  pc.close()
+  re = errors.New("timeout")</textarea>
+</section>
+
+<section class="slide" id="timeout-workarounds-measure">
+  <h2>Timeouts - Measure</h2>
+  <img src="/slides/reliable-http/images/http-latency.png" />
+</section>
+
+<section class="slide" id="retries">
+  <h1>Retries</h1>
+</section>
+
+<section class="slide" id="retries-temporal">
+  <h2>Retries - Temporal Failures</h2>
+  <img src="/slides/reliable-http/images/retries-temporal-failure.png" />
+</section>
+
+<section class="slide" id="retries-component">
+  <h2>Retries - Single Component Failures</h2>
+  <img src="/slides/reliable-http/images/retries-bad-host.png" />
+</section>
+
+<section class="slide" id="backoff">
+  <div style="position: absolute; top: 40%; left: 0; right: 0;">
+    <h1 style="width: auto; padding: 0; position: static;">Exponential Backoff</h1>
+    <h2 style="border-bottom: none; text-align: center;"><code>1, 2, 4, 8...</code></h2>
+  </div>
+</section>
+
+<section class="slide" id="backoff-jitter">
+  <div style="position: absolute; top: 40%; left: 0; right: 0;">
+    <h1 style="width: auto; padding: 0; position: static;">Exponential Backoff with Jitter</h1>
+    <h2 style="border-bottom: none; text-align: center;"><code>1.01, 2.03, 3.9, 8.2...</code></h2>
+  </div>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>When can you retry?</h1>
+</section>
+
+<section class="slide" id="idempotence">
+  <h1>Idempotence</h1>
+</section>
+
+<section class="slide" id="retries">
+  <h2>Idempotent Actions</h2>
+  <ul>
+    <li>Retrieving a profile
+    <li>Setting user's email to foo@bar.com
+    <li>Emptying a bank account
+  </ul>
+</section>
+
+<section class="slide" id="idempotent-always-retry">
+  <h2>Idempotent Requests</h2>
+  <h1>You can always retry idempotent actions!</h1>
+</section>
+
+<section class="slide" id="not-idempotent">
+  <h2>Not Idempotent</h2>
+  <ul>
+    <li>Sending an email
+    <li>Charging a credit card
+  </ul>
+</section>
+
+<section class="slide" id="mitigation-techniques">
+  <h1>When can you retry?</h1>
+</section>
+
+<section class="slide" id="idempotent-always-retry">
+  <h2>Not Idempotent Requests</h2>
+  <h1>You can retry if the data never made it (connection timeout, connection error)</h1>
+</section>
+
+<section class="slide" id="idempotent-always-retry">
+  <h2>Not Idempotent Requests</h2>
+  <h1>Determining whether the data made it is <i>hard</i></h1>
+</section>
+
+<section class="slide" id="idempotent-always-retry">
+  <h2>Not Idempotent Requests</h2>
+  <h1>You can retry if you get a 429 or a 503 (carefully!)</h1>
+</section>
+
+<section class="slide" id="idempotence">
+  <h1>How do I make things idempotent?</h1>
+</section>
+
+<section class="slide" id="side-effecting-request">
+  <h2>Not idempotent</h2>
+  <textarea class="code" mode="bash">
+POST /v1/&lt;account_id&gt;/Emails
+To=foo@bar.com
+From=me@me.com
+Body=Lester, are we still cops?</textarea>
+</section>
+
+<section class="slide" id="idempotent-request">
+  <h2>Idempotent (retryable) request</h2>
+  <textarea class="code" mode="bash">
+PUT /v1/&lt;account_id&gt;/Emails/EM123
+To=foo@bar.com
+From=me@me.com
+Body=Lester, are we still cops?</textarea>
+</section>
+
+<section class="slide" id="idempotent-request">
+  <h2>Idempotent (retryable) request</h2>
+  <h1>Requires sid collision handling!</h1>
+</section>
+
+<section class="slide" id="know-your-client">
+  <h1>Know your HTTP client</h1>
+</section>
+
+<section class="slide" id="retry-everything">
+  <h2>Testing your clients</h2>
+  <ul>
+    <li><a href="https://httpbin.org">httpbin</a>
+    <li><a href="https://github.com/kevinburke/hamms">hamms</a>
+    <li><a href="http://pathod.net">pathod</a>
+  </ul>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="https://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
+  <h4><a href="https://twitter.com/ekrubnivek">@ekrubnivek</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="https://kev.inburke.com/slides/reliable-http">kev.inburke.com/slides/reliable-http</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
+</body>
+</html>
