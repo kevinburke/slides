@@ -301,6 +301,125 @@ for i := 0; i < len(rct.RIDENAMES); i++ {
 }</textarea>
 </section>
 
+<section class="slide" id="dns-server-down">
+  <h2>Guessing Track Data (cont'd)</h2>
+  <img src="images/track-guess-table.png" alt="Track guess table" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess</h2>
+  <img src="images/too-high.png" alt="Too High Caption" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess</h2>
+  <textarea class="code" mode="python">
+>>> hex(878)
+'0x36e'</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess (cont'd)</h2>
+  <img src="images/ida-search.png" alt="IDA Search screen" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess (cont'd)</h2>
+  <img src="images/too-high-comparison.png" alt="IDA Search screen" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess (cont'd)</h2>
+  <img src="images/track-rotation.png" alt="IDA Search screen" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>A Good Guess (cont'd)</h2>
+  <img src="images/track-rotation.png" alt="IDA Search screen" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h1>Rating Data</h1>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Rating Data</h2>
+  <img src="images/crooked-house-nowhere.png" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Rating Data</h2>
+  <img src="images/crooked-house-rating.png" />
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Rating Data</h2>
+  <textarea class="code" mode="c">
+sub_65C4D4 proc near
+  or      dword ptr [edi+1D0h], 2
+  or      dword ptr [edi+1D0h], 8
+  mov     byte ptr [edi+198h], 5
+  call    sub_655FD6
+  mov     ebx, 0D7h       ; 215
+  mov     ecx, 3Eh        ; 62
+  mov     ebp, 22h        ; 34
+  call    sub_65E7A3
+  call    sub_65E7FB
+retn</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Rating Jump Table</h2>
+  <textarea class="code" mode="c">
+dd offset sub_655FEF    ; DATA XREF: sub_6B5A2A+453r
+dd offset sub_65628D
+dd offset sub_656504
+dd offset sub_65679E
+dd offset sub_656A27
+dd offset sub_656CA0
+dd offset sub_656E5D
+dd offset sub_65701A
+dd offset sub_6572A4</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h1>So what is "excitement"?</h1>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Excitement</h2>
+  <textarea class="code" mode="c">
+Initial ride constants
++ Length
+- (Too short penalty)
++ Duration
++ Max Speed
+- (Too low max speed)
++ Average Speed</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Excitement (cont'd)</h2>
+  <textarea class="code" mode="c">
++ # of Drops
+- Too low max drop height
++ G Forces
+- Too high max negative G's
+- Too intense </textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h2>Intensity</h2>
+  <textarea class="code" mode="c">
+excitement += min(numDrops, 9) * 700
+intensity += numDrops * 930
+</textarea>
+</section>
+
+<section class="slide" id="dns-server-down">
+  <h1>Okay! Time to build an algorithm.</h1>
+</section>
+
 <section class="slide" id="retries">
   <h2>You Might Be Vulnerable If...</h2>
   <ul>
