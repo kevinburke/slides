@@ -46,28 +46,25 @@
   </div>
 </section>
 
-<!-- XXX - Shyp logo -->
-
-<section class="slide" id="five-nines-what">
-  <h2>Help me get better!</h2>
-  <ul>
-    <li>What parts are confusing?
-    <li>What sounds really cool and you want to know more about?
-    <li>What should I skip through
-    <li>Please interrupt me
-  </ul>
+<section class="slide" id="sponsor">
+  <img src="images/shyp-logo.png" />
+  <div>
+    <h4>
+      <a href="https://blog.shyp.com/jobs/">Jobs</a>
+    </h4>
+  </div>
 </section>
 
-<section class="slide" id="five-nines-def">
+<section class="slide" id="goal">
   <h1>Goal - Build cool coasters via computer program</h1>
 </section>
 
-<section class="slide" id="five-nines-def">
+<section class="slide" id="goal-coaster-example">
   <h2>Goal - Build cool coasters via computer program</h2>
   <img src="images/mine-train.jpg" />
 </section>
 
-<section class="slide" id="five-nines-def">
+<section class="slide" id="how-to-interface">
   <h2>How do you interface with the game?</h2>
   <img src="http://share.gifyoutube.com/m6ArJp.gif" alt="Mario beating the game" />
 </section>
@@ -77,12 +74,43 @@
   <img src="http://share.gifyoutube.com/ygxeD6.gif" alt="Duck Hunt" />
 </section>
 
-<section class="slide" id="five-nines-def">
+<section class="slide" id="tracks-stored-separately">
   <h2>Tracks are stored separately</h2>
   <img src="images/load-track-design.png" alt="Track designs are loadable" />
 </section>
 
-<section class="slide" id="five-nines">
+<section class="slide" id="td6-docs">
+  <h2>TD6 format</h2>
+  <img src="images/td6.png" alt="TD6 description" />
+  <h5><a href="http://tid.rctspace.com/TD6.html">Source</a></h5>
+</section>
+
+<section class="slide" id="rle-format">
+  <h2>Run Length Encoding</h2>
+  <ol>
+    <li>Read a byte (x)
+    <li>If <code>x &lt; 0</code>: Read next byte and copy it <code>-1*x</code> times.
+    <li>If <code>x &gt; 0</code>: Read x bytes
+  </ol>
+</section>
+
+<section class="slide" id="rle-go-interface">
+  <h2>Go Interfaces</h2>
+  <textarea class="code" mode="python">
+func (z *Reader) Read(data []byte) (int, error) {
+  // Read one byte...
+}
+func (z *Writer) Write(ride []byte) (int, error) {
+  // Peek at upcoming bytes...
+}</textarea>
+</section>
+
+<section class="slide" id="td6-go-interface">
+  <h2>Standard Library Patch?</h2>
+  <img src="images/td6-in-go.png" alt="TD6 available in the Go Standard Library" />
+</section>
+
+<section class="slide" id="plan-of-action">
   <h2>Plan of action:</h2>
   <ul>
     <li>Generate tracks outside of the game
@@ -92,77 +120,20 @@
     <li>Profit
   </ul>
 </section>
-
-<section class="slide" id="five-nines-def">
-  <h2>What is a cool coaster?</h2>
-  <img src="images/double-dare-better.png" alt="A really cool coaster" />
-</section>
-
-<section class="slide" id="five-nines-def">
-  <h2>High Excitement/Low Sickness</h2>
-  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
-</section>
-
-<section class="slide" id="five-nines-def">
-  <h2>High Excitement/Low Sickness Cont'd</h2>
-  <img src="http://share.gifyoutube.com/v1X19G.gif" alt="Excitement vs. Sickness" />
-</section>
-
-<section class="slide" id="five-nines-def">
-  <h2>Track needs to be a complete circuit!</h2>
-  <img src="http://share.gifyoutube.com/v9AMoq.gif" alt="Complete circuit" />
-</section>
-
-<section class="slide" id="five-nines-def">
-  <h2>Track can't collide with itself</h2>
-  <img src="images/collide-with-itself.png" alt="Complete circuit" />
-</section>
-
-<section class="slide" id="five-nines-def">
-  <h2>Car needs to make it around the track</h2>
-  <video autoplay>
-    <source src="images/gravity.mp4" type="video/mp4" alt="Complete loop" />
-  </video>
-</section>
-
-<section class="slide" id="not-appropriate">
+<section class="slide" id="track-data-question">
   <h1>How to represent track data?</h1>
 </section>
 
-<section class="slide" id="microservices">
+<section class="slide" id="its-in-x86">
   <h2>Track Data (cont'd)</h2>
-  <img src="https://api.monosnap.com/rpc/file/download?id=FkIvSrWzv0vkt9rp2f6cbkDQcKDURp" />
+  <img src="images/x86-explainer.png" alt="sawyer explains rct is in assembler" />
 </section>
 
-<section class="slide" id="microservices">
-  <h2>x86 Source Code</h2>
-  <ul>
-    <li>4,862,557 instructions
-    <li>~1,289,635 bytes of data
-    <li>No labels!
-  </ul>
-</section>
-
-<section class="slide" id="this-talk">
+<section class="slide" id="what-is-assembler">
   <h1>What is assembler?</h1>
 </section>
 
-<section class="slide" id="this-talk">
-  <h2>8 Registers</h2>
-  <textarea class="code" mode="python">
-EAX (ax, al)
-EBX
-ECX
-EDX
-ESI (pointer to current ride)
-EDI
-ESP (stack pointer)
-EBP (base pointer)
-(flag register)
-</textarea>
-</section>
-
-<section class="slide" id="this-talk">
+<section class="slide" id="x86-meta">
   <h2>What is assembler cont'd</h2>
   <textarea class="code" mode="python">
 a = 3
@@ -174,7 +145,7 @@ else:
   b++</textarea>
 </section>
 
-<section class="slide" id="this-talk">
+<section class="slide" id="x86-translated">
   <h2>What is assembler cont'd</h2>
   <textarea class="code" mode="python">
 1  MOV $3,CX   ; a = 3
@@ -186,15 +157,25 @@ else:
 7  NOP 
 8  RET         ; return
 9  9:          ; else (label)
-10   INC BX    ; b++</textarea>
+10   INC AX    ; b++</textarea>
 </section>
 
-<section class="slide" id="dns">
+<section class="slide" id="source-code-size">
+  <h2>RCT Source Code</h2>
+  <ul>
+    <li>4,862,557 instructions
+    <li>~1,289,635 bytes of data
+    <li>No labels!
+  </ul>
+</section>
+
+<section class="slide" id="how-to-find-it">
   <h1>How do you find what you are looking for?</h1>
 </section>
 
-<section class="slide" id="dns-outages">
-  <img src="images/openrct2-logo.png" />
+<section class="slide" id="openrct2">
+  <img src="images/openrct2-logo-small.png" />
+  <h5><a href="https://github.com/openrct2/openrct2">Link</a></h5>
 </section>
 
 <section class="slide" id="openrct2-features">
@@ -212,7 +193,7 @@ else:
   <h1>NB: you still need the game assets</h1>
 </section>
 
-<section class="slide" id="dnsimple-outage">
+<section class="slide" id="openrct2-work">
   <h2>How does it work?</h2>
   <ul>
     <li>CPU starts execution at an entry point specified by ABI
@@ -222,21 +203,8 @@ else:
   </ul>
 </section>
 
-<section class="slide" id="dnsimple-outage">
-  <h2>You can drop into assembler from C</h2>
-  <textarea class="code" mode="c">
-void rct2_update() {
-	__asm {
-		mov eax, 009DE564h
-		mov [eax], esp
-	}
-	if (!setjmp(_end_update_jump))
-		rct2_update_2();
-} </textarea>
-</section>
-
-<section class="slide" id="dnsimple-outage">
-  <h2>Call subroutines</h2>
+<section class="slide" id="openrct2-x86-calls">
+  <h2>Call x86 subroutines</h2>
   <textarea class="code" mode="c">
 static void sub_68B2B7(int x, int y)
 {
@@ -244,11 +212,11 @@ static void sub_68B2B7(int x, int y)
 }</textarea>
 </section>
 
-<section class="slide" id="dnsimple-outage">
+<section class="slide" id="game-data-objectives">
   <h2>Finding Game Data - 2 Objectives</h2>
   <ul>
     <li>Find the track data
-    <li>Find the ratings
+    <li>Find the excitement ratings
   </ul>
 </section>
 
@@ -380,6 +348,37 @@ dd offset sub_656CA0
 dd offset sub_656E5D
 dd offset sub_65701A
 dd offset sub_6572A4</textarea>
+</section>
+
+<section class="slide" id="what-is-cool">
+  <h2>What is a cool coaster?</h2>
+  <img src="images/double-dare-better.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="ratings">
+  <h2>High Excitement/Low Sickness</h2>
+  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="boring-factors">
+  <h1>But, boring factors</h1>
+</section>
+
+<section class="slide" id="complete-circuit">
+  <h2>Track needs to be a complete circuit!</h2>
+  <img src="images/complete-circuit.gif" alt="Complete circuit" />
+</section>
+
+<section class="slide" id="self-collision">
+  <h2>Track can't collide with itself</h2>
+  <img src="images/collide-with-itself.png" alt="Complete circuit" />
+</section>
+
+<section class="slide" id="gravity">
+  <h2>Car needs to make it around the track</h2>
+  <video autoplay controls loop>
+    <source src="images/gravity-coaster.mp4" type="video/mp4" alt="Complete loop" />
+  </video>
 </section>
 
 <section class="slide" id="dns-server-down">
