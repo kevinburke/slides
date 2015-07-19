@@ -74,6 +74,16 @@
   <img src="http://share.gifyoutube.com/ygxeD6.gif" alt="Duck Hunt" />
 </section>
 
+<section class="slide" id="what-is-cool">
+  <h2>What is a cool coaster?</h2>
+  <img src="images/double-dare-better.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="ratings">
+  <h2>High Excitement/Low Sickness</h2>
+  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
+</section>
+
 <section class="slide" id="tracks-stored-separately">
   <h2>Tracks are stored separately</h2>
   <img src="images/load-track-design.png" alt="Track designs are loadable" />
@@ -220,107 +230,107 @@ static void sub_68B2B7(int x, int y)
   </ul>
 </section>
 
-<section class="slide" id="dns-lookup-failure-1">
+<section class="slide" id="ida-pro">
   <h2>IDA Pro</h2>
   <img src="images/ida-pro.png" alt="IDA Pro">
 </section>
 
-<section class="slide" id="dns-lookup-failure-1">
+<section class="slide" id="ida-pro-2">
   <h2>IDA (cont'd)</h2>
   <img src="images/ida-instructions.png" alt="IDA Pro">
 </section>
 
-<section class="slide" id="dns-lookup-failure-1">
+<section class="slide" id="how-to-find-things">
   <h2>Where Is Anything</h2>
   <img src="images/rct2-addresses.png" alt="IDA Pro">
 </section>
 
-<section class="slide" id="dns-lookup-failure-1">
+<section class="slide" id="track-data-consistent">
   <h2>Track Data Has Consistent Order</h2>
   <img src="images/track-order.png" alt="Track Order">
 </section>
 
-<section class="slide" id="dns-lookup-failure-1">
+<section class="slide" id="track-formula">
   <h2>Track Formula</h2>
   <textarea class="code" mode="c">
-  PIECE_WIDTH*[BASE_TRACK_PTR]+OFFSET</textarea>
+    BASE_TRACK_PTR +
+    DATA_WIDTH * TRACK_PIECE_NO +
+    DATA_OFFSET</textarea>
 </section>
 
-<section class="slide" id="openrct2-features">
+<section class="slide" id="can-make-guesses">
   <h1>Good enough to make guesses</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="guessing-track-data">
   <h2>Guessing Track Data</h2>
   <textarea class="code" mode="python">
 f, err := os.Open("~/code/OpenRCT2/openrct2.exe")
 var WIDTH = 0x12
 b := make([]byte, 100*WIDTH)
-f.ReadAt([100]byte{}, int64(0x0057E3A8))</textarea>
+addr := 0x0057E3A8
+f.ReadAt([100]byte{}, int64(addr))</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="guessing-track-data-2">
   <h2>Guessing Track Data (cont'd)</h2>
   <textarea class="code" mode="python">
-for i := 0; i < len(rct.RIDENAMES); i++ {
+for i := 0; i &lt; len(rct.RIDENAMES); i++ {
   fmt.Printf("\t%d,\t", b[i*WIDTH])
   fmt.Printf("// %02x ", i)
   fmt.Printf("%s\n", rct.RIDENAMES[i])
 }</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="guessing-track-data-3">
   <h2>Guessing Track Data (cont'd)</h2>
   <img src="images/track-guess-table.png" alt="Track guess table" />
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="good-guess">
   <h2>A Good Guess</h2>
   <img src="images/too-high.png" alt="Too High Caption" />
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="good-guess-hex">
   <h2>A Good Guess</h2>
   <textarea class="code" mode="python">
->>> hex(878)
+&gt;&gt;&gt; hex(878)
 '0x36e'</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="good-guess-search">
   <h2>A Good Guess (cont'd)</h2>
   <img src="images/ida-search.png" alt="IDA Search screen" />
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="good-guess-hex">
+  <h2>A Good Guess</h2>
+  <textarea class="code">
+sub_6C511D:
+  mov word_141E9A, 36Eh</textarea>
+</section>
+
+<section class="slide" id="good-guess-ida-pro">
   <h2>A Good Guess (cont'd)</h2>
   <img src="images/too-high-comparison.png" alt="IDA Search screen" />
 </section>
 
-<section class="slide" id="dns-server-down">
-  <h2>A Good Guess (cont'd)</h2>
-  <img src="images/track-rotation.png" alt="IDA Search screen" />
-</section>
-
-<section class="slide" id="dns-server-down">
-  <h2>A Good Guess (cont'd)</h2>
-  <img src="images/track-rotation.png" alt="IDA Search screen" />
-</section>
-
-<section class="slide" id="dns-server-down">
+<section class="slide" id="rating-data">
   <h1>Rating Data</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="rating-crooked-house">
   <h2>Rating Data</h2>
   <img src="images/crooked-house-nowhere.png" />
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="rating-crooked-house-box">
   <h2>Rating Data</h2>
   <img src="images/crooked-house-rating.png" />
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="assembler-crooked-house">
   <h2>Rating Data</h2>
   <textarea class="code" mode="c">
 sub_65C4D4 proc near
@@ -336,28 +346,49 @@ sub_65C4D4 proc near
 retn</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="rating-jump-table">
   <h2>Rating Jump Table</h2>
   <textarea class="code" mode="c">
-dd offset sub_655FEF    ; DATA XREF: sub_6B5A2A+453r
-dd offset sub_65628D
-dd offset sub_656504
-dd offset sub_65679E
-dd offset sub_656A27
-dd offset sub_656CA0
-dd offset sub_656E5D
-dd offset sub_65701A
-dd offset sub_6572A4</textarea>
+dd offset sub_655FEF ; Mini Coaster
+dd offset sub_65628D ; Bumper Boats
+dd offset sub_656504 ; Canoes
+dd offset sub_65679E ; Rowing boats
+dd offset sub_656A27 ; Wooden Mine Ride
+dd offset sub_656CA0 ; Wild Mouse</textarea>
 </section>
 
-<section class="slide" id="what-is-cool">
-  <h2>What is a cool coaster?</h2>
-  <img src="images/double-dare-better.png" alt="A really cool coaster" />
+<section class="slide" id="what-is-excitement">
+  <h1>So what is "excitement"?</h1>
 </section>
 
-<section class="slide" id="ratings">
-  <h2>High Excitement/Low Sickness</h2>
-  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
+<section class="slide" id="excitement">
+  <h2>Excitement</h2>
+  <textarea class="code" mode="c">
+Initial ride constants
++ Length
+- (Too short penalty)
++ Duration
++ Max Speed
+- (Too low max speed)
++ Average Speed</textarea>
+</section>
+
+<section class="slide" id="excitement-ratings">
+  <h2>Excitement (cont'd)</h2>
+  <textarea class="code" mode="c">
++ # of Drops
+- Too low max drop height
++ G Forces
+- Too high max negative G's
+- Too intense </textarea>
+</section>
+
+<section class="slide" id="intensity-ratings">
+  <h2>Intensity</h2>
+  <textarea class="code" mode="c">
+excitement += min(numDrops, 9) * 700
+intensity += numDrops * 930
+</textarea>
 </section>
 
 <section class="slide" id="boring-factors">
@@ -381,49 +412,15 @@ dd offset sub_6572A4</textarea>
   </video>
 </section>
 
-<section class="slide" id="dns-server-down">
-  <h1>So what is "excitement"?</h1>
-</section>
-
-<section class="slide" id="dns-server-down">
-  <h2>Excitement</h2>
-  <textarea class="code" mode="c">
-Initial ride constants
-+ Length
-- (Too short penalty)
-+ Duration
-+ Max Speed
-- (Too low max speed)
-+ Average Speed</textarea>
-</section>
-
-<section class="slide" id="dns-server-down">
-  <h2>Excitement (cont'd)</h2>
-  <textarea class="code" mode="c">
-+ # of Drops
-- Too low max drop height
-+ G Forces
-- Too high max negative G's
-- Too intense </textarea>
-</section>
-
-<section class="slide" id="dns-server-down">
-  <h2>Intensity</h2>
-  <textarea class="code" mode="c">
-excitement += min(numDrops, 9) * 700
-intensity += numDrops * 930
-</textarea>
-</section>
-
-<section class="slide" id="dns-server-down">
+<section class="slide" id="algorithm-time">
   <h1>Okay! Time to build an algorithm.</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="search-problem">
   <h1>This is a search problem</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="problem-size">
   <h2>Hard Math</h2>
   <ul>
     <li>100 track pieces on average
@@ -434,16 +431,16 @@ intensity += numDrops * 930
   </ul>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="genetic-algorithm">
   <h1>Using a genetic algorithm</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="genetic-algorithm-goal">
   <h2>Genetic algorithm cont'd</h2>
   <h3>Goal: "Hello"</h3>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="random-starting-points">
   <h2>Starting Points</h2>
   <textarea class="code" mode="python">
 "Lr2Kl"
@@ -453,11 +450,11 @@ intensity += numDrops * 930
 "L4YgS"</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="fitness">
   <h1>Evaluate Fitness</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="fitness-1">
   <h2>fitness("Lr2Kl")</h2>
   <h3>How many characters would have to change?<h3>
   <textarea class="code" mode="python">
@@ -465,7 +462,7 @@ intensity += numDrops * 930
 "Hello"</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="fitness-2">
   <h2>fitness("HerKo")</h2>
   <h3>How many characters would have to change?<h3>
   <textarea class="code" mode="python">
@@ -473,11 +470,11 @@ intensity += numDrops * 930
 "Hello"</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="smaller-distance">
   <h1>Smaller distance from a "good" solution == better fitness</h1>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="genetic-algorithm">
   <h2>Algorithm</h2>
   <ol>
     <li>Generate a random pool of strings
@@ -487,7 +484,7 @@ intensity += numDrops * 930
   </ol>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="strategies">
   <h2>Reproduction Strategies</h2>
   <ul>
     <li>Selection
@@ -496,7 +493,7 @@ intensity += numDrops * 930
   </ul>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="selection">
   <h2>Selection</h2>
   <textarea class="code" mode="python">
 var weightedTotal float64 = 0
@@ -508,40 +505,40 @@ for i := 0; i &lt; len(p.Members); i++ {
 return totals[rand.Float64()*weightedTotal]</textarea>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="mutation">
   <h2>Mutation</h2>
   <ol>
     <li>Generate random number for each track piece
-    <li>If random # &lt; MUTATION_PROBABILITY
+    <li>If random # &lt; <code>MUTATION_PROBABILITY</code>
     <li>Replace the piece with a different piece
   </ol>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="mutation-2">
   <h2>Mutation (2)</h2>
   <ol>
     <li>Generate random number for each track piece
-    <li>If random # &lt; MUTATION_PROBABILITY
+    <li>If random # &lt; <code>MUTATION_PROBABILITY</code>
     <li>Insert a new piece
   </ol>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="crossover">
   <h2>Crossover</h2>
   <ol>
-    <li>Choose 2 parents via Select()
+    <li>Choose 2 parents via <code>Select()</code>
     <li>Choose crossover point at random
-    <li>Return Track A[0] + Track B[1]
-    <li>Return Track B[0] + Track A[1]
+    <li>Return <code>TrackA[0] + Track B[1]</code>
+    <li>Return <code>Track B[0] + Track A[1]</code>
   </ol>
 </section>
 
-<section class="slide" id="dns-server-down">
+<section class="slide" id="crossover-2">
   <h2>Crossover (2)</h2>
   <h3>Occasionally, let the parents survive</h3>
 </section>
 
-<section class="slide" id="know-your-client">
+<section class="slide" id="thanks-kyle">
   <h1>Thanks to Kyle Conroy</h1>
 </section>
 
