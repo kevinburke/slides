@@ -50,9 +50,14 @@
   <img src="images/shyp-logo.png" />
   <div>
     <h4>
-      <a href="https://blog.shyp.com/jobs/">Jobs</a>
+      <a href="https://shyp.com/jobs">Jobs</a>
     </h4>
   </div>
+</section>
+
+<section class="slide" id="author-as-young-man">
+  <h2>12 Year Old Me</h2>
+  <img src="images/12-year-old-me.png" alt="Author as a 12 year old" />
 </section>
 
 <section class="slide" id="goal">
@@ -64,6 +69,16 @@
   <img src="images/mine-train.jpg" />
 </section>
 
+<section class="slide" id="what-is-cool">
+  <h2>What is a cool coaster?</h2>
+  <img src="images/double-dare-better-small.png" alt="A really cool coaster" />
+</section>
+
+<section class="slide" id="ratings">
+  <h2>High Excitement/Low Sickness</h2>
+  <img src="images/coaster-ratings.png" alt="Excitement/intensity ratings" />
+</section>
+
 <section class="slide" id="how-to-interface">
   <h2>How do you interface with the game?</h2>
   <img src="http://share.gifyoutube.com/m6ArJp.gif" alt="Mario beating the game" />
@@ -72,16 +87,6 @@
 <section class="slide" id="duck-hunt">
   <h2>How do you interface with the game?</h2>
   <img src="http://share.gifyoutube.com/ygxeD6.gif" alt="Duck Hunt" />
-</section>
-
-<section class="slide" id="what-is-cool">
-  <h2>What is a cool coaster?</h2>
-  <img src="images/double-dare-better.png" alt="A really cool coaster" />
-</section>
-
-<section class="slide" id="ratings">
-  <h2>High Excitement/Low Sickness</h2>
-  <img src="images/coaster-ratings.png" alt="A really cool coaster" />
 </section>
 
 <section class="slide" id="tracks-stored-separately">
@@ -115,10 +120,10 @@ func (z *Writer) Write(ride []byte) (int, error) {
 }</textarea>
 </section>
 
-<section class="slide" id="td6-go-interface">
-  <h2>Standard Library Patch?</h2>
-  <img src="images/td6-in-go.png" alt="TD6 available in the Go Standard Library" />
-</section>
+<!--<section class="slide" id="td6-go-interface">-->
+  <!--<h2>Standard Library Patch?</h2>-->
+  <!--<img src="images/td6-in-go.png" alt="TD6 available in the Go Standard Library" />-->
+<!--</section>-->
 
 <section class="slide" id="plan-of-action">
   <h2>Plan of action:</h2>
@@ -253,9 +258,9 @@ static void sub_68B2B7(int x, int y)
 <section class="slide" id="track-formula">
   <h2>Track Formula</h2>
   <textarea class="code" mode="c">
-    BASE_TRACK_PTR +
-    DATA_WIDTH * TRACK_PIECE_NO +
-    DATA_OFFSET</textarea>
+    baseTrackPointer +
+    width * trackPieceNo +
+    dataOffset</textarea>
 </section>
 
 <section class="slide" id="can-make-guesses">
@@ -275,10 +280,10 @@ f.ReadAt([100]byte{}, int64(addr))</textarea>
 <section class="slide" id="guessing-track-data-2">
   <h2>Guessing Track Data (cont'd)</h2>
   <textarea class="code" mode="python">
-for i := 0; i &lt; len(rct.RIDENAMES); i++ {
+for i := 0; i &lt; len(rct.TRACKNAMES); i++ {
   fmt.Printf("\t%d,\t", b[i*WIDTH])
   fmt.Printf("// %02x ", i)
-  fmt.Printf("%s\n", rct.RIDENAMES[i])
+  fmt.Printf("%s\n", rct.TRACKNAMES[i])
 }</textarea>
 </section>
 
@@ -387,8 +392,7 @@ Initial ride constants
   <h2>Intensity</h2>
   <textarea class="code" mode="c">
 excitement += min(numDrops, 9) * 700
-intensity += numDrops * 930
-</textarea>
+intensity += numDrops * 930 </textarea>
 </section>
 
 <section class="slide" id="boring-factors">
@@ -400,14 +404,20 @@ intensity += numDrops * 930
   <img src="images/complete-circuit.gif" alt="Complete circuit" />
 </section>
 
+<section class="slide" id="complete-circuit">
+  <h2>Track needs to be a complete circuit!</h2>
+  <img src="images/complete-circuit-2.gif" alt="Complete circuit" />
+  <h5>
+    <a href="https://www.youtube.com/watch?v=oI_w5_AizW0">Source</a>
+</section>
+
 <section class="slide" id="self-collision">
   <h2>Track can't collide with itself</h2>
-  <img src="images/collide-with-itself.png" alt="Complete circuit" />
+  <img src="images/collide-with-itself-small.png" alt="Track can't collide with itself" />
 </section>
 
 <section class="slide" id="gravity">
-  <h2>Car needs to make it around the track</h2>
-  <video autoplay controls loop>
+  <video style="margin-top: -40px; z-index: -3;" autoplay controls loop>
     <source src="images/gravity-coaster.mp4" type="video/mp4" alt="Complete loop" />
   </video>
 </section>
@@ -431,8 +441,26 @@ intensity += numDrops * 930
   </ul>
 </section>
 
+<section class="slide" id="problem-size">
+  <h2>Trim the problem space!</h2>
+  <ul>
+    <li>No Loops
+    <li>No Diagonal Pieces
+    <li>No Brakes/Boosters
+  </ul>
+</section>
+
 <section class="slide" id="genetic-algorithm">
   <h1>Using a genetic algorithm</h1>
+</section>
+
+<section class="slide" id="strategies">
+  <h2>Reproduction Strategies</h2>
+  <ul>
+    <li>Selection
+    <li>Mutation
+    <li>Crossover
+  </ul>
 </section>
 
 <section class="slide" id="genetic-algorithm-goal">
@@ -479,18 +507,18 @@ intensity += numDrops * 930
   <ol>
     <li>Generate a random pool of strings
     <li>Evaluate fitness
-    <li>Let the best ones "reproduce" & form next generation
+    <li>Let the best ones "reproduce" &amp; form next generation
     <li>Repeat at (1)
   </ol>
 </section>
 
-<section class="slide" id="strategies">
-  <h2>Reproduction Strategies</h2>
-  <ul>
-    <li>Selection
-    <li>Mutation
-    <li>Crossover
-  </ul>
+<section class="slide" id="smaller-distance">
+  <h1>I use track pieces instead of strings</h1>
+</section>
+
+<section class="slide" id="book">
+  <h2>Book - David Goldberg</h2>
+  <img src="images/book.jpg" alt="Book" />
 </section>
 
 <section class="slide" id="selection">
@@ -536,6 +564,10 @@ return totals[rand.Float64()*weightedTotal]</textarea>
 <section class="slide" id="crossover-2">
   <h2>Crossover (2)</h2>
   <h3>Occasionally, let the parents survive</h3>
+</section>
+
+<section class="slide" id="thanks-kyle">
+  <h1>Let's see it!</h1>
 </section>
 
 <section class="slide" id="thanks-kyle">
