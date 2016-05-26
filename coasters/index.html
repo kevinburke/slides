@@ -65,7 +65,7 @@
 </section>
 
 <section class="slide" id="goal-coaster-example">
-  <h2>Goal - Build cool coasters via computer program</h2>
+  <h2>Might be tractable!</h2>
   <img src="images/mine-train.jpg" />
 </section>
 
@@ -130,13 +130,14 @@ func (z *Writer) Write(ride []byte) (int, error) {
   <ul>
     <li>Generate tracks outside of the game
     <li>Save to the RCT track format
-    <li>Load in the game
+    <li>Load them in the game
     <li>...
     <li>Profit
   </ul>
 </section>
+
 <section class="slide" id="track-data-question">
-  <h1>How to represent track data?</h1>
+  <h1>How to represent the track pieces?</h1>
 </section>
 
 <section class="slide" id="its-in-x86">
@@ -145,7 +146,7 @@ func (z *Writer) Write(ride []byte) (int, error) {
 </section>
 
 <section class="slide" id="what-is-assembler">
-  <h1>What is assembler?</h1>
+  <h1>What is x86 assembler?</h1>
 </section>
 
 <section class="slide" id="x86-meta">
@@ -161,15 +162,15 @@ else:
 </section>
 
 <section class="slide" id="x86-translated">
-  <h2>What is assembler cont'd</h2>
+  <h2>CPU registers + instructions</h2>
   <textarea class="code" mode="python">
 1  MOV $3,CX   ; a = 3
 2  ADD $4,CX   ; a = a + 4
 3  MOV $6,AX   ; b = 6
 4  CMP CX,AX   ; a &gt; b ?
-5  JLE 9       
+5  JLE 9
 6  INC CX      ; a++
-7  NOP 
+7  NOP
 8  RET         ; return
 9  9:          ; else (label)
 10   INC AX    ; b++</textarea>
@@ -180,7 +181,8 @@ else:
   <ul>
     <li>4,862,557 instructions
     <li>~1,289,635 bytes of data
-    <li>No labels!
+    <li>No labels/symbols!
+    <li>Poor program flow (GOTOs, etc)
   </ul>
 </section>
 
@@ -199,17 +201,27 @@ else:
     <li>Cross platform support! (via SDL2)
     <li>Better game AI!
     <li>Cheats!
+    <li>Twitch integration!
     <li>Languages (CN, FR, NL, ES, PO, HU, more)
     <li><strike>Janitor unionization</strike>
   </ul>
 </section>
 
-<section class="slide" id="openrct2-features">
+<section class="slide" id="openrct2-android">
+  <h2>Coming to a Platform Near You</h2>
+  <img src="images/rct2-android.png" />
+</section>
+
+<section class="slide" id="openrct2-nota-bene">
   <h1>NB: you still need the game assets</h1>
 </section>
 
+<section class="slide" id="openrct2-nota-bene">
+  <h1>How do you test as you go?</h1>
+</section>
+
 <section class="slide" id="openrct2-work">
-  <h2>How does it work?</h2>
+  <h2>How can you test as you go?</h2>
   <ul>
     <li>CPU starts execution at an entry point specified by ABI
     <li>Compile game, C into shared DLL
@@ -231,7 +243,7 @@ static void sub_68B2B7(int x, int y)
   <h2>Finding Game Data - 2 Objectives</h2>
   <ul>
     <li>Find the track data
-    <li>Find the excitement ratings
+    <li>Find the excitement/nausea ratings
   </ul>
 </section>
 
@@ -335,6 +347,13 @@ sub_6C511D:
   <img src="images/crooked-house-rating.png" />
 </section>
 
+<section class="slide" id="good-guess-hex">
+  <h2>A Good Guess</h2>
+  <textarea class="code" mode="python">
+&gt;&gt;&gt; hex(215)
+'0x0d7'</textarea>
+</section>
+
 <section class="slide" id="assembler-crooked-house">
   <h2>Rating Data</h2>
   <textarea class="code" mode="c">
@@ -395,8 +414,12 @@ excitement += min(numDrops, 9) * 700
 intensity += numDrops * 930 </textarea>
 </section>
 
+<section class="slide" id="algorithm-time">
+  <h1>Okay! Time to build an algorithm.</h1>
+</section>
+
 <section class="slide" id="boring-factors">
-  <h1>But, boring factors</h1>
+  <h1>Pump the brakes</h1>
 </section>
 
 <section class="slide" id="complete-circuit">
@@ -418,12 +441,8 @@ intensity += numDrops * 930 </textarea>
 
 <section class="slide" id="gravity">
   <video style="margin-top: -40px; z-index: -3;" autoplay controls loop>
-    <source src="images/gravity-coaster.mp4" type="video/mp4" alt="Complete loop" />
+    <source src="images/gravity-coaster.mp4" type="video/mp4" alt="Car needs to make it around the track" />
   </video>
-</section>
-
-<section class="slide" id="algorithm-time">
-  <h1>Okay! Time to build an algorithm.</h1>
 </section>
 
 <section class="slide" id="search-problem">
@@ -440,7 +459,7 @@ intensity += numDrops * 930 </textarea>
     <li>100 track pieces on average
     <li>~13 average branch factor
     <li>~13^100 possible track designs
-    <li>roughly 2.47e+111 
+    <li>roughly 2.47e+111
     <li>Chess: 1e+120
   </ul>
 </section>
@@ -504,6 +523,10 @@ intensity += numDrops * 930 </textarea>
 
 <section class="slide" id="smaller-distance">
   <h1>Smaller distance from a "good" solution == better fitness</h1>
+</section>
+
+<section class="slide" id="smaller-distance">
+  <h1>The fitness function is the most expensive part!</h1>
 </section>
 
 <section class="slide" id="genetic-algorithm">
@@ -574,19 +597,85 @@ return totals[rand.Float64()*weightedTotal]</textarea>
   <h1>Let's see it!</h1>
 </section>
 
+<section class="slide" id="generated-coaster-1">
+  <h2>Generated Coaster 1</h2>
+  <img src="images/generated-coaster-1.png" />
+</section>
+
+<section class="slide" id="on-ride-photo">
+  <h2>Generated Coaster 1</h2>
+  <img src="images/on-ride-photo.png" />
+</section>
+
+<section class="slide" id="on-ride-photo">
+  <h2>Generated Coaster 1</h2>
+  <img src="images/generated-coaster-2.png" />
+</section>
+
+<section class="slide" id="generated-coaster-outline">
+  <h2>Partial coasters don't load</h2>
+  <img src="images/generated-coaster-outline.png" />
+</section>
+
+<section class="slide" id="lessons-learned">
+  <h1>Lessons Learned</h1>
+</section>
+
+<section class="slide" id="data-inconsistencies">
+  <h1>Data inconsistencies will kill you</h1>
+</section>
+
+<section class="slide" id="data-inconsistencies">
+  <h1>Observance: Table driven tests</h1>
+</section>
+
+<section class="slide" id="table-driven-tests">
+  <h2>Table Driven Tests</h2>
+  <textarea class="code" mode="c">
+func TestCompatibility(t *testing.T) {
+  for _, tt := range cases {
+    c := tracks.Compatible(tt.first, tt.second)
+    if c != tt.expected {
+        t.Errorf("Compatible(%s, %s) => %q, want %q")
+    }
+  }
+}</textarea>
+</section>
+
+<section class="slide" id="table-driven-tests-2">
+  <h2>Table Driven Tests (cont'd)</h2>
+  <textarea class="code" mode="c">
+testCases := []struct {
+  first      Element
+  second     Element
+  compatible bool
+}{
+  {FLAT, LEFT_TURN, false},
+  {LEFT_TURN, LEFT_BANK, false},
+}</textarea>
+</section>
+
 <section class="slide" id="lessons-learned">
   <h2>Lessons Learned</h2>
   <ul>
     <li>Data inconsistencies will kill you
     <li>Write tests for 2D code
     <li>Fitness function complexity is hard to predict
-    <li>Ship, ship, ship
+    <li>Make the problem as small as possible
+    <li>Do the dumbest thing
   </ul>
 </section>
 
-<section class="slide" id="generated-coaster">
-  <h2>Generated Coaster</h2>
-  <img src="images/generated-coaster-outline.png" />
+<section class="slide" id="lessons-learned">
+  <h2>Future Work</h2>
+  <ul>
+    <li>Excitement/Intensity/Nausea
+    <li>Genetic Algorithm for fitness costs
+    <li>Dynamically weight mutated/chosen track piece
+    <li>CGo - call into OpenRCT2
+    <li>Integrate with given landscape/layout
+    <li>In-browser coaster viewer
+  </ul>
 </section>
 
 <section class="slide" id="thanks-kyle">
