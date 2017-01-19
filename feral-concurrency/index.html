@@ -51,7 +51,7 @@
 </section>
 
 <section class="slide" id="insert-user">
-  <h1>What happens when you insert a user in Rails?</h1>
+  <h1>What happens when you create a user in Rails?</h1>
 </section>
 
 <section class="slide" id="four-queries">
@@ -72,6 +72,18 @@
   <h1>This is incorrect!</h1>
 </section>
 
+<section class="slide" id="duplicates">
+  <h2>You can get duplicate records</h2>
+  <img src="images/duplicates.png" alt="Two records with the same email" />
+</section>
+
+<section class="slide" id="bad-consequences">
+  <h2>Bad consequences</h2>
+  <textarea class="code" mode="python">
+User.find_by_email('test@example.com')
+>>> Yes </textarea>
+</section>
+
 <section class="slide" id="paper-intro">
   <h2>Feral Concurrency: the paper</h2>
   <img src="images/bailis-abstract.png" alt="Paper abstract" />
@@ -86,18 +98,6 @@
 
 <section class="slide" id="read-committed-2">
   <h1>Most databases default to READ COMMITTED</h1>
-</section>
-
-<section class="slide" id="duplicates">
-  <h2>You can get duplicate records</h2>
-  <img src="images/duplicates.png" alt="Two records with the same email" />
-</section>
-
-<section class="slide" id="bad-consequences">
-  <h2>Bad consequences</h2>
-  <textarea class="code" mode="python">
-User.find_by_email('test@example.com')
->>> Yes </textarea>
 </section>
 
 <section class="slide" id="rails-skip-validations">
@@ -146,6 +146,8 @@ rescue PostgresError { ... }
   <textarea class="code" mode="python">
 pickup = Pickups.find_by_id('pik_123')
 if pickup.state == 'DRAFT'
+  driver = assign_driver(pickup)
+  pickup.driver_id = driver.id
   pickup.state = 'ASSIGNED'
 return pickup.save()
 </textarea>
@@ -161,8 +163,11 @@ return pickup.save()
   <textarea class="code" mode="python">
 Pickups.update().where(
   :id => 'pik_123',
-  :state => 'DRAFT'
-).set(:state => 'ASSIGNED')
+  :state => 'DRAFT',
+).set(
+  :state => 'ASSIGNED',
+  :driver_id => 'drv_123',
+)
 # Check for 0 or 1 rows
 </textarea>
 </section>
