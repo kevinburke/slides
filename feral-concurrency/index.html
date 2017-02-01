@@ -51,7 +51,7 @@
 </section>
 
 <section class="slide" id="insert-user">
-  <h1>What happens when you create a user in Rails?</h1>
+  <h1>What happens when you <br />create a user in Rails?</h1>
 </section>
 
 <section class="slide" id="four-queries">
@@ -106,7 +106,7 @@ User.find_by_email('test@example.com')
 </section>
 
 <section class="slide" id="correct-way">
-  <h1>The correct way is also faster</h1>
+  <h1>Surprise: the correct way is also faster</h1>
 </section>
 
 <section class="slide" id="correct-way-demo">
@@ -117,15 +117,6 @@ User.find_by_email('test@example.com')
   <h1>Why do ORM authors prefer the slow way?</h1>
 </section>
 
-<section class="slide" id="why-slow-2">
-  <h2>Works with all databases</h2>
-  <textarea class="code" mode="python">
-user = User.find.where(:email => $1)
-unless user?
-  throw NotFoundError('User not found')
-return User.create(:email => $1)</textarea>
-</section>
-
 <section class="slide" id="why-slow-3">
   <h2>Requires O(N) error handling</h2>
   <textarea class="code" mode="python">
@@ -134,6 +125,17 @@ try
 rescue SqliteError { ... }
 rescue MysqlError { ... }
 rescue PostgresError { ... }
+</textarea>
+</section>
+
+<section class="slide" id="why-slow-2">
+  <h2>Works with all databases</h2>
+  <textarea class="code" mode="python">
+user = User.find.where(:email => $1)
+if user?
+  throw DuplicateError('User with that key already exists')
+User.create(:email => $1)
+tx.commit()
 </textarea>
 </section>
 
@@ -154,8 +156,23 @@ return pickup.save()
 </section>
 
 <section class="slide" id="bad-orm-pattern">
-  <h1>Vulnerable to races!<br>
-  Our #1 cause of oncall incidents</h1>
+  <h1>Vulnerable to races!</h1>
+</section>
+
+<section class="slide" id="read-check-update-save">
+  <h2>Read-check-update-save</h2>
+  <textarea class="code" mode="python">
+pickup = Pickups.find_by_id('pik_123')
+if pickup.state == 'DRAFT'
+  driver = assign_driver(pickup)
+  pickup.driver_id = driver.id
+  pickup.state = 'ASSIGNED'
+return pickup.save()
+</textarea>
+</section>
+
+<section class="slide" id="bad-orm-pattern">
+  <h1>Our #1 cause of oncall incidents</h1>
 </section>
 
 <section class="slide" id="state-machine-update">
@@ -231,11 +248,15 @@ Pickups.update().where(
 </section>
 
 <section class="slide" id="orm-prized">
-  <h1>Lesson: abstractions and cross-DB abstractions are prized</h1>
+  <h1>Lesson: cross-DB flexibility is extremely valuable</h1>
 </section>
 
 <section class="slide" id="opportunity">
   <h1>Opportunity: common interfaces for error handling, CRUD</h1>
+</section>
+
+<section class="slide" id="opportunity-3">
+  <h1>Make it easier for ORM developers to use your database</h1>
 </section>
 
 <section class="slide" id="opportunity-2">
@@ -245,10 +266,6 @@ Pickups.update().where(
     <li>MySQL: 1169
     <li>SQLite: 2067
   </ul>
-</section>
-
-<section class="slide" id="opportunity-3">
-  <h1>Make it easier for ORM developers to use your database</h1>
 </section>
 
 <section class="slide" id="evaluate-orms">
