@@ -18,7 +18,7 @@ to reproduce:
 
 3. clone the kevinburke theme into place
 
-        git clone git://github.com/kevinburke/deck.js.git static/extensions/kevinburke
+        git clone git@github.com:kevinburke/deck.js-kevin-theme.git static/extensions/kevinburke
         # or
         ln -s ~/code/deck.js-kevin-theme $PWD/static/extensions/kevinburke
 
