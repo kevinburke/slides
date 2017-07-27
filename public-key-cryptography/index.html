@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>Fast Public Key Cryptography and Curve25519</title>
+
+    <meta name="description" content="Fast Public Key Cryptography and Curve25519">
+    <meta name="author" content="Kevin Burke">
+
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" href="/slides/static/core/deck.core.css">
+    <link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+    <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+
+    <script src="/slides/static/modernizr.custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-3.1.1.min.js"><\/script>')</script>
+  </head>
+
+<body class="deck-container" id="concurrency">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+  <h1>Fast Public Key Cryptography and Curve25519</h1>
+  <div style="position: absolute; bottom: 40px; right: 20px;">
+    <h3 style="margin-bottom: 0;"><a href="https://kev.inburke.com">Kevin Burke</a></h3>
+    <h3><a style="color: #fff;" href="https://twitter.com/derivativeburke">@derivativeburke</a></h3>
+  </div>
+</section>
+
+<section class="slide" id="audience">
+  <h1>Who is this talk for?</h1>
+</section>
+
+<section class="slide" id="insert-user">
+  <h1>What happens when you <br />create a user in Rails?</h1>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Four queries!</h2>
+  <ul>
+    <li>BEGIN
+    <li>SELECT * WHERE email='test@example.com'
+    <li>INSERT INTO users ...
+    <li>COMMIT
+  </ul>
+</section>
+
+<section class="slide" id="slow">
+  <h1>This is slow</h1>
+</section>
+
+<section class="slide" id="incorrect">
+  <h1>This is incorrect!</h1>
+</section>
+
+<section class="slide" id="duplicates">
+  <h2>You can get duplicate records</h2>
+  <img src="images/duplicates.png" alt="Two records with the same email" />
+</section>
+
+<section class="slide" id="bad-consequences">
+  <h2>Bad consequences</h2>
+  <textarea class="code" mode="python">
+User.find_by_email('test@example.com')
+>>> Yes </textarea>
+</section>
+
+<section class="slide" id="paper-intro">
+  <h2>Feral Concurrency: the paper</h2>
+  <img src="images/bailis-abstract.png" alt="Paper abstract" />
+</section>
+
+<section class="slide" id="read-committed-1">
+  <h1>BEGIN/SELECT/INSERT/COMMIT is not safe at READ COMMITTED</h1>
+  <h4>
+    <a href="https://martin.kleppmann.com/2015/09/26/transactions-at-strange-loop.html">more info</a>
+  </h4>
+</section>
+
+<section class="slide" id="read-committed-2">
+  <h1>Most databases default to READ COMMITTED</h1>
+</section>
+
+<section class="slide" id="rails-skip-validations">
+  <h2>Some Rails functions *skip* the validations</h2>
+  <img src="images/skip-validations.png" alt="Rails functions that skip validations" />
+</section>
+
+<section class="slide" id="correct-way">
+  <h1>Surprise: the correct way is also faster</h1>
+</section>
+
+<section class="slide" id="correct-way-demo">
+  <h1>Demo</h1>
+</section>
+
+<section class="slide" id="why-slow">
+  <h1>Why do ORM authors prefer the slow way?</h1>
+</section>
+
+<section class="slide" id="why-slow-3">
+  <h2>Requires O(N) error handling</h2>
+  <textarea class="code" mode="python">
+try
+  return User.create(:email => $1)
+rescue SqliteError { ... }
+rescue MysqlError { ... }
+rescue PostgresError { ... }
+</textarea>
+</section>
+
+<section class="slide" id="why-slow-2">
+  <h2>Works with all databases</h2>
+  <textarea class="code" mode="python">
+user = User.find.where(:email => $1)
+if user?
+  throw DuplicateError('User with that key already exists')
+User.create(:email => $1)
+tx.commit()
+</textarea>
+</section>
+
+<section class="slide" id="bad-orm-pattern">
+  <h1>Another bad ORM pattern</h1>
+</section>
+
+<section class="slide" id="read-check-update-save">
+  <h2>Read-check-update-save</h2>
+  <textarea class="code" mode="python">
+pickup = Pickups.find_by_id('pik_123')
+if pickup.state == 'DRAFT'
+  driver = assign_driver(pickup)
+  pickup.driver_id = driver.id
+  pickup.state = 'ASSIGNED'
+return pickup.save()
+</textarea>
+</section>
+
+<section class="slide" id="bad-orm-pattern">
+  <h1>Vulnerable to races!</h1>
+</section>
+
+<section class="slide" id="read-check-update-save">
+  <h2>Read-check-update-save</h2>
+  <textarea class="code" mode="python">
+pickup = Pickups.find_by_id('pik_123')
+if pickup.state == 'DRAFT'
+  driver = assign_driver(pickup)
+  pickup.driver_id = driver.id
+  pickup.state = 'ASSIGNED'
+return pickup.save()
+</textarea>
+</section>
+
+<section class="slide" id="bad-orm-pattern">
+  <h1>Our #1 cause of oncall incidents</h1>
+</section>
+
+<section class="slide" id="state-machine-update">
+  <h2>One query</h2>
+  <textarea class="code" mode="python">
+Pickups.update().where(
+  :id => 'pik_123',
+  :state => 'DRAFT',
+).set(
+  :state => 'ASSIGNED',
+  :driver_id => 'drv_123',
+)
+# Check for 0 or 1 rows
+</textarea>
+</section>
+
+<section class="slide" id="dont-use-save">
+  <h1>Don't use <code>save()</code></h1>
+</section>
+
+<section class="slide" id="back-to-paper">
+  <h1>Back to the paper</h1>
+</section>
+
+<section class="slide" id="paper-results">
+  <h2>Paper Results</h2>
+  <ul>
+    <li>67 Rails projects surveyed
+    <li>Avg 29 models per project
+    <li>Most consistency checks are in <br>the application
+    <li>Little use of txns, locks
+  </ul>
+</section>
+
+<section class="slide" id="txn-use">
+  <h2>Example transaction use (Spree)</h2>
+  <ul>
+    <li>Canceling an order
+    <li>Approving an order
+    <li>Transferring shipments between warehouse locations
+    <li>Transferring items between shipments
+  </ul>
+</section>
+
+<section class="slide" id="no-txns">
+  <h2>No transactions used</h2>
+  <ul>
+    <li>Placing an order
+    <li>Setting the available stock
+  </ul>
+</section>
+
+<section class="slide" id="chestertons-fence">
+  <h2>Chesterton's Fence gone wrong</h2>
+  <blockquote>
+    I think we should get rid of the [optimistic lock]
+    since there's no documentation about why it's there...
+  </blockquote>
+</section>
+
+<section class="slide" id="conclusion">
+  <h1>Conclusion</h1>
+</section>
+
+<section class="slide" id="conclusion-1">
+  <h2>Conclusion (1)</h2>
+  <blockquote>
+    DATABASE EXPERTS: (do <br>
+    30 years of research on <br>
+    consistency and locking)<br><br>
+    RAILS: Nah, we're good
+  </blockquote>
+</section>
+
+<section class="slide" id="orm-prized">
+  <h1>Lesson: cross-DB flexibility is extremely valuable</h1>
+</section>
+
+<section class="slide" id="opportunity">
+  <h1>Opportunity: common interfaces for error handling, CRUD</h1>
+</section>
+
+<section class="slide" id="opportunity-3">
+  <h1>Make it easier for ORM developers to use your database</h1>
+</section>
+
+<section class="slide" id="opportunity-2">
+  <h2>Unique constraint failure</h2>
+  <ul>
+    <li>Postgres: 23505
+    <li>MySQL: 1169
+    <li>SQLite: 2067
+  </ul>
+</section>
+
+<section class="slide" id="evaluate-orms">
+  <h2>Learn to evaluate ORM's</h2>
+  <ul>
+    <li>What SQL does <code>User.create()</code> run?
+    <li>Check FK behavior
+    <li>Check error handling on constraint failures
+  </ul>
+</section>
+
+<section class="slide" id="use-orms-better">
+  <h2>Use ORM's better</h2>
+  <ul>
+    <li>Use database constraints
+    <li>UPDATE with a WHERE clause, not <code>.save()</code>
+    <li>Give up on same ORM, different database
+  </ul>
+</section>
+
+<section class="slide" id="burke.services">
+  <h1>burke.services</h1>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <h3>Kevin Burke</h3>
+  <h4><a href="https://kev.inburke.com">kev.inburke.com</a></h4>
+  <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
+  <h4><a href="https://twitter.com/derivativeburke">@derivativeburke</a></h4><br/>
+  <p>These slides are available at:</p>
+  <h4><a href="https://kev.inburke.com/slides/feral-concurrency">kev.inburke.com/slides/feral-concurrency</a></h4>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
+</body>
+</html>
