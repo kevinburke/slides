@@ -47,70 +47,404 @@
 </section>
 
 <section class="slide" id="audience">
-  <h1>Who is this talk for?</h1>
+  <h1>What is cryptography?</h1>
 </section>
 
-<section class="slide" id="insert-user">
-  <h1>What happens when you <br />create a user in Rails?</h1>
+<section class="slide" id="audience">
+  <h1>Sending messages without someone in the middle being able to read them</h1>
 </section>
 
 <section class="slide" id="four-queries">
-  <h2>Four queries!</h2>
+  <h2>Assumes someone in the middle can read (encrypted) message</h2>
   <ul>
-    <li>BEGIN
-    <li>SELECT * WHERE email='test@example.com'
-    <li>INSERT INTO users ...
-    <li>COMMIT
+    <li>Wifi
+    <li>Radio
+    <li>Intercepted messenger
   </ul>
 </section>
 
-<section class="slide" id="slow">
-  <h1>This is slow</h1>
+<section class="slide" id="audience">
+  <h1>Middleman may try to forge/tamper with messages</h1>
 </section>
 
-<section class="slide" id="incorrect">
-  <h1>This is incorrect!</h1>
+<section class="slide" id="insert-user">
+  <h1>Not: steganography</h1>
 </section>
 
-<section class="slide" id="duplicates">
-  <h2>You can get duplicate records</h2>
-  <img src="images/duplicates.png" alt="Two records with the same email" />
+<section class="slide" id="four-queries">
+  <h2>Steganography: grape juice</h2>
+  <img src="/slides/public-key-cryptography/invisible-ink.jpg" />
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Steganography: blinking in Morse</h2>
+  <video loop="true" muted="true" autoplay="true" src="/slides/public-key-cryptography/jeremiah-denton.mp4" >
+  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+  <a href="/slides/public-key-cryptography/jeremiah-denton.mp4">download it</a>
+  and watch it with your favorite video player!
+  </video>
+</section>
+
+<section class="slide" id="insert-user">
+  <h1>Symmetric cryptography</h1>
+</section>
+
+<section class="slide" id="insert-user">
+  <h1>Applying a reversible transformation to a message</h1>
+</section>
+
+<section class="slide" id="insert-user">
+  <h1>Usually involves a secret key</h1>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: rot13</h2>
+  <textarea class="code" mode="python">
+O M A R C O M I N
+B Z N E P B Z V A</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: shared text</h2>
+  <textarea class="code" mode="python">
+  O M A R C O M I N
++ W E T H E P E O P
+  -----------------
+  K Q T Y G D Q W C</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: shared text</h2>
+  <textarea class="code" mode="python">
+  K Q T Y G D Q W C
+- W E T H E P E O P
+  -------------------
+  O M A R C O M I N</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example:</h2>
+  <img src="/slides/public-key-cryptography/enigma.jpg" alt="Enigma" />
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: Enigma</h2>
+  <textarea class="code" mode="python">
+    1 | 2 | 3
+O | D | H | U = S
+  | M | Q | Q
+  | T | Z | N</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: Enigma 2</h2>
+  <textarea class="code" mode="python">
+    1 | 2 | 3
+M | M | H | U = Z
+  | T | Q | Q
+  | D | Z | N</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: Enigma 3</h2>
+  <textarea class="code" mode="python">
+    1 | 2 | 3
+A | T | H | U = U
+  | D | Q | Q
+  | M | Z | N</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: Enigma 4</h2>
+  <textarea class="code" mode="python">
+    1 | 2 | 3
+R | D | Q | U = N
+  | M | Z | Q
+  | T | H | N</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: Enigma 10</h2>
+  <textarea class="code" mode="python">
+    1 | 2 | 3
+G | D | H | Q = G
+  | M | Q | N
+  | T | Z | U</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: One time pad</h2>
+  <img src="/slides/public-key-cryptography/onetimepad.jpg" />
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Example: SIGSALY</h2>
+  <img src="/slides/public-key-cryptography/sigsaly.jpg" />
+</section>
+
+
+<section class="slide" id="four-queries">
+  <h2>SIGSALY (Pentagon)</h2>
+  <textarea class="code" mode="python">
+  Eisenhower
++ (White noise)
+---------------
+  (Secret noise)</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>SIGSALY (Downing St)</h2>
+  <textarea class="code" mode="python">
+  (Secret noise)
+- (White noise)
+---------------
+  Eisenhower</textarea>
+</section>
+
+<section class="slide" id="stream-cipher">
+  <h1>Nowadays: Stream ciphers</h1>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Stream cipher inputs:</h2>
+  <ul>
+    <li>Secret key
+    <li>Nonce
+    <li>64-byte block "counter"
+  </ul>
+</section>
+
+<section class="slide" id="nonce-question">
+  <h1>What is a nonce?</h1>
+</section>
+
+<section class="slide" id="nonce-explanation">
+  <h1>Without it, ciphertext is identical</h1>
+</section>
+
+<section class="slide" id="nonce-explanation">
+  <h1>Imagine SIGSALY twice</h1>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>SIGSALY (Pentagon)</h2>
+  <textarea class="code" mode="python">
+  Eisenhower
++ (White noise 1)
+---------------
+  (Secret noise 1)</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>SIGSALY (Pentagon)</h2>
+  <textarea class="code" mode="python">
+  Marshall
++ (White noise 1)
+-----------------
+  (Secret noise 2)</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Attacker</h2>
+  <textarea class="code" mode="python">
+  (Secret noise 1)
+- (Secret noise 2)</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Attacker</h2>
+  <textarea class="code" mode="python">
+  Eisenhower
+  (White noise 1)
+- (White noise 1)
+- Marshall
+-----------------</textarea>
+</section>
+
+<section class="slide" id="nonce-explanation">
+  <h1>What if you want to accept messages from anyone?</h1>
+</section>
+
+<section class="slide" id="nonce-explanation">
+  <h1>Public-key cryptography</h1>
+</section>
+
+<section class="slide" id="public-key-basics">
+  <h2>Basics</h2>
+  <ul>
+    <li>Alice computes <code>f(PK<sub>bob</sub>, SK<sub>alice</sub>)</code>
+    <li>Bob computes <code>f(PK<sub>alice</sub>, SK<sub>bob</sub>)</code>
+    <li>These produce the <i>same</i> key
+    <li>Use symmetric encryption with that key
+  </ul>
+</section>
+
+<section class="slide" id="key-math-points">
+  <h2>Key Math Points</h2>
+  <ul>
+    <li>Need <code>f</code> with the magic property
+    <li>Given PK<sub>bob</sub>, hard to find SK<sub>bob</sub>
+  </ul>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Diffie Hellman basics</h2>
+  <textarea class="code" mode="python">
+p = 37
+(p should be prime)
+g = 5</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Alice's public/private keys</h2>
+  <textarea class="code" mode="python">
+a = random() % 37
+  = 87 % 37 = 13
+A = g^a  % p
+  = 5^13 % 37 = 13</textarea>
+</section>
+
+<section class="slide" id="four-queries">
+  <h2>Bob's public/private keys</h2>
+  <textarea class="code" mode="python">
+b = random() % 37
+  = 106 % 37 = 32
+B = g^b   % p
+  = 5^32 % 37 = 9</textarea>
+</section>
+
+<section class="slide" id="alice-key">
+  <h2>Alice computes shared key</h2>
+  <textarea class="code" mode="python">
+s1 = B^a % p
+   = 9^13 % 37 = 12</textarea>
+</section>
+
+<section class="slide" id="bob-key">
+  <h2>Bob computes shared key</h2>
+  <textarea class="code" mode="python">
+s2 = A^b % p
+   = 13^32 % 37 = 12</textarea>
+</section>
+
+<section class="slide" id="hard-to-reverse">
+  <h2>Hard to reverse</h2>
+  <ul>
+    <li>Given <code>A</code> (13), find <code>a</code>
+    <li><code>13 (mod 37) = 5<sup>a</sup></code>
+    <li>Hard!
+    <li>(Discrete logarithm problem)
+  </ul>
+</section>
+
+<section class="slide" id="diffie">
+  <h2>Pick a number (mod 37), any number</h2>
+  <img src="/slides/public-key-cryptography/diffie.jpg" />
+</section>
+
+<section class="slide" id="curve25519">
+  <img src="/slides/public-key-cryptography/curve25519-frontpage.png" alt="Curve25519 description" />
+</section>
+
+<section class="slide" id="curve25519-why">
+  <h1>Why curve25519?</h1>
+</section>
+
+<section class="slide" id="curve25519-why">
+  <h1>1. Misuse resistance</h1>
+</section>
+
+<section class="slide" id="door-1">
+  <h2>Which way does this door open?</h2>
+  <img src="/slides/public-key-cryptography/door.jpg" alt="A plain door" />
+</section>
+
+<section class="slide" id="door-2">
+  <h2>Which way does this door open?</h2>
+  <img src="/slides/public-key-cryptography/panic-bar.jpeg" alt="A door with panic bar" />
 </section>
 
 <section class="slide" id="bad-consequences">
-  <h2>Bad consequences</h2>
-  <textarea class="code" mode="python">
-User.find_by_email('test@example.com')
->>> Yes </textarea>
+  <h2>Bad design has consequences</h2>
+  <img src="/slides/public-key-cryptography/victoria-hall.jpg" alt="Victoria Hall" />
 </section>
 
-<section class="slide" id="paper-intro">
-  <h2>Feral Concurrency: the paper</h2>
-  <img src="images/bailis-abstract.png" alt="Paper abstract" />
+<section class="slide" id="bad-consequences">
+  <h2>Victoria Hall</h2>
+  <ul>
+    <li>1,100 children rushed toward lobby
+    <li>Lobby door opened inward (toward stairs)
+    <li>Bolted so one child could pass at a time
+    <li>Front children were trapped, crushed
+  </ul>
+</section>
+
+<section class="slide" id="crash-bars">
+  <h2>Crash bars became law</h2>
+  <img src="/slides/public-key-cryptography/panic-bar.jpeg" alt="A door with panic bar" />
+</section>
+
+<section class="slide" id="don-norman">
+  <h2>Don Norman</h2>
+  <img src="/slides/public-key-cryptography/everyday-things.jpg" alt="Don Norman's book" />
 </section>
 
 <section class="slide" id="read-committed-1">
-  <h1>BEGIN/SELECT/INSERT/COMMIT is not safe at READ COMMITTED</h1>
-  <h4>
-    <a href="https://martin.kleppmann.com/2015/09/26/transactions-at-strange-loop.html">more info</a>
-  </h4>
+  <h1>Prone to misuse: JWT</h1>
+</section>
+
+<section class="slide" id="paper-intro">
+  <h2>JWT small subgroup attack</h2>
+  <blockquote><a href="http://blogs.adobe.com/security/2017/03/critical-vulnerability-uncovered-in-json-encryption.html">
+      all the libraries that I checked missed validating that the received public key ... is on the curve
+  </a></blockquote>
+</section>
+
+<section class="slide" id="read-committed-1">
+  <h1>Curve25519: (almost) every 32-byte string is valid</h1>
+</section>
+
+<section class="slide" id="read-committed-1">
+  <h2>Generating a private key</h2>
+  <ol>
+    <li>Generate 32 bytes of random data
+    <li><code>byte[0] = byte[0] &amp; 248</code>
+    <li><code>byte[31] = byte[31] &amp; 127</code>
+    <li><code>byte[31] = byte[31] | 64</code>
+  </ol>
+</section>
+
+<section class="slide" id="read-committed-1">
+  <h1>Not vulnerable to JWT (small subgroup) attack</h1>
 </section>
 
 <section class="slide" id="read-committed-2">
-  <h1>Most databases default to READ COMMITTED</h1>
+  <h1>2. Speed</h1>
 </section>
 
 <section class="slide" id="rails-skip-validations">
-  <h2>Some Rails functions *skip* the validations</h2>
-  <img src="images/skip-validations.png" alt="Rails functions that skip validations" />
+  <h1>Floating point math works well with Intel registers</h1>
 </section>
 
-<section class="slide" id="correct-way">
-  <h1>Surprise: the correct way is also faster</h1>
+<section class="slide" id="prime-number">
+  <h1>The prime number (2<sup>255</sup> - 19)<br />is fast to compute</h1>
+</section>
+
+<section class="slide" id="fancy-math">
+  <h1>(Fancy math that is implemented well in assembler)</h1>
+</section>
+
+<section class="slide" id="read-committed-2">
+  <h1>3. Timing Attacks</h1>
 </section>
 
 <section class="slide" id="correct-way-demo">
-  <h1>Demo</h1>
+  <h2>Timing Attacks</h2>
+  <textarea class="code">
+1  CMP CX,AX   ; a &gt; b ?
+2  JLE 4
+3  INC CX      ; a++
+4  ADD $4, CX</textarea>
 </section>
 
 <section class="slide" id="why-slow">
@@ -354,7 +688,5 @@ $(function() {
 	})();
 </script>
 
-</body>
-</html>
 </body>
 </html>

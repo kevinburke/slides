@@ -6,7 +6,7 @@ to reproduce:
 
 1. clone the deck.js git repo into the static folder.
 
-        git clone git://github.com/imakewebthings/deck.js.git static
+        git clone git://github.com/kevinburke/deck.js.git static
         # or
         ln -s ~/code/deck.js $PWD/static
 
