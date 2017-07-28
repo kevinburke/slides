@@ -39,22 +39,22 @@
 
 <!-- Begin slides -->
 <section class="slide" id="title-slide">
-  <h1>Fast Public Key Cryptography and Curve25519</h1>
+  <h1>Fast Public Key Crypto and Curve25519</h1>
   <div style="position: absolute; bottom: 40px; right: 20px;">
     <h3 style="margin-bottom: 0;"><a href="https://kev.inburke.com">Kevin Burke</a></h3>
     <h3><a style="color: #fff;" href="https://twitter.com/derivativeburke">@derivativeburke</a></h3>
   </div>
 </section>
 
-<section class="slide" id="audience">
+<section class="slide" id="what-is-crypto">
   <h1>What is cryptography?</h1>
 </section>
 
-<section class="slide" id="audience">
+<section class="slide" id="messages-middleman">
   <h1>Sending messages without someone in the middle being able to read them</h1>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="middleman">
   <h2>Assumes someone in the middle can read (encrypted) message</h2>
   <ul>
     <li>Wifi
@@ -63,21 +63,21 @@
   </ul>
 </section>
 
-<section class="slide" id="audience">
+<section class="slide" id="tampering">
   <h1>Middleman may try to forge/tamper with messages</h1>
 </section>
 
-<section class="slide" id="insert-user">
+<section class="slide" id="steganography">
   <h1>Not: steganography</h1>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="grape-juice">
   <h2>Steganography: grape juice</h2>
   <img src="/slides/public-key-cryptography/invisible-ink.jpg" />
 </section>
 
-<section class="slide" id="four-queries">
-  <h2>Steganography: blinking in Morse</h2>
+<section class="slide" id="blinking">
+  <h2>Steganography: blinking</h2>
   <video loop="true" muted="true" autoplay="true" src="/slides/public-key-cryptography/jeremiah-denton.mp4" >
   Sorry, your browser doesn't support embedded videos, but don't worry, you can
   <a href="/slides/public-key-cryptography/jeremiah-denton.mp4">download it</a>
@@ -85,26 +85,26 @@
   </video>
 </section>
 
-<section class="slide" id="insert-user">
+<section class="slide" id="symmetric-crypto">
   <h1>Symmetric cryptography</h1>
 </section>
 
-<section class="slide" id="insert-user">
+<section class="slide" id="reversible">
   <h1>Applying a reversible transformation to a message</h1>
 </section>
 
-<section class="slide" id="insert-user">
+<section class="slide" id="secret-key">
   <h1>Usually involves a secret key</h1>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="rot13">
   <h2>Example: rot13</h2>
   <textarea class="code" mode="python">
 O M A R C O M I N
 B Z N E P B Z V A</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="constitution">
   <h2>Example: shared text</h2>
   <textarea class="code" mode="python">
   O M A R C O M I N
@@ -113,8 +113,8 @@ B Z N E P B Z V A</textarea>
   K Q T Y G D Q W C</textarea>
 </section>
 
-<section class="slide" id="four-queries">
-  <h2>Example: shared text</h2>
+<section class="slide" id="constitution-decrypt">
+  <h2>Decrypt shared text</h2>
   <textarea class="code" mode="python">
   K Q T Y G D Q W C
 - W E T H E P E O P
@@ -122,12 +122,11 @@ B Z N E P B Z V A</textarea>
   O M A R C O M I N</textarea>
 </section>
 
-<section class="slide" id="four-queries">
-  <h2>Example:</h2>
+<section class="slide" id="enigma">
   <img src="/slides/public-key-cryptography/enigma.jpg" alt="Enigma" />
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="enigma-example-1">
   <h2>Example: Enigma</h2>
   <textarea class="code" mode="python">
     1 | 2 | 3
@@ -136,7 +135,7 @@ O | D | H | U = S
   | T | Z | N</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="enigma-example-2">
   <h2>Example: Enigma 2</h2>
   <textarea class="code" mode="python">
     1 | 2 | 3
@@ -145,7 +144,7 @@ M | M | H | U = Z
   | D | Z | N</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="enigma-example-3">
   <h2>Example: Enigma 3</h2>
   <textarea class="code" mode="python">
     1 | 2 | 3
@@ -154,7 +153,7 @@ A | T | H | U = U
   | M | Z | N</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="enigma-example-4">
   <h2>Example: Enigma 4</h2>
   <textarea class="code" mode="python">
     1 | 2 | 3
@@ -163,7 +162,7 @@ R | D | Q | U = N
   | T | H | N</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="enigma-example-5">
   <h2>Example: Enigma 10</h2>
   <textarea class="code" mode="python">
     1 | 2 | 3
@@ -172,44 +171,54 @@ G | D | H | Q = G
   | T | Z | U</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="one-time-pad">
   <h2>Example: One time pad</h2>
   <img src="/slides/public-key-cryptography/onetimepad.jpg" />
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly">
   <h2>Example: SIGSALY</h2>
   <img src="/slides/public-key-cryptography/sigsaly.jpg" />
 </section>
 
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-1">
   <h2>SIGSALY (Pentagon)</h2>
   <textarea class="code" mode="python">
-  Eisenhower
+   Eisenhower
 + (White noise)
 ---------------
   (Secret noise)</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-2">
   <h2>SIGSALY (Downing St)</h2>
   <textarea class="code" mode="python">
   (Secret noise)
 - (White noise)
 ---------------
-  Eisenhower</textarea>
+   Eisenhower</textarea>
 </section>
 
 <section class="slide" id="stream-cipher">
   <h1>Nowadays: Stream ciphers</h1>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="stream-cipher-2">
+  <h2>Stream ciphers</h2>
+  <textarea class="code" mode="python">
+for i := 0; i < 20; i += 2 {
+  u := x0 + x12
+  x4 ^= u<<7 | u>>(32-7)
+  u = x4 + x0
+  x8 ^= u<<9 | u>>(32-9)</textarea>
+</section>
+
+<section class="slide" id="stream-cipher-3">
   <h2>Stream cipher inputs:</h2>
   <ul>
-    <li>Secret key
-    <li>Nonce
+    <li>32-byte secret key
+    <li>24-byte nonce
     <li>64-byte block "counter"
   </ul>
 </section>
@@ -222,55 +231,70 @@ G | D | H | Q = G
   <h1>Without it, ciphertext is identical</h1>
 </section>
 
-<section class="slide" id="nonce-explanation">
-  <h1>Imagine SIGSALY twice</h1>
+<section class="slide" id="sigsaly-twice">
+  <h2>Imagine SIGSALY twice</h2>
+  <img src="/slides/public-key-cryptography/sigsaly.jpg" />
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-twice-2">
   <h2>SIGSALY (Pentagon)</h2>
   <textarea class="code" mode="python">
-  Eisenhower
+   Eisenhower
 + (White noise 1)
 ---------------
   (Secret noise 1)</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-twice-3">
   <h2>SIGSALY (Pentagon)</h2>
   <textarea class="code" mode="python">
-  Marshall
+   Marshall
 + (White noise 1)
 -----------------
   (Secret noise 2)</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-subtraction">
   <h2>Attacker</h2>
   <textarea class="code" mode="python">
   (Secret noise 1)
 - (Secret noise 2)</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="sigsaly-subtraction-2">
   <h2>Attacker</h2>
   <textarea class="code" mode="python">
-  Eisenhower
+   Eisenhower
   (White noise 1)
 - (White noise 1)
-- Marshall
+-  Marshall
 -----------------</textarea>
 </section>
 
-<section class="slide" id="nonce-explanation">
+<section class="slide" id="public-key">
   <h1>What if you want to accept messages from anyone?</h1>
 </section>
 
-<section class="slide" id="nonce-explanation">
+<section class="slide" id="public-key-crypto">
   <h1>Public-key cryptography</h1>
 </section>
 
 <section class="slide" id="public-key-basics">
   <h2>Basics</h2>
+  <ul>
+    <li>Alice generates secret key (<code>SK<sub>alice</sub></code>)
+    <li>Alice computes public key (<code>PK<sub>alice</sub></code>)
+    <li>Bob generates secret key (<code>SK<sub>bob</sub></code>)
+    <li>Bob computes public key (<code>PK<sub>bob</sub></code>)
+  </ul>
+</section>
+
+<section class="slide" id="public-key-exchange">
+  <h1>Alice, Bob exchange public keys only</h1>
+</section>
+
+<section class="slide" id="public-key-basics-2">
+  <h2>Basics, cont'd</h2>
   <ul>
     <li>Alice computes <code>f(PK<sub>bob</sub>, SK<sub>alice</sub>)</code>
     <li>Bob computes <code>f(PK<sub>alice</sub>, SK<sub>bob</sub>)</code>
@@ -287,7 +311,7 @@ G | D | H | Q = G
   </ul>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="diffie-hellman-basics">
   <h2>Diffie Hellman basics</h2>
   <textarea class="code" mode="python">
 p = 37
@@ -295,7 +319,7 @@ p = 37
 g = 5</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="alice-public-private">
   <h2>Alice's public/private keys</h2>
   <textarea class="code" mode="python">
 a = random() % 37
@@ -304,7 +328,7 @@ A = g^a  % p
   = 5^13 % 37 = 13</textarea>
 </section>
 
-<section class="slide" id="four-queries">
+<section class="slide" id="bob-public-private">
   <h2>Bob's public/private keys</h2>
   <textarea class="code" mode="python">
 b = random() % 37
@@ -316,14 +340,14 @@ B = g^b   % p
 <section class="slide" id="alice-key">
   <h2>Alice computes shared key</h2>
   <textarea class="code" mode="python">
-s1 = B^a % p
+s1 = B^a  % p
    = 9^13 % 37 = 12</textarea>
 </section>
 
 <section class="slide" id="bob-key">
   <h2>Bob computes shared key</h2>
   <textarea class="code" mode="python">
-s2 = A^b % p
+s2 = A^b   % p
    = 13^32 % 37 = 12</textarea>
 </section>
 
@@ -332,14 +356,14 @@ s2 = A^b % p
   <ul>
     <li>Given <code>A</code> (13), find <code>a</code>
     <li><code>13 (mod 37) = 5<sup>a</sup></code>
-    <li>Hard!
-    <li>(Discrete logarithm problem)
+    <li>Or <code>13 = 5<sup>a</sup> (mod 37)</code>
+    <li>(Discrete logarithm problem - hard!)
   </ul>
 </section>
 
 <section class="slide" id="diffie">
-  <h2>Pick a number (mod 37), any number</h2>
-  <img src="/slides/public-key-cryptography/diffie.jpg" />
+  <h2>Pick a number (mod 37)</h2>
+  <img src="/slides/public-key-cryptography/diffie-small.png" />
 </section>
 
 <section class="slide" id="curve25519">
@@ -350,7 +374,7 @@ s2 = A^b % p
   <h1>Why curve25519?</h1>
 </section>
 
-<section class="slide" id="curve25519-why">
+<section class="slide" id="misuse-resistance">
   <h1>1. Misuse resistance</h1>
 </section>
 
@@ -390,7 +414,8 @@ s2 = A^b % p
 </section>
 
 <section class="slide" id="read-committed-1">
-  <h1>Prone to misuse: JWT</h1>
+  <h1>Prone to misuse: JWT<br />
+  small subgroup attack</h1>
 </section>
 
 <section class="slide" id="paper-intro">
@@ -401,7 +426,7 @@ s2 = A^b % p
 </section>
 
 <section class="slide" id="read-committed-1">
-  <h1>Curve25519: (almost) every 32-byte string is valid</h1>
+  <h1>Curve25519: deliberately chosen to avoid small subgroup attacks</h1>
 </section>
 
 <section class="slide" id="read-committed-1">
@@ -414,210 +439,55 @@ s2 = A^b % p
   </ol>
 </section>
 
-<section class="slide" id="read-committed-1">
-  <h1>Not vulnerable to JWT (small subgroup) attack</h1>
+<section class="slide" id="curve25519-subgroup">
+  <h1>1,2,4,8 is the only subgroup<br />
+  <code>byte[0] = byte[0] &amp; 248</code></h1>
 </section>
 
 <section class="slide" id="read-committed-2">
   <h1>2. Speed</h1>
 </section>
 
-<section class="slide" id="rails-skip-validations">
+<section class="slide" id="floating-point-math">
   <h1>Floating point math works well with Intel registers</h1>
 </section>
 
 <section class="slide" id="prime-number">
-  <h1>The prime number (2<sup>255</sup> - 19)<br />is fast to compute</h1>
+  <h1>Add/mult mod 2<sup>255</sup> - 19<br />is fast to compute</h1>
 </section>
 
-<section class="slide" id="fancy-math">
-  <h1>(Fancy math that is implemented well in assembler)</h1>
+<section class="slide" id="fast-to-compute">
+  <h2>Alice's public/private keys</h2>
+  <textarea class="code" mode="python">
+a = random() % 37
+  = 87 % 37 = 13
+A = g^a  % p
+  = 5^13 % 37 = 13</textarea>
 </section>
 
-<section class="slide" id="read-committed-2">
+<section class="slide" id="timing-attacks">
   <h1>3. Timing Attacks</h1>
 </section>
 
-<section class="slide" id="correct-way-demo">
-  <h2>Timing Attacks</h2>
-  <textarea class="code">
-1  CMP CX,AX   ; a &gt; b ?
-2  JLE 4
-3  INC CX      ; a++
-4  ADD $4, CX</textarea>
+<section class="slide" id="not-constant-time">
+  <h1>Array lookups are not constant time</h1>
 </section>
 
-<section class="slide" id="why-slow">
-  <h1>Why do ORM authors prefer the slow way?</h1>
+<section class="slide" id="cache-timing-tables">
+  <h2>Array lookups are not constant time</h2>
+  <img src="/slides/public-key-cryptography/cache-timing-tables.png" />
 </section>
 
-<section class="slide" id="why-slow-3">
-  <h2>Requires O(N) error handling</h2>
-  <textarea class="code" mode="python">
-try
-  return User.create(:email => $1)
-rescue SqliteError { ... }
-rescue MysqlError { ... }
-rescue PostgresError { ... }
-</textarea>
+<section class="slide" id="timing-attacks">
+  <h2>Compute values in pairs</h2>
+  <ol>
+    <li><code>x[b] (b ∈ {0, 1})</code>
+    <li><code>x[b] = (1 - b)x[0] + bx[1]</code>
+  </ol>
 </section>
 
-<section class="slide" id="why-slow-2">
-  <h2>Works with all databases</h2>
-  <textarea class="code" mode="python">
-user = User.find.where(:email => $1)
-if user?
-  throw DuplicateError('User with that key already exists')
-User.create(:email => $1)
-tx.commit()
-</textarea>
-</section>
-
-<section class="slide" id="bad-orm-pattern">
-  <h1>Another bad ORM pattern</h1>
-</section>
-
-<section class="slide" id="read-check-update-save">
-  <h2>Read-check-update-save</h2>
-  <textarea class="code" mode="python">
-pickup = Pickups.find_by_id('pik_123')
-if pickup.state == 'DRAFT'
-  driver = assign_driver(pickup)
-  pickup.driver_id = driver.id
-  pickup.state = 'ASSIGNED'
-return pickup.save()
-</textarea>
-</section>
-
-<section class="slide" id="bad-orm-pattern">
-  <h1>Vulnerable to races!</h1>
-</section>
-
-<section class="slide" id="read-check-update-save">
-  <h2>Read-check-update-save</h2>
-  <textarea class="code" mode="python">
-pickup = Pickups.find_by_id('pik_123')
-if pickup.state == 'DRAFT'
-  driver = assign_driver(pickup)
-  pickup.driver_id = driver.id
-  pickup.state = 'ASSIGNED'
-return pickup.save()
-</textarea>
-</section>
-
-<section class="slide" id="bad-orm-pattern">
-  <h1>Our #1 cause of oncall incidents</h1>
-</section>
-
-<section class="slide" id="state-machine-update">
-  <h2>One query</h2>
-  <textarea class="code" mode="python">
-Pickups.update().where(
-  :id => 'pik_123',
-  :state => 'DRAFT',
-).set(
-  :state => 'ASSIGNED',
-  :driver_id => 'drv_123',
-)
-# Check for 0 or 1 rows
-</textarea>
-</section>
-
-<section class="slide" id="dont-use-save">
-  <h1>Don't use <code>save()</code></h1>
-</section>
-
-<section class="slide" id="back-to-paper">
-  <h1>Back to the paper</h1>
-</section>
-
-<section class="slide" id="paper-results">
-  <h2>Paper Results</h2>
-  <ul>
-    <li>67 Rails projects surveyed
-    <li>Avg 29 models per project
-    <li>Most consistency checks are in <br>the application
-    <li>Little use of txns, locks
-  </ul>
-</section>
-
-<section class="slide" id="txn-use">
-  <h2>Example transaction use (Spree)</h2>
-  <ul>
-    <li>Canceling an order
-    <li>Approving an order
-    <li>Transferring shipments between warehouse locations
-    <li>Transferring items between shipments
-  </ul>
-</section>
-
-<section class="slide" id="no-txns">
-  <h2>No transactions used</h2>
-  <ul>
-    <li>Placing an order
-    <li>Setting the available stock
-  </ul>
-</section>
-
-<section class="slide" id="chestertons-fence">
-  <h2>Chesterton's Fence gone wrong</h2>
-  <blockquote>
-    I think we should get rid of the [optimistic lock]
-    since there's no documentation about why it's there...
-  </blockquote>
-</section>
-
-<section class="slide" id="conclusion">
-  <h1>Conclusion</h1>
-</section>
-
-<section class="slide" id="conclusion-1">
-  <h2>Conclusion (1)</h2>
-  <blockquote>
-    DATABASE EXPERTS: (do <br>
-    30 years of research on <br>
-    consistency and locking)<br><br>
-    RAILS: Nah, we're good
-  </blockquote>
-</section>
-
-<section class="slide" id="orm-prized">
-  <h1>Lesson: cross-DB flexibility is extremely valuable</h1>
-</section>
-
-<section class="slide" id="opportunity">
-  <h1>Opportunity: common interfaces for error handling, CRUD</h1>
-</section>
-
-<section class="slide" id="opportunity-3">
-  <h1>Make it easier for ORM developers to use your database</h1>
-</section>
-
-<section class="slide" id="opportunity-2">
-  <h2>Unique constraint failure</h2>
-  <ul>
-    <li>Postgres: 23505
-    <li>MySQL: 1169
-    <li>SQLite: 2067
-  </ul>
-</section>
-
-<section class="slide" id="evaluate-orms">
-  <h2>Learn to evaluate ORM's</h2>
-  <ul>
-    <li>What SQL does <code>User.create()</code> run?
-    <li>Check FK behavior
-    <li>Check error handling on constraint failures
-  </ul>
-</section>
-
-<section class="slide" id="use-orms-better">
-  <h2>Use ORM's better</h2>
-  <ul>
-    <li>Use database constraints
-    <li>UPDATE with a WHERE clause, not <code>.save()</code>
-    <li>Give up on same ORM, different database
-  </ul>
+<section class="slide" id="assembly-implementation">
+  <h1>Paper ships with assembly implementation</h1>
 </section>
 
 <section class="slide" id="burke.services">
@@ -631,7 +501,7 @@ Pickups.update().where(
   <h4><a href="mailto:kev@inburke.com">kev@inburke.com</a></h4>
   <h4><a href="https://twitter.com/derivativeburke">@derivativeburke</a></h4><br/>
   <p>These slides are available at:</p>
-  <h4><a href="https://kev.inburke.com/slides/feral-concurrency">kev.inburke.com/slides/feral-concurrency</a></h4>
+  <h4><a href="https://kev.inburke.com/slides/curve25519">kev.inburke.com/slides/curve25519</a></h4>
 </section>
 
 <!-- deck.navigation snippet -->
