@@ -1,0 +1,11 @@
+rails new myproject --database=postgresql
+cd myproject
+spring stop
+git init
+gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+createdb myproject_development
+bin/rails generate model User
+vim app/models/user.rb
+add "validates :email, uniqueness: true"
+rake db:migrate
+bin/rails console

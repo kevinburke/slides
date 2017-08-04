@@ -135,8 +135,7 @@ user = User.find.where(:email => $1)
 if user?
   throw DuplicateError('User with that key already exists')
 User.create(:email => $1)
-tx.commit()
-</textarea>
+tx.commit()</textarea>
 </section>
 
 <section class="slide" id="bad-orm-pattern">
