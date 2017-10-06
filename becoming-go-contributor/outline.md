@@ -106,3 +106,8 @@ many times as you want and it's totally fine.
 
 The first contribution is the toughest because you have to install all of the
 tools. Once you have all of the tools, it gets easier to do more contributions.
+
+- talk about throwing away work
+
+truman show clip: https://www.youtube.com/watch?v=_Y0jRiIwMUQ
+57:46
