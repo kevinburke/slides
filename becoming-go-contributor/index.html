@@ -21,13 +21,9 @@
     <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
     <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
 
-    <!-- codemirror -->
     <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
-
-    <!-- Style theme. More available in /themes/style/ or create your own. -->
     <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
 
-    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
     <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
 
     <script src="/slides/static/modernizr.custom.js"></script>
@@ -64,12 +60,6 @@
   <h1>What does "contributing" mean?</h1>
 </section>
 
-<section class="slide" id="myth-contributor">
-  <div class="full-image">
-    <img src="/slides/becoming-go-contributor/images/ashley-macnamara.png" />
-  </div>
-</section>
-
 <section class="slide" id="myth-contributor-2">
   <div class="full-image">
     <img src="/slides/becoming-go-contributor/images/truman-annotated.png" />
@@ -86,25 +76,44 @@
   <h1>BS. There are so many ways to contribute!</h1>
 </section>
 
+<section class="slide" id="myth-contributor">
+  <div class="full-image">
+    <img src="/slides/becoming-go-contributor/images/ashley-macnamara.png" />
+  </div>
+</section>
+
 <section class="slide" id="contribute-go">
   <h1>Contribute by using Go</h1>
+</section>
+
+<section class="slide" id="contribute-bug-reports">
+  <h1>Contribute bug reports</h1>
+</section>
+
+<section class="slide" id="new-site">
+  <h2>How to file a bug report</h2>
+  <ul>
+    <li>What were you trying to do?
+    <li>What did you expect to see?
+    <li>What did you see?
+    <li>How can I reproduce it?
+  </ul>
 </section>
 
 <section class="slide" id="contribute-triage">
   <h1>Contribute Bug Triage</h1>
 </section>
 
-<section class="slide" id="bug-triage">
-  <h2>Bug Triage</h2>
-  <ul>
-    <li>Panic in (100kLOC program)
-    <li>"it doesn't work"
-    <li>Please add bitcoin mining pkg
-  </ul>
+<section class="slide" id="contribute-triage">
+  <h1>"Compile panic in (100kLOC program)"</h1>
 </section>
 
-<section class="slide" id="respond">
-  <h1>All of these need a response!</h1>
+<section class="slide" id="contribute-triage">
+  <h1>"It doesn't work"</h1>
+</section>
+
+<section class="slide" id="contribute-triage">
+  <h1>"proposal: add bitcoin mining package"</h1>
 </section>
 
 <section class="slide" id="reduced-test-case">
@@ -182,20 +191,6 @@
   </div>
 </section>
 
-<section class="slide" id="contribute-bug-reports">
-  <h1>Contribute bug reports</h1>
-</section>
-
-<section class="slide" id="new-site">
-  <h2>How to file a bug report</h2>
-  <ul>
-    <li>What were you trying to do?
-    <li>What did you expect to see?
-    <li>What did you see?
-    <li>How can I reproduce it?
-  </ul>
-</section>
-
 <section class="slide" id="contribute-x-repos">
   <h1>Contribute to the golang.org/x repos</h1>
 </section>
@@ -221,10 +216,10 @@
 </section>
 
 <section class="slide" id="lower-expectations">
-  <h2>Small commits are good</h2>
+  <h2>Small commits are common</h2>
   <ul>
     <li>I have 173 commits
-    <li>95 under 20 LOC. 78 over
+    <li>95 under 20 LOC, 78 over
     <li>Bradfitz: 800 of 1800 Gerrit commits under 20 LOC
   </ul>
 </section>
@@ -242,11 +237,6 @@
 <section class="slide" id="new-site">
   <h2>Expectations, cont'd</h2>
   <img src="/slides/becoming-go-contributor/images/cmd-cover-typo.png" />
-</section>
-
-<section class="slide" id="expectations-4">
-  <h2>Expectations, cont'd</h2>
-  <img src="/slides/becoming-go-contributor/images/database-sql-typo.png" />
 </section>
 
 <section class="slide" id="new-site">
@@ -270,7 +260,7 @@
 </section>
 
 <section class="slide" id="scratch-repo">
-  <h2>Expectations, cont'd</h2>
+  <h2>The scratch repo</h2>
   <img src="/slides/becoming-go-contributor/images/scratch-repo.png" />
 </section>
 
@@ -285,7 +275,7 @@
 </section>
 
 <section class="slide" id="dont-get-stuck">
-  <h1>Don't get stuck!</h1>
+  <h1>Don't get stuck, get help!</h1>
 </section>
 
 <section class="slide" id="help-resources">
@@ -306,6 +296,10 @@
   <h1>golang-devexp mailing list</h1>
 </section>
 
+<section class="slide" id="how-to-get-started">
+  <h1>How to find ideas?</h1>
+</section>
+
 <section class="slide" id="watch-github">
   <h2>Find ideas: watch Github</h2>
   <img src="/slides/becoming-go-contributor/images/watch-github.png" />
@@ -321,22 +315,18 @@
 </section>
 
 <section class="slide" id="comparative-advantage-2">
-  <h2>Notice confusing things</h2>
+  <h2>Notice confusion</h2>
   <textarea class="code" mode="python">
 mail.ParseAddress('A (middle) B &lt;a@b.com&gt;')
 >>> mail: no angle-addr</textarea>
 </section>
 
-<section class="slide" id="new-site">
-  <h1>Well that's confusing...</h1>
+<section class="slide" id="why-contribute">
+  <h1><i>Should</i> you contribute?</h1>
 </section>
 
-<section class="slide" id="why-contribute">
-  <h1>Should you contribute?</h1>
-</section>
-
-<section class="slide" id="why-contribute">
-  <h1>We must start talking about ethics</h1>
+<section class="slide" id="comparative-advantage-2">
+  <h1>OSS is (largely) free labor</h1>
 </section>
 
 <section class="slide" id="google">
@@ -364,20 +354,16 @@ mail.ParseAddress('A (middle) B &lt;a@b.com&gt;')
 </section>
 
 <section class="slide" id="comparative-advantage-2">
-  <h1>OSS is (largely) free labor</h1>
-</section>
-
-<section class="slide" id="comparative-advantage-2">
-  <h1>It might not be worth it!</h1>
+  <h1>It might be worth it!</h1>
 </section>
 
 <section class="slide" id="stripe">
-  <h2>Scholarships: Stripe</h2>
+  <h2>Get Paid</h2>
   <img src="/slides/becoming-go-contributor/images/stripe-open-source.png" />
 </section>
 
 <section class="slide" id="stripe">
-  <h2>Scholarships: Recurse Center</h2>
+  <h2>Get Paid (cont'd)</h2>
   <img src="/slides/becoming-go-contributor/images/recurse-center.png" />
 </section>
 
