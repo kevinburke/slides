@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>Build and Test Caching</title>
+
+    <meta name="description" content="Build and Test Caching">
+    <meta name="author" content="Kevin Burke">
+
+    <!-- Core and extension CSS files -->
+    <link rel="stylesheet" href="/slides/static/core/deck.core.css">
+    <link rel="stylesheet" href="/slides/static/extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="/slides/static/extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="/slides/static/extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="/slides/static/extensions/status/deck.status.css">
+    <link rel="stylesheet" href="/slides/static/extensions/hash/deck.hash.css">
+
+    <link rel="stylesheet" href="/slides/static/extensions/codemirror/deck.codemirror.css">
+    <link rel="stylesheet" href="/slides/static/extensions/kevinburke/css/kevinburke.css">
+
+    <link rel="stylesheet" href="/slides/static/themes/transition/horizontal-slide.css">
+
+    <script src="/slides/static/modernizr.custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/slides/static/jquery-1.7.2.min.js"><\/script>')</script>
+  </head>
+
+<body class="deck-container" id="build-test-caching">
+
+<!-- Begin slides -->
+<section class="slide" id="title-slide">
+  <h1>Build and Test Caching</h1>
+  <div style="position: absolute; bottom: 40px; right: 20px;">
+    <h3 style="margin-bottom: 0;"><a href="https://kevin.burke.dev">Kevin Burke</a></h3>
+    <h3><a style="color: #fff;" href="https://twitter.com/derivativeburke">@derivativeburke</a></h3>
+  </div>
+</section>
+
+<section class="slide" id="what-is-cache">
+  <h1>What is a cache?</h1>
+</section>
+
+<section class="slide" id="cache-answered">
+  <h1>Cache - an extra copy of something to get you a result faster.</h1>
+</section>
+
+<section class="slide" id="cache-far-away-stuff">
+  <h1>Cache stuff that is far away, or slow to compute</h1>
+</section>
+
+<section class="slide" id="cache-far-away-stuff">
+  <h1>Build caches: avoid 'slow to compute'</h1>
+</section>
+
+<section class="slide" id="cache-algorithms">
+  <h2>Simple algorithm</h2>
+  <ol>
+    <li>Compute a cache key
+    <li>Search cache for key
+    <li>If hit: return cached result
+    <li>Miss: do the slow thing
+    <li>Cache and return slow thing
+  </ul>
+</section>
+
+<section class="slide" id="look-at-caches">
+  <h1>Let's look at some build caches</h1>
+</section>
+
+<section class="slide" id="what-to-cache">
+  <h2>What should we cache?</h2>
+  <ul>
+    <li>Functions?
+    <li>Individual files?
+    <li>Packages?
+    <li>Entire programs?
+  </ul>
+</section>
+
+<section class="slide" id="myth-contributor-2">
+  <div class="full-image">
+    <img alt="Go package cache" src="/slides/build-test-caching/images/package-cache.png" />
+  </div>
+</section>
+
+<section class="slide" id="cache-key">
+  <h1>Cache key: any input that can change</h1>
+</section>
+
+<section class="slide" id="key">
+  <h2>Cache key</h2>
+  <textarea class="code" mode="python">
+key = f(GOOS, GOARCH, GOFLAGS,
+go version, pkg imports)</textarea>
+</section>
+
+<section class="slide" id="checksum">
+  <h1>Checksum</h1>
+</section>
+
+<section class="slide" id="key">
+  <h2>Checksum</h2>
+  <textarea class="code" mode="python">
+&gt;&gt;&gt; sha256(Moby Dick (30MB))
+5891b5b522...
+&gt;&gt;&gt; sha256(Moby Dick, one letter changed)
+167112362a...</textarea>
+</section>
+
+<section class="slide" id="myth-contributor-2">
+  <div class="full-image">
+    <img alt="Clip from the movie 'The Truman Show' where Truman explains he would like to be an explorer. Text above the image reads 'I'd like to be a contributor'" src="/slides/becoming-go-contributor/images/truman-annotated.png" />
+  </div>
+</section>
+
+<section class="slide" id="myth-contributor-3">
+  <div class="full-image">
+    <img alt="Clip from the movie 'The Truman Show' where the teacher explains to Truman that the entire world has been explored. Text above the image reads 'But the standard library is already complete'" src="/slides/becoming-go-contributor/images/truman-show-teacher-annotated.png" />
+  </div>
+</section>
+
+<section class="slide" id="myth-contributor">
+  <div class="full-image">
+    <img alt="Ashley Macnamara explaining you do not need to be a wizard to contribute" src="/slides/becoming-go-contributor/images/ashley-macnamara.png" />
+  </div>
+</section>
+
+<section class="slide" id="contribute-go">
+  <h1>Contribute by using Go</h1>
+</section>
+
+<section class="slide" id="notice-confusion">
+  <h1>Notice confusion</h1>
+</section>
+
+<section class="slide" id="mail-no-angle-addr">
+  <h2>Notice confusion</h2>
+  <textarea class="code" mode="python">
+mail.ParseAddress("A (middle) B &lt;a@b.com&gt;")
+>>> mail: no angle-addr</textarea>
+</section>
+
+<section class="slide" id="notice-confusion-big-reward">
+  <h2>Small effort, big reward</h2>
+  <ul>
+    <li>1.1 million Go developers
+    <li>1% use net/mail: 11000 people
+    <li>1% hit edge case: 110 people
+  </ul>
+  <p class="citation">source: <a href="https://research.swtch.com/gophercount">Russ Cox</a></p>
+</section>
+
+<section class="slide" id="contribute-bug-reports">
+  <h1>Contribute error reports</h1>
+</section>
+
+<section class="slide" id="how-to-file-bug-report">
+  <h2>How to file a bug report</h2>
+  <ul>
+    <li>What were you trying to do?
+    <li>What did you expect to see?
+    <li>What <i>did</i> you see?
+    <li>How can I reproduce it?
+  </ul>
+</section>
+
+<section class="slide" id="reduced-test-case">
+  <h1>Contribute reduced<br/>test cases</h1>
+</section>
+
+<section class="slide" id="reduced-test-case-contd">
+  <h2>Ideal reduced test case</h2>
+  <ul>
+    <li>Produces the error 100% of the time
+    <li>In a small, fast program
+    <li>On a common-ish OS
+  </ul>
+</section>
+
+<section class="slide" id="mvdan-reduced-test-case">
+  <h2 class="h2-image">Example Reduced Case</h2>
+  <img alt="An example of a reduced test case" src="/slides/becoming-go-contributor/images/mvdan-reduced-test-case.png" />
+</section>
+
+<section class="slide" id="contribute-bug-reports">
+  <h1>Reduced test cases can<br />suggest contributions</h1>
+</section>
+
+<section class="slide" id="contribute-examples">
+  <h1>Contribute Examples</h1>
+</section>
+
+<section class="slide" id="people-dont-read">
+  <h1>Examples help because<br />people don't read</h1>
+</section>
+
+<section class="slide" id="example-example">
+  <div class="full-image">
+    <img alt="An example of an example" src="/slides/becoming-go-contributor/images/example-example.png" />
+  </div>
+</section>
+
+<section class="slide" id="package-fmt">
+  <div class="full-image">
+    <img alt="The fmt package in golang" src="/slides/becoming-go-contributor/images/package-fmt.png" />
+  </div>
+</section>
+
+<section class="slide" id="fmt-list">
+  <div class="full-image">
+    <img alt="List of API's provided by the fmt package" src="/slides/becoming-go-contributor/images/fmt-list.png" />
+  </div>
+</section>
+
+<section class="slide" id="fmt-example">
+  <div class="full-image">
+    <img alt="The fmt package has a single example" src="/slides/becoming-go-contributor/images/fmt-examples.png" />
+  </div>
+</section>
+
+<section class="slide" id="contribute-documentation">
+  <h1>Contribute Documentation</h1>
+</section>
+
+<section class="slide" id="scrypt-package">
+  <div class="full-image">
+    <img alt="The scrypt package: golang.org/x/crypto/scrypt" src="/slides/becoming-go-contributor/images/scrypt-package.png" />
+  </div>
+</section>
+
+<section class="slide" id="scrypt-docs">
+  <div class="full-image">
+    <img alt="Docs for the scrypt package" src="/slides/becoming-go-contributor/images/scrypt-docs.png" />
+  </div>
+</section>
+
+<section class="slide" id="scrypt-docs-highlighted">
+  <div class="full-image">
+    <img alt="Scrypt docs mention what the parameters should be for 2009, which is old." src="/slides/becoming-go-contributor/images/scrypt-2009.png" />
+  </div>
+</section>
+
+<section class="slide" id="step-1-file-issue">
+  <h1>Step 1: file issue</h1>
+</section>
+
+<section class="slide" id="scrypt-github">
+  <div class="full-image">
+    <img alt="Github issue about scrypt parameters" src="/slides/becoming-go-contributor/images/scrypt-github.png" />
+  </div>
+</section>
+
+<section class="slide" id="scrypt-commit">
+  <div class="full-image">
+    <img alt="Commit updating the scrypt parameters" src="/slides/becoming-go-contributor/images/scrypt-commit.png" />
+  </div>
+</section>
+
+<section class="slide" id="contribute-x-repos">
+  <h1>Contribute to the golang.org/x repos</h1>
+</section>
+
+<section class="slide" id="gopherbot">
+  <div class="full-image">
+    <img alt="Gopherbot is a tool whose source code is in the golang.org/x/build repo" src="/slides/becoming-go-contributor/images/gopherbot-comment-close.png" />
+  </div>
+</section>
+
+<section class="slide" id="trybot-status">
+  <div class="full-image">
+    <img alt="Trybots run a change on a ton of different machines to check for errors. A photo of the Trybot dashboard" src="/slides/becoming-go-contributor/images/trybot-status.png" />
+  </div>
+</section>
+
+<section class="slide" id="trybot-ui-fixes">
+  <div class="full-image">
+    <img alt="There are lots of improvements that can be made to the Trybot dashboard" src="/slides/becoming-go-contributor/images/trybot-ui-fixes.png" />
+  </div>
+</section>
+
+<section class="slide" id="how-to-get-started">
+  <h1>How do you get started contributing?</h1>
+</section>
+
+<section class="slide" id="tokyo-street-race">
+  <div class="full-image">
+    <img alt="If we were racing cars in Tokyo a flashy entrance would be a good idea." src="/slides/becoming-go-contributor/images/tokyo-street-race.jpg" />
+  </div>
+</section>
+
+<section class="slide" id="lower-expectations">
+  <h1>Lower your expectations for your first contribution</h1>
+</section>
+
+<section class="slide" id="https-commit">
+  <h2 class="h2-image">Expectations</h2>
+  <img alt="My second change was a one character change" src="/slides/becoming-go-contributor/images/use-https.png" />
+</section>
+
+<section class="slide" id="runtime-typo">
+  <h2 class="h2-image">Expectations, cont'd</h2>
+  <img alt="My third change was a typo fix two months after the second one" src="/slides/becoming-go-contributor/images/fix-runtime-typo.png" />
+</section>
+
+<section class="slide" id="cmd-cover-typo">
+  <h2 class="h2-image">Expectations, cont'd</h2>
+  <img alt="My fourth change was also a typo fix, two months after the third one" src="/slides/becoming-go-contributor/images/cmd-cover-typo.png" />
+</section>
+
+<section class="slide" id="no-change-too-small">
+  <h1>No change is too small</h1>
+</section>
+
+<section class="slide" id="lower-expectations-small-commits">
+  <h2>Small commits are common</h2>
+  <ul>
+    <li>I have 226 commits
+    <li>118 under 20 LOC, 108 over
+    <li>Bradfitz: 1030 of 2200 Gerrit <br />commits under 20 LOC
+  </ul>
+</section>
+
+<section class="slide" id="node-contribute">
+  <h2>Small commits to start</h2>
+  <blockquote>I've seen someone barely dip their toe into adjusting the Node.js website...</blockquote>
+  <p class="citation"><a href="https://twitter.com/mikeal">Mikeal Rogers (@mikeal)</a></h5>
+</section>
+
+<section class="slide" id="node-contribute-contd">
+  <h2>Small commits to start</h2>
+  <blockquote>...helped on-board more committers, and is now one of the top level decision makers in Node.js Core.</blockquote>
+  <p class="citation"><a href="https://twitter.com/mikeal">Mikeal Rogers (@mikeal)</a></h5>
+</section>
+
+<section class="slide" id="scratch-link">
+  <h1>Practice committing:<br />bit.ly/goscratch</h1>
+</section>
+
+<section class="slide" id="scratch-repo">
+  <h2>The scratch repo</h2>
+  <img alt="Photo of the 'scratch' repository for testing the Go contribution process" src="/slides/becoming-go-contributor/images/scratch-repo.png" />
+</section>
+
+<section class="slide" id="scratch-repo-contd">
+  <h2>The scratch repo (cont'd)</h2>
+  <img alt="Reviewing a change to the scratch repo" src="/slides/becoming-go-contributor/images/scratch-review.png" />
+</section>
+
+<section class="slide" id="tests-not-source-code">
+  <h2>Buuuut... tests aren't just source code!</h2>
+  <ol>
+    <li>Files in <code>testdata</code> dir
+    <li>Environment variables (TZ, db config)
+    <li>Subcommands
+  </ol>
+</section>
+
+<section class="slide" id="dont-get-stuck">
+  <h1>Don't get stuck, get help!</h1>
+</section>
+
+<section class="slide" id="help-resources">
+  <h2>Resources for Help</h2>
+  <ol>
+    <li><a href="https://groups.google.com/forum/#!forum/golang-dev">golang-dev</a> mailing list
+    <li>#gocontributing/#goreviews Slack
+    <li>Post the CL / explain where you got stuck
+    <li>It's OK to not know/make mistakes
+  </ol>
+</section>
+
+<section class="slide" id="stuck-is-on-go-team">
+  <h1>Getting stuck is on<br />Go team, too</h1>
+</section>
+
+<section class="slide" id="why-contribute">
+  <h1><i>Should</i> you contribute?</h1>
+</section>
+
+<section class="slide" id="free-labor">
+  <h1>OSS is (largely) free labor</h1>
+</section>
+
+<section class="slide" id="might-be-worth-it">
+  <h1>It might be worth it!</h1>
+</section>
+
+<section class="slide" id="organize">
+  <h1>Organize</h1>
+</section>
+
+<section class="slide" id="thanks">
+  <h2>Thanks!</h2>
+  <div class="slide-contents">
+    <h3>Kevin Burke</h3>
+    <h4><a href="https://kevin.burke.dev">kevin.burke.dev</a></h4>
+    <h4><a href="mailto:kevin@burke.dev">kevin@burke.dev</a></h4>
+    <h4><a href="https://twitter.com/derivativeburke">@derivativeburke</a></h4><br/>
+  </div>
+</section>
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Deck Core and extensions -->
+<script src="/slides/static/core/deck.core.js"></script>
+<script src="/slides/static/extensions/hash/deck.hash.js"></script>
+<script src="/slides/static/extensions/menu/deck.menu.js"></script>
+<script src="/slides/static/extensions/goto/deck.goto.js"></script>
+<script src="/slides/static/extensions/status/deck.status.js"></script>
+<script src="/slides/static/extensions/navigation/deck.navigation.js"></script>
+
+<script src="/slides/static/extensions/codemirror/codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/deck.codemirror.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="/slides/static/extensions/codemirror/mode/python/python.js"></script>
+
+<!-- Initialize the deck -->
+<script>
+$(function() {
+	$.deck('.slide');
+});
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-566397-2']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+</body>
+</html>
+</body>
+</html>
